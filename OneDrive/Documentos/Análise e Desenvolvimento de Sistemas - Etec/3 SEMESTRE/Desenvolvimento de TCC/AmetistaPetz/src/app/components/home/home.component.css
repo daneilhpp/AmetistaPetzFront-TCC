@@ -1,0 +1,22 @@
+.card{
+    margin-top: 20px;
+    margin-right: 20px;
+    width: 210px;
+    border-width: 1.5px;
+    border-color: black;
+    border-radius: 15px;
+    
+}
+
+.card-img-top{
+    padding: 20px;
+}
+
+.btn{
+    align-items: center;
+    margin-top: auto;
+}
+
+#lastCard{
+    margin-right: 0px;
+}
