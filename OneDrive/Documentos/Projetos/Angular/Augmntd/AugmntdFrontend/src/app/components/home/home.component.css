@@ -1,0 +1,42 @@
+#links{
+    margin-right: 300px;
+    margin-left: 300px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    color: white;
+    background-color: black;
+    text-align: center;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+
+#logo{
+    display: flex;
+    justify-content: center;
+    
+}
+
+body{
+    background-color:rgb(58, 182, 254);
+}
+
+#foot{
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.card{
+    max-width:800px;
+    margin-top: 30px;
+    text-align: center;
+    border-color: black;
+    border-radius: 0px;
+    background-color:rgb(58, 182, 254);
+    color: #FFFFFF;
+    font-family: "Lucida Console", "Courier New", monospace;
+    text-decoration: none;
+}
+
+a{
+    color:white;
+}
