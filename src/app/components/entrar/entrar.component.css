@@ -1,0 +1,62 @@
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-control{
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    margin-bottom: 40px;
+    border-radius: 20px;
+    border-color: #8B40EB;
+
+    padding-left: 35px;
+}
+
+#entrar{
+    display: block;
+    background-color: #0764A2;
+    border-color: plum;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+}
+
+#esqueci{
+    display: block;
+    margin-top: 18px;
+    margin-left: auto;
+    margin-right: auto;
+    border-color: white;
+    color: gray;
+}
+#registrar{
+    display: block;
+    margin-top: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    border-color: white;
+    color: gray;
+}
+
+
+
+.input-icons i {
+    position: absolute;
+}
+  
+.input-icons {
+    width: 100%;
+    margin-bottom: 10px;
+}
+  
+.icon {
+    padding: 10px;
+    min-width: 40px;
+}
+
+.fa{
+    margin-left: 26.5%;
+}

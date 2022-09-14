@@ -13,8 +13,6 @@
     margin-right: 15px;
 }
 
-#linha{
-    width: auto;
-    height: 6px;
-    background-color: #CFCDE1;
+.navbar{
+   background-color: #E0DDFF;
 }

@@ -6,12 +6,13 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './template/footer/footer.component';
 import { HeaderComponent } from './template/header/header.component';
 import { HomeComponent } from './components/home/home.component';
-import { CarteirinhaComponent } from './components/carteirinha/carteirinha.component';
-import { RgaComponent } from './components/rga/rga.component';
-import { GeopetzComponent } from './components/geopetz/geopetz.component';
-import { AdocaoComponent } from './components/adocao/adocao.component';
-import { DenunciaComponent } from './components/denuncia/denuncia.component';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { RegistrarComponent } from './components/registrar/registrar.component';
+import { TutorComponent } from './components/registrar/tutor/tutor.component';
+import { AdocaoComponent } from './components/registrar/adocao/adocao.component';
+import { VeterinarioComponent } from './components/registrar/veterinario/veterinario.component';
+import { PetshopComponent } from './components/registrar/petshop/petshop.component';
 
 @NgModule({
   declarations: [
@@ -19,11 +20,11 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     HeaderComponent,
     HomeComponent,
-    CarteirinhaComponent,
-    RgaComponent,
-    GeopetzComponent,
+    RegistrarComponent,
+    TutorComponent,
     AdocaoComponent,
-    DenunciaComponent
+    VeterinarioComponent,
+    PetshopComponent
   ],
   imports: [
     BrowserModule,

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GeopetzComponent } from './geopetz.component';
+import { AdocaoComponent } from './adocao.component';
 
-describe('GeopetzComponent', () => {
-  let component: GeopetzComponent;
-  let fixture: ComponentFixture<GeopetzComponent>;
+describe('AdocaoComponent', () => {
+  let component: AdocaoComponent;
+  let fixture: ComponentFixture<AdocaoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GeopetzComponent ]
+      declarations: [ AdocaoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GeopetzComponent);
+    fixture = TestBed.createComponent(AdocaoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

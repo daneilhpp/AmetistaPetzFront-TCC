@@ -1,0 +1,35 @@
+
+.center{
+    margin-bottom: 50px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.form-control{
+    margin-bottom: 50px;
+    border-radius: 20px;
+    border-color: #8B40EB;
+    font-style: italic;
+}
+
+#cpf{
+    margin-bottom: 0px;
+}
+
+#phone{
+    margin-top: 25px;
+}
+#cidade{
+    width: 242px;
+}
+#uf{
+    width: 90px;
+}
+
+.btn{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #0764A2;
+    color: white;
+}
