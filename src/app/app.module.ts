@@ -1,3 +1,6 @@
+import { AdocaorComponent } from './components/registrar/adocaor/adocaor.component';
+import { VeterinariorComponent } from './components/registrar/veterinarior/veterinarior.component';
+import { PetshoprComponent } from './components/registrar/petshopr/petshopr.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -10,9 +13,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { RegistrarComponent } from './components/registrar/registrar.component';
 import { TutorComponent } from './components/registrar/tutor/tutor.component';
-import { AdocaoComponent } from './components/registrar/adocao/adocao.component';
-import { VeterinarioComponent } from './components/registrar/veterinario/veterinario.component';
-import { PetshopComponent } from './components/registrar/petshop/petshop.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +22,9 @@ import { PetshopComponent } from './components/registrar/petshop/petshop.compone
     HomeComponent,
     RegistrarComponent,
     TutorComponent,
-    AdocaoComponent,
-    VeterinarioComponent,
-    PetshopComponent
+    PetshoprComponent,
+    VeterinariorComponent,
+    AdocaorComponent
   ],
   imports: [
     BrowserModule,

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AdocaoComponent } from './adocao.component';
+import { AdocaorComponent } from './adocaor.component';
 
-describe('AdocaoComponent', () => {
-  let component: AdocaoComponent;
-  let fixture: ComponentFixture<AdocaoComponent>;
+describe('AdocaorComponent', () => {
+  let component: AdocaorComponent;
+  let fixture: ComponentFixture<AdocaorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdocaoComponent ]
+      declarations: [ AdocaorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AdocaoComponent);
+    fixture = TestBed.createComponent(AdocaorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

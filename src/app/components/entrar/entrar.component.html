@@ -1,3 +1,4 @@
+
 <div class="container">
     <div class="row">
         <div class="col">
@@ -6,13 +7,20 @@
     </div>
     <div class="row">
         <div class="col">
-            <div class="form-group">
-                <input type="email" class="form-control shadow" placeholder="Email">
-                <input type="password" class="form-control shadow" placeholder="Senha">
+            <div class="form-group input-icons">
+              <div class="block">
+                <label id="lblemail" for="email"><b>Seu email registrado</b></label>
+                <input id="email" type="email" class="form-control shadow" placeholder="Email">
+              </div>
+
+              <div class="block">
+                <label id="lblsenha" for="senha"><b>Sua senha secreta</b></label>
+                <input id="senha" type="password" class="form-control shadow" placeholder="Senha">
+              </div>
                 <button id="entrar" class="btn btn-primary shadow" type="submit"><b>Entrar</b></button>
-                <button id="esqueci" class="btn"><u>Esqueci minha senha</u></button>
-                <button id="registrar" class="btn"><u>Registre uma conta nova</u></button>
+                <a id="esqueci" class="btn" href="/esqueci"><u>Esqueci minha senha</u></a>
+                <a id="registrar" class="btn" href="/registrar"><u>Registre uma conta nova</u></a>
             </div>
         </div>
-    </div>    
+    </div>
 </div>
