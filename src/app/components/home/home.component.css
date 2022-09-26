@@ -1,22 +1,37 @@
 .card{
     margin-top: 80px;
-    margin-right: 20px;
-    width: 210px;
-    border-width: 1.5px;
+    margin-right: 40px;
+    width: 310px;
+    border-width: 2px;
     border-color: black;
     border-radius: 15px;
+    font-size: large;
+    text-align: justify;
+}
 
+.center{
+  display: flex;
+  justify-content: center;
+}
+
+#den,
+#geo{
+  padding: 60px;
 }
 
 .card-img-top{
-    padding: 20px;
+    padding: 40px;
 }
 
 .btn{
     align-items: center;
-    margin-top: auto;
+    margin-top: 30px;
+    background-color: #0764A2;
+    border-radius: 9px;
+    border-width: 0px;
+    color: white;
 }
 
-#lastCard{
-    margin-right: 0px;
-}
+  #lastCard{
+      margin-right: 0px;
+  }

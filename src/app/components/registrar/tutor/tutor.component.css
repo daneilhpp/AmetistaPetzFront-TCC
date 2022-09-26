@@ -6,30 +6,29 @@
 }
 
 .form-control{
-    margin-bottom: 50px;
+    margin-bottom: 25px;
     border-radius: 20px;
     border-color: #8B40EB;
     font-style: italic;
 }
 
-#cpf{
-    margin-bottom: 0px;
+#lbl{
+  margin-left: 15px;
 }
 
-#phone{
-    margin-top: 25px;
+#city{
+  border-radius: 10px;
 }
-#cidade{
-    width: 242px;
-}
-#uf{
-    width: 90px;
+
+#state{
+  border-radius: 10px;
 }
 
 .btn{
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 30px;
     background-color: #0764A2;
     color: white;
 }

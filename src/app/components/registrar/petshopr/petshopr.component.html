@@ -3,31 +3,51 @@
   <form>
       <div class="row">
           <div class="col">
+            <div class="block">
+              <label id="lbl" for="email"><b>Seu nome</b></label>
               <input type="name" class="form-control shadow-sm" id="name" placeholder="Nome Completo" >
-              <input type="text" pattern="[0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}" class="form-control shadow-sm" id="cpf" placeholder="CPF" aria-describedby="cpfHelp">
-              <div id="cpfHelp" class="form-text">Inserir em formato xxx.xxx.xxx-xx</div>
-              <input type="tel" class="form-control shadow-sm" id="phone" name="phone" placeholder="Telefone">
-          </div>
-          <div class="col">
-              <input type="email" class="form-control shadow-sm" id="exampleInputEmail1" placeholder="Email">
-              <input type="password" class="form-control shadow-sm" id="senha" placeholder="Senha">
-              <input type="password" class="form-control shadow-sm" id="senha2" placeholder="Repita a Senha">
-          </div>
-          <div class="col">
-              <input type="address" class="form-control shadow-sm" id="endereco" placeholder="Endereço">
-              <input type="password" class="form-control shadow-sm" id="estado" placeholder="Selecione seu Estado">
-              <div class="row">
-                  <div class="col">
-                      <input type="password" class="form-control shadow-sm" id="cidade" placeholder="Selecione sua Cidade">
-
-                  </div>
-                  <div class="col">
-                      <input type="password" class="form-control shadow-sm" id="uf" placeholder="UF">
-                  </div>
+            </div>
+              <div class="block">
+                <label id="lbl" for="email"><b>Seu CNPJ</b></label>
+                <input type="number" class="form-control shadow-sm" id="cnpj" placeholder="CNPJ">
+              </div>
+              <div class="block">
+                <label id="lbl" for="email"><b>Seu telefone</b></label>
+                <input type="tel" class="form-control shadow-sm" id="phone" name="phone" placeholder="Telefone">
+              </div>
+              <div class="block">
+                <label id="lbl" for="email"><b>Seu email</b></label>
+                <input type="email" class="form-control shadow-sm" id="email" placeholder="Email">
+              </div>
+              <div class="block">
+                <label id="lbl" for="email"><b>Sua senha</b></label>
+                <input type="password" class="form-control shadow-sm" id="password" placeholder="Senha">
               </div>
 
           </div>
-      </div>
+          <div class="col">
+            <div class="block">
+              <label id="lbl" for="email"><b>Seu CEP</b></label>
+              <input type="number" class="form-control shadow-sm" id="cep" placeholder="CEP">
+            </div>
+              <div class="block">
+                <label id="lbl" for="email"><b>Seu Estado</b></label>
+                <input type="text" class="form-control shadow-sm" id="state" placeholder="Selecione seu Estado">
+              </div>
+              <div class="block">
+                <label id="lbl" for="email"><b>Sua cidade</b></label>
+                <input type="text" class="form-control shadow-sm" id="city" placeholder="Selecione sua Cidade">
+              </div>
+              <div class="block">
+                <label id="lbl" for="email"><b>Seu endereço</b></label>
+                <input type="text" class="form-control shadow-sm" id="address" placeholder="Endereço">
+              </div>
+              <div class="block">
+                <label id="lbl" for="email"><b>Repita sua senha</b></label>
+                <input type="password" class="form-control shadow-sm" id="password2" placeholder="Repita a Senha">
+              </div>
+          </div>
+        </div>
 
       <button type="submit" class="btn shadow-sm"><b>Registrar-se</b></button>
   </form>

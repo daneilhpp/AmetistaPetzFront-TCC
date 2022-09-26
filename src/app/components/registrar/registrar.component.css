@@ -1,46 +1,46 @@
 .btn{
-    background-color: #0764A2;
-    border-radius: 30px;
-    border-color: white;
-    border-width: 2px;
-    color: white;
-    margin-bottom: 20px;
-    width: 18rem;
+  background-color: #0764A2;
+  border-radius: 30px;
+  border-color: white;
+  border-width: 2px;
+  color: white;
+  margin-bottom: 20px;
+  width: 18rem;
 }
 
-.container{
-    padding-left: 0px;
-    padding-right: 0px;
+.center{
+  display: flex;
+  justify-content: center;
 }
 
 .card{
-    margin-right: 4px;
-    margin-top: 60px;
-    border-width: 0px;
-    align-items: center;
+  margin-right: 60px;
+  margin-top: 160px;
+  border-width: 0px;
+  align-items: center;
 }
 
 .card-img-top{
-    border-radius: 10px;
+  border-radius: 10px;
 }
 
 #tut{
-    background-color: #EADCFB;
-    border: 2px solid #A49AB0;
+  background-color: #EADCFB;
+  border: 2px solid #A49AB0;
 }
 #adoc{
-    background-color: #CDF7EA;
-    border: 2px solid #84CCB6;
+  background-color: #CDF7EA;
+  border: 2px solid #84CCB6;
 }
 #vet{
-    background-color: #BAD4E5;
-    border: 2px solid #678BA3;
+  background-color: #BAD4E5;
+  border: 2px solid #678BA3;
 }
 #pet{
-    background-color: #FDE3DF;
-    border: 2px solid #DBA9A1;
+  background-color: #FDE3DF;
+  border: 2px solid #DBA9A1;
 }
 
 #lastCard{
-    margin-right: 0px;
+  margin-right: 0px;
 }
