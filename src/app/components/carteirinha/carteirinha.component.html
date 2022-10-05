@@ -1,3 +1,47 @@
-<div class="container">
-    <h1>Carteirinha</h1>
+<div id="center" class="container">
+    <div ngforaqui class="cards">
+    <div class="card">
+        <div class="animalinfo">
+            <h1 id="title">{{nomeAnimal}}</h1>
+            <div class="head">
+                <button class="btn"><b>Adicionar Vacina</b></button>
+                <button class="btn"><b>Remover Vacina</b></button>
+                <button class="btn"><b>Editar Carteirinha</b></button>
+            </div>
+            <div class="line-1"></div>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <thead id="head">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Vacina</th>
+                        <th scope="col">Data de Aplicação</th>
+                        <th scope="col">Próxima Dose</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>{{vacina}}</td>
+                        <td>{{data}}</td>
+                        <td>{{prox}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>{{vacina}}</td>
+                        <td>{{data}}</td>
+                        <td>{{prox}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>{{vacina}}</td>
+                        <td>{{data}}</td>
+                        <td>{{prox}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+  </div>
