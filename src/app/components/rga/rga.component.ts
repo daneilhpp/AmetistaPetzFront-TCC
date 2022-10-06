@@ -13,8 +13,14 @@ export class RgaComponent implements OnInit {
   }
 
   nomeAnimal = 'Nome do Animal';
-  id = 1;
-  vacina = 'teste';
-  data = '00/00/0000';
-  prox = '00/00/0000';
+  sexo = 'Macho';
+  especie = '??';
+  raca = 'Elmo';
+  cor = 'Vermelho';
+  nascimento = '00/0000';
+  ass = 'assets/ass.png'
+  pata = 'assets/patamock.svg'
+  chip = 123456789123456;
+  rga = 1234567;
+  foto = 'assets/fotomock2.jpg';
 }

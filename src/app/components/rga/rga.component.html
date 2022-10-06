@@ -1,58 +1,101 @@
 <div id="center" class="container">
     <div ngforaqui class="cards">
-    <div class="card">
+    <div class="card shadow">
         <div class="animalinfo">
             <h1 id="title">{{nomeAnimal}}</h1>
             <div class="head">
-                <button class="btn"><b>Importar RGA</b></button>
-                <button class="btn"><b>Remover RGA</b></button>
-                <button class="btn"><b>Editar RGA</b></button>
+                <button class="btn shadow" abrirmodal><b>Importar RGA</b></button>
+                <button class="btn shadow" abrirmodal><b>Remover RGA</b></button>
+                <button class="btn shadow" abrirmodal><b>Editar RGA</b></button>
             </div>
             <div class="line-1"></div>
-            <div class="card" id="rga">
+            <div class="card shadow" id="rga">
                 <div class="row" id="lin1">
                     <div class="col">
-                        Cidade de São Paulo
+                        <img id="sp" src="assets/sp.png" alt="">
                     </div>
                     <div class="col">
-                        Secretaria blablabla
+                        <div align="center">
+                            <b>SECRETARIA MUNICIPAL DA SAÚDE</b><br>
+                            COORDENADORIA DE SAÚDE<br>
+                            E PROTEÇÃO AO ANIMAL DOMÉSTICO
+                        </div>
                     </div>
                     <div class="col">
-                        COSAP
+                        <img id="cosap" src="assets/cosap.png" alt="">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <img src="https://svgsilh.com/svg_v2/1314467.svg" id="pata">
+                        <img src={{pata}} id="pata">
                     </div>
                     <div class="col">
-                        <b>Nome</b><br>
-                        Zé<br>
-                        <b>Sexo</b><br>
-                        Macho<br><br>
-                        <b>Espécie</b><br>         
-                        Canina<br>              
-                        <b>Raça</b><br>
-                        Canina<br><br>
-                        <b>Cor</b><br>
-                        Parda/marrom<br>
-                        <b>Nascimento</b><br>
-                        10/02<br>
+                        <div id="info">
+                            <table>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Sexo</th>
+                                </tr>
+                                <tr>
+                                    <td>{{nomeAnimal}}</td>
+                                    <td>{{sexo}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Espécie</th>
+                                    <th>Raça</th>
+                                </tr>
+                                <tr>
+                                    <td>{{especie}}</td>
+                                    <td>{{raca}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Cor</th>
+                                    <th>Nascimento</th>
+                                </tr>
+                                <tr>
+                                    <td>{{cor}}</td>
+                                    <td>{{nascimento}}</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                     <div class="col">
-                        <img src="https://i.imgur.com/l8PtLRxh.jpg" id="foto">
+                        <img src={{foto}} id="foto">
                     </div>
                 </div>
                 <div class="row" id="lin3">
                     <div class="col">
-                        <span class="badge bg-warning"><b>Microship</b></span><br>
-                        982893563956938459863<br><br>
-                        <b>RGA</b><br>
-                        191919191
-                    </div>                    
+                       <div id="microship">
+                        <img id="microimg" src="assets/chip.png">
+                        <div id="items">
+                            <b>Microship</b><br>
+                            <b id="m">{{chip}}</b><br><br>
+                        </div>
+                       </div><br>
+                       <div id="rga2">
+                        <img id="rgaimg" src="assets/rga.png">
+                        <div id="items">
+                            <b id="r">RGA</b><br>
+                            <b>{{rga}}</b><br><br>
+                        </div>
+                       </div>
+                    </div>  
+                    <div class="col">
+                        <div id="assinatura">
+                            <img id="ass" src={{ass}} alt="">
+                            <div class="line-1"></div>
+                            Assinatura do Titular
+                        </div>
+                    </div> 
+                    <div class="col">
+                        <span class="badge">USE PLAQUETA DE IDENTIFICAÇÃO</span>
+                    </div>                 
                 </div>
             </div>
         </div>
     </div>
 </div>
   </div>
+
+
+  
