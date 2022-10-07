@@ -1,0 +1,32 @@
+#text{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+iframe{
+    display: flex;
+    margin: 0 auto;
+    border-radius: 15px;
+}
+
+.container{
+    margin-bottom: 60px;
+}
+
+label{
+    font-size: large;
+}
+
+select{
+    font-size: large;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    border-color: #8B40EB;
+    font-style: italic;
+    width: 40%;
+}

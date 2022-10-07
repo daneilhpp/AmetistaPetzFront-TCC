@@ -14,6 +14,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegistrarComponent } from './components/registrar/registrar.component';
 import { TutorComponent } from './components/registrar/tutor/tutor.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GeopetzComponent } from './components/geopetz/geopetz.component';
+import { PetshopgComponent } from './components/geopetz/petshopg/petshopg.component';
+import { VeterinariogComponent } from './components/geopetz/veterinariog/veterinariog.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { HttpClientModule } from '@angular/common/http';
     TutorComponent,
     PetshoprComponent,
     VeterinariorComponent,
-    AdocaorComponent
+    AdocaorComponent,
+    GeopetzComponent,
+    PetshopgComponent,
+    VeterinariogComponent
   ],
   imports: [
     BrowserModule,

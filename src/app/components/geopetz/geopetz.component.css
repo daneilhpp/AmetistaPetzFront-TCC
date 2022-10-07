@@ -1,0 +1,47 @@
+#text{
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn{
+    background-color: #0764A2;
+    border-radius: 30px;
+    border-color: white;
+    border-width: 2px;
+    color: white;
+    margin-bottom: 20px;
+    width: 18rem;
+  }
+  
+  .center{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .card{
+    margin-right: 80px;
+    margin-top: 80px;
+    border-width: 0px;
+    align-items: center;
+  }
+  
+  .card-img-top{
+    border-radius: 10px;
+  }
+  
+  #vet{
+    background-color: #BAD4E5;
+    border: 2px solid #678BA3;
+  }
+  #pet{
+    background-color: #FDE3DF;
+    border: 2px solid #DBA9A1;
+  }
+  
+  #lastCard{
+    margin-right: 0px;
+  }
+  

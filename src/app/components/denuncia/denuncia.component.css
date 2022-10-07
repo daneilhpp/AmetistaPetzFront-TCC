@@ -1,0 +1,46 @@
+a,
+button,
+select,
+#text{
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#title{
+    margin-top: 80px;
+    margin-bottom: 80px;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#animal{
+    font-size: x-large;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    border-color: #8B40EB;
+    font-style: italic;
+    width: 40%;
+}
+
+a,
+.btn{ 
+    background-color: #0764A2;
+    color: white;
+    border-radius: 50px;
+    font-size: x-large;
+    padding: 10px;
+}
+
+a{
+    width: 220px;
+}
+
+
+.container{
+    margin-bottom: 60px;
+}

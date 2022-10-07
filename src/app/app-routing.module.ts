@@ -11,13 +11,19 @@ import { HomeComponent } from './components/home/home.component';
 import { EntrarComponent } from './components/entrar/entrar.component';
 import { RegistrarComponent } from './components/registrar/registrar.component';
 import { TutorComponent } from './components/registrar/tutor/tutor.component';
+import { GeopetzComponent } from './components/geopetz/geopetz.component';
+import { PetshopgComponent } from './components/geopetz/petshopg/petshopg.component';
+import { VeterinariogComponent } from './components/geopetz/veterinariog/veterinariog.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
-  {path:'adocao',component:AdocaoComponent},
+  // {path:'adocao',component:AdocaoComponent},
   {path:'carteirinha',component:CarteirinhaComponent},
   {path:'denuncia',component:DenunciaComponent},
   {path:'rga',component:RgaComponent},
+  {path:'geopetz',component:GeopetzComponent},
+  {path:'geopetz/petshop',component:PetshopgComponent},
+  {path:'geopetz/veterinario',component:VeterinariogComponent},
   {path:'login',component:EntrarComponent},
   {path:'registrar',component:RegistrarComponent},
   {path:'registrar/tutor',component:TutorComponent},
