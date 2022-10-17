@@ -54,3 +54,14 @@ table {
     margin-left: auto;
 }
 
+#vaccineList {
+    border-radius: 10px;
+    border-color: #8B40EB;
+    font-style: italic;
+    font-size: larger;
+    height: 40px;
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    padding-left: 10px;
+}

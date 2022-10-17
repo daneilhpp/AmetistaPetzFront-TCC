@@ -12,6 +12,10 @@ export class CarteirinhaService {
 
   constructor(private http: HttpClient) { }
 
+  public getMock(): Observable<VaccineAnimalType[]> {
+    return of(vaccineCardMock);
+  }
+
   public getVaccineCardList(): Observable<VaccineCardType[]> {
     return this.http.get<VaccineCardType[]>(`${this.apiUrl}/Listar`);
   }
@@ -29,8 +33,8 @@ export class CarteirinhaService {
   }
 
   
-  public getAnimalVaccineList(): Observable<VaccineCardType[]> {
-    return this.http.get<VaccineCardType[]>(`${this.apiUrl}/Vacina/Listar`);
+  public getAnimalVaccineList(): Observable<VaccineAnimalType[]> {
+    return this.http.get<VaccineAnimalType[]>(`${this.apiUrl}/Vacina/Listar`);
   }
 
   public addAnimalVaccine(vaccineAnimalType: VaccineAnimalType): Observable<VaccineAnimalType>{
@@ -58,19 +62,9 @@ export type VaccineAnimalType = {
   nextVaccineDate: number;
 }
 export const vaccineCardMock: VaccineAnimalType[] = [
-  { animalName: 'name', id: 1, vaccine: 'test', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 2, vaccine: 'test', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 3, vaccine: 'test', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 4, vaccine: 'test', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 5, vaccine: 'test', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 6, vaccine: 'test', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 7, vaccine: 'test', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 8, vaccine: 'test', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 9, vaccine: 'test', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 10, vaccine: 'test', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 11, vaccine: 'test', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 12, vaccine: 'test', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 13, vaccine: 'test', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
+  { animalName: 'name', id: 1, vaccine: 'teste1', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
+  { animalName: 'name', id: 2, vaccine: 'teste2', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
+  { animalName: 'name', id: 3, vaccine: 'teste3', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
 ];
 
 export const vaccineCardMock2: VaccineAnimalType[] = [
@@ -89,6 +83,13 @@ export const vaccineCardMock2: VaccineAnimalType[] = [
   { animalName: 'name', id: 13, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
 ];
 
+// eai dan
+// oba bao
+// bao dimai
+// manda ai o que tá acontecendo de errado
+// entao, eu preciso fazer uma lista que armazene esses dois mocks
+// n tenho ideia de como fazer
+//vai seguindo meu cursor pra gente ir lá no component e no template
 /* export const CardList: VaccineCardType = [
   vaccineCardMock, vaccineCardMock2
 ]; */

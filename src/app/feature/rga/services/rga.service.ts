@@ -11,7 +11,7 @@ export class RgaService {
   constructor(private http: HttpClient) { }
 
   public getRgaList(): Observable<RgaAnimalType[]> {
-    return of(/* CardList */);
+    return of(rgaMock);
   }
 
   public getRgaById(rgaId: number): Observable<RgaAnimalType>{
@@ -44,7 +44,7 @@ export type RgaAnimalType = {
   rga: number;
   foto: string;
 }
-export const vaccineCardMock: RgaAnimalType[] = [
+export const rgaMock: RgaAnimalType[] = [
   { nomeAnimal: 'Rosa', sexo: 'Femea', especie: 'Canina', raca: 'Pitbull', cor: 'Marrom', nascimento: Date.now(), ass: 'assets/ass.png', pata: 'assets/patamock.svg', chip: 123456789123456, rga: 1234567, foto: 'assets/fotomock2.jpg'},
   { nomeAnimal: 'Nome do Animal', sexo: 'Macho', especie: '??', raca: 'Elmo', cor: 'Vermelho', nascimento: Date.now(), ass: 'assets/ass.png', pata: 'assets/patamock.svg', chip: 124124241342453, rga: 1111111, foto: 'assets/fotomock.jpg' },
   { nomeAnimal: 'Teste', sexo: 'Teste', especie: 'Teste', raca: 'Teste', cor: 'Teste', nascimento: Date.now(), ass: 'assets/ass.png', pata: 'assets/patamock.svg', chip: 111111111111111, rga: 2222222, foto: 'assets/fotomock2.jpg'}

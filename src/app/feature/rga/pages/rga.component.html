@@ -1,12 +1,12 @@
 <div id="center" class="container">
-    <div ngforaqui class="cards">
+    <div *ngFor="let rga of rgas$" class="cards">
         <div class="card shadow">
             <section class="animalinfo">
-                <h1 id="title">{{nomeAnimal}}</h1>
+                <h1 id="title">{{rga.nomeAnimal}}</h1>
                 <div class="head">
-                    <button class="btn shadow" abrirmodal><b>Importar RGA</b></button>
-                    <button class="btn shadow" abrirmodal><b>Remover RGA</b></button>
-                    <button class="btn shadow" abrirmodal><b>Editar RGA</b></button>
+                    <!-- <button class="btn shadow" abrirmodal><b>Importar RGA</b></button> -->
+                    <button class="btn shadow" (click)="openEditModal()"><b>Editar RGA</b></button>
+                    <button class="btn shadow" (click)="openRemoveModal()"><b>Remover RGA</b></button>
                 </div>
                 <div class="line-1"></div>
                 <div class="card shadow" id="rga">
@@ -27,7 +27,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <img src={{pata}} id="pata">
+                            <img src={{rga.pata}} id="pata">
                         </div>
                         <div class="col">
                             <div id="info">
@@ -37,30 +37,30 @@
                                         <th>Sexo</th>
                                     </tr>
                                     <tr>
-                                        <td>{{nomeAnimal}}</td>
-                                        <td>{{sexo}}</td>
+                                        <td>{{rga.nomeAnimal}}</td>
+                                        <td>{{rga.sexo}}</td>
                                     </tr>
                                     <tr>
                                         <th>Espécie</th>
                                         <th>Raça</th>
                                     </tr>
                                     <tr>
-                                        <td>{{especie}}</td>
-                                        <td>{{raca}}</td>
+                                        <td>{{rga.especie}}</td>
+                                        <td>{{rga.raca}}</td>
                                     </tr>
                                     <tr>
                                         <th>Cor</th>
                                         <th>Nascimento</th>
                                     </tr>
                                     <tr>
-                                        <td>{{cor}}</td>
-                                        <td>{{nascimento}}</td>
+                                        <td>{{rga.cor}}</td>
+                                        <td>{{rga.nascimento}}</td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
                         <div class="col">
-                            <img src={{foto}} id="foto">
+                            <img src={{rga.foto}} id="foto">
                         </div>
                     </div>
                     <div class="row" id="lin3">
@@ -69,20 +69,20 @@
                                 <img id="microimg" src="assets/chip.png">
                                 <div id="items">
                                     <b>Microship</b><br>
-                                    <b id="m">{{chip}}</b><br><br>
+                                    <b id="m">{{rga.chip}}</b><br><br>
                                 </div>
                             </div><br>
                             <div id="rga2">
                                 <img id="rgaimg" src="assets/rga.png">
                                 <div id="items">
                                     <b id="r">RGA</b><br>
-                                    <b>{{rga}}</b><br><br>
+                                    <b>{{rga.rga}}</b><br><br>
                                 </div>
                             </div>
                         </div>
                         <div class="col">
                             <div id="assinatura">
-                                <img id="ass" src={{ass}} alt="">
+                                <img id="ass" src={{rga.ass}} alt="">
                                 <div class="line-1"></div>
                                 Assinatura do Titular
                             </div>
@@ -96,3 +96,91 @@
         </div>
     </div>
 </div>
+
+<div class="modal" tabindex="-1" id="addRga">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Adicionar vacina na carteirinha de {{'nomeAnimal'}} </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row">
+                <div class="col">
+                    <div class="block">
+                        <label id="lbl" for="name"><b>Nome do animal</b></label>
+                        <input type="name" class="form-control shadow-sm mb-4" id="name" placeholder="Nome da vacina">
+                    </div>
+                    <div class="block">
+                        <label id="lbl" for="email"><b>Data de aplicação</b></label>
+                        <input type="date" class="form-control shadow-sm mb-4" id="date">
+                    </div>
+                    <div class="block">
+                        <label id="lbl" for="email"><b>Data da próxima dose</b></label>
+                        <input type="date" class="form-control shadow-sm mb-4" id="date2">
+                    </div>
+    
+                </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="closeAddModal()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+<div class="modal" tabindex="-1" id="editRga">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Adicionar vacina na carteirinha de {{'nomeAnimal'}} </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row">
+                <div class="col">
+                    <div class="block">
+                        <label id="lbl" for="name"><b>Nome vacina</b></label>
+                        <input type="name" class="form-control shadow-sm mb-4" id="name" placeholder="Nome da vacina">
+                    </div>
+                    <div class="block">
+                        <label id="lbl" for="email"><b>Data de aplicação</b></label>
+                        <input type="date" class="form-control shadow-sm mb-4" id="date">
+                    </div>
+                    <div class="block">
+                        <label id="lbl" for="email"><b>Data da próxima dose</b></label>
+                        <input type="date" class="form-control shadow-sm mb-4" id="date2">
+                    </div>
+    
+                </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="closeAddModal()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" id="removeRga">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Selecione a vacina que quer remover</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h1>remove</h1>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="closeRemoveModal()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
