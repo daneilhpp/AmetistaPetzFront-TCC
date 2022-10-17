@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+    <a class="navbar-brand" href="#">
+        <img id="logo" src="assets/logo.jpg" alt="" width="58" height="58">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link active" routerLink="/" routerLinkActive="home--active">Home</a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link active" routerLink="/carteirinha"
+                    routerLinkActive="carteirinha--active">Carteirinha</a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link active" routerLink="/rga" routerLinkActive="rga--active">RGA</a>
+            </li>
+
+            <li class="nav-item active dropdown">
+                <a class="nav-link active dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-expanded="false" aria-haspopup="true" type="button">
+                    GeoPetz
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" routerLink="/geopetz/veterinario"
+                        routerLinkActive="veterinario--active">Veterinários</a>
+                    <a class="dropdown-item" routerLink="/geopetz/petshop"
+                        routerLinkActive="petshop--active">Petshops</a>
+                </div>
+            </li>
+
+            <!--      <li class="nav-item active">
+            <a class="nav-link active" routerLink="/adocao">Adoção</a>
+          </li> -->
+
+            <li class="nav-item active">
+                <a class="nav-link active" routerLink="denuncia" routerLinkActive="denuncia--active">Denúncia</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="form">
+        <div class="float-right">
+            <button id="btnEntrar" class="btn btn-outline-light" type="button"><b><a routerLink="login"
+                        routerLinkActive="login--active">Entrar</a></b></button>
+            <button id="btnRegistrar" class="btn btn-primary" type="button"><b><a routerLink="registrar"
+                        routerLinkActive="registrar--active">Registrar-se</a></b></button>
+        </div>
+    </div>
+</nav>

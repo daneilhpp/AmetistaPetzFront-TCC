@@ -1,0 +1,98 @@
+<div id="center" class="container">
+    <div ngforaqui class="cards">
+        <div class="card shadow">
+            <section class="animalinfo">
+                <h1 id="title">{{nomeAnimal}}</h1>
+                <div class="head">
+                    <button class="btn shadow" abrirmodal><b>Importar RGA</b></button>
+                    <button class="btn shadow" abrirmodal><b>Remover RGA</b></button>
+                    <button class="btn shadow" abrirmodal><b>Editar RGA</b></button>
+                </div>
+                <div class="line-1"></div>
+                <div class="card shadow" id="rga">
+                    <div class="row" id="lin1">
+                        <div class="col">
+                            <img id="sp" src="assets/sp.png" alt="">
+                        </div>
+                        <div class="col">
+                            <div align="center">
+                                <b>SECRETARIA MUNICIPAL DA SAÚDE</b><br>
+                                COORDENADORIA DE SAÚDE<br>
+                                E PROTEÇÃO AO ANIMAL DOMÉSTICO
+                            </div>
+                        </div>
+                        <div class="col">
+                            <img id="cosap" src="assets/cosap.png" alt="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <img src={{pata}} id="pata">
+                        </div>
+                        <div class="col">
+                            <div id="info">
+                                <table>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Sexo</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{nomeAnimal}}</td>
+                                        <td>{{sexo}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Espécie</th>
+                                        <th>Raça</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{especie}}</td>
+                                        <td>{{raca}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Cor</th>
+                                        <th>Nascimento</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{cor}}</td>
+                                        <td>{{nascimento}}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <img src={{foto}} id="foto">
+                        </div>
+                    </div>
+                    <div class="row" id="lin3">
+                        <div class="col">
+                            <div id="microship">
+                                <img id="microimg" src="assets/chip.png">
+                                <div id="items">
+                                    <b>Microship</b><br>
+                                    <b id="m">{{chip}}</b><br><br>
+                                </div>
+                            </div><br>
+                            <div id="rga2">
+                                <img id="rgaimg" src="assets/rga.png">
+                                <div id="items">
+                                    <b id="r">RGA</b><br>
+                                    <b>{{rga}}</b><br><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div id="assinatura">
+                                <img id="ass" src={{ass}} alt="">
+                                <div class="line-1"></div>
+                                Assinatura do Titular
+                            </div>
+                        </div>
+                        <div class="col">
+                            <span class="badge">USE PLAQUETA DE IDENTIFICAÇÃO</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

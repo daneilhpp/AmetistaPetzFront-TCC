@@ -1,0 +1,56 @@
+.btn {
+    background-color: #8B40EB;
+    border-radius: 30px;
+    margin: 0 5px;
+    color: white;
+}
+
+.card {
+    margin-top: 60px;
+    padding: 0 20px 0 20px;
+    border-radius: 15px;
+    border-color: black;
+    border-width: 1.5px;
+    margin-bottom: 60px;
+}
+
+#title {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.head {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-right: -5px;
+}
+
+table {
+    background-color: white;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.line-1 {
+    margin-top: 20px;
+    height: 1px;
+    background: black;
+}
+
+#head {
+    background-color: #8B40EB;
+    color: white;
+}
+
+#center {
+    margin-right: auto;
+    margin-left: auto;
+}
+

@@ -1,0 +1,38 @@
+<div id="center" class="container">
+    <div ngforaqui class="cards">
+        <div class="card shadow">
+            <section class="animalinfo">
+                <h1 id="title">{{'nomeAnimal'}}</h1>
+                <div class="head">
+                    <button class="btn shadow" abrirmodal><b>Adicionar Vacina</b></button>
+                    <button class="btn shadow" abrirmodal><b>Remover Vacina</b></button>
+                    <button class="btn shadow" abrirmodal><b>Editar Carteirinha</b></button>
+                </div>
+                <div class="line-1"></div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead id="head">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Vacina</th>
+                                <th scope="col">Data de Aplicação</th>
+                                <th scope="col">Próxima Dose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let animal of animals$">
+                                <th scope="row">{{animal.id}}</th>
+                                <td>{{animal.vaccine}}</td>
+                                <td>{{animal.vaccineDate | date:'d/M/y'}}</td>
+                                <td>{{animal.nextVaccineDate | date:'d/M/y'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+ 

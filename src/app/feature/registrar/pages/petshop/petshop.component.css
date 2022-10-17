@@ -1,0 +1,37 @@
+.center {
+    margin-bottom: 50px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.form-control {
+    margin-bottom: 25px;
+    border-radius: 20px;
+    border-color: #8B40EB;
+    font-style: italic;
+}
+
+#lbl {
+    margin-left: 15px;
+}
+
+#city {
+    border-radius: 10px;
+}
+
+#state {
+    border-radius: 10px;
+}
+
+.btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    background-color: #0764A2;
+    color: white;
+}
+
+.container {
+    margin-bottom: 60px;
+}
