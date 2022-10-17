@@ -5,8 +5,11 @@ import { CarteirinhaComponent } from './pages/carteirinha.component';
 const routes: Routes = [
   {
     path: '',
-    component: CarteirinhaComponent
-  }
+    children: [
+      { path: '', component: CarteirinhaComponent },
+      { path: ':id', component: CarteirinhaComponent }
+    ],
+  },
 ];
 
 @NgModule({

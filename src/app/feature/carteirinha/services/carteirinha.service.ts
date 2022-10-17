@@ -58,38 +58,31 @@ export type VaccineAnimalType = {
   animalName: string;
   id: number;
   vaccine: string;
-  vaccineDate: number;
-  nextVaccineDate: number;
+  vaccineDate: Date;
+  nextVaccineDate: Date;
 }
 export const vaccineCardMock: VaccineAnimalType[] = [
-  { animalName: 'name', id: 1, vaccine: 'teste1', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 2, vaccine: 'teste2', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 3, vaccine: 'teste3', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
+  { animalName: 'name', id: 1, vaccine: 'teste1', vaccineDate: new Date(1666033027665), nextVaccineDate: new Date(1666033027665) },
+  { animalName: 'name', id: 2, vaccine: 'teste2', vaccineDate: new Date(1666033027665), nextVaccineDate: new Date(1666033027665) },
+  { animalName: 'name', id: 3, vaccine: 'teste3', vaccineDate: new Date(1666033027665), nextVaccineDate: new Date(1666033027665) },
 ];
 
-export const vaccineCardMock2: VaccineAnimalType[] = [
-  { animalName: 'name', id: 1, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 2, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 3, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 4, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 5, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 6, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 7, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 8, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 9, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 10, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 11, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 12, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-  { animalName: 'name', id: 13, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-];
+// export const vaccineCardMock2: VaccineAnimalType[] = [
+//   { animalName: 'name', id: 1, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
+//   { animalName: 'name', id: 2, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
+//   { animalName: 'name', id: 3, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
+//   { animalName: 'name', id: 4, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
+//   { animalName: 'name', id: 5, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
+//   { animalName: 'name', id: 6, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
+//   { animalName: 'name', id: 7, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
+//   { animalName: 'name', id: 8, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
+//   { animalName: 'name', id: 9, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
+//   { animalName: 'name', id: 10, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
+//   { animalName: 'name', id: 11, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
+//   { animalName: 'name', id: 12, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
+//   { animalName: 'name', id: 13, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
+// ];
 
-// eai dan
-// oba bao
-// bao dimai
-// manda ai o que tá acontecendo de errado
-// entao, eu preciso fazer uma lista que armazene esses dois mocks
-// n tenho ideia de como fazer
-//vai seguindo meu cursor pra gente ir lá no component e no template
 /* export const CardList: VaccineCardType = [
   vaccineCardMock, vaccineCardMock2
 ]; */
