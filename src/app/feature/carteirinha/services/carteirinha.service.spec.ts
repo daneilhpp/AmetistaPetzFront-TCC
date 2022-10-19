@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { CarteirinhaService } from './carteirinha.service';
+import { CarteirinhaService, VaccineAnimalType } from './carteirinha.service';
 
 describe('CarteirinhaService', () => {
   let service: CarteirinhaService;
@@ -23,7 +23,7 @@ describe('CarteirinhaService', () => {
   });
 
 // https://www.testim.io/blog/testing-angular-services/
-it('Should return an vaccine array', (done) => {
+  it('Should return an vaccine array', (done) => {
     //stub
     //arrange
     const stubVaccine = [
@@ -40,6 +40,8 @@ it('Should return an vaccine array', (done) => {
     });
 
   });
+
+  
 });
 
 

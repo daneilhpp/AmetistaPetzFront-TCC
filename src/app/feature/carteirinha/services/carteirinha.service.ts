@@ -7,8 +7,6 @@ import { Observable, of } from 'rxjs';
 })
 export class CarteirinhaService {
   private apiUrl?: 'http://localhost:5000/api/Carteirinha';
-  private AnimalVaccine = new Observable<VaccineAnimalType>();
-  private VaccineCard = new Observable<VaccineCardType>();
 
   constructor(private http: HttpClient) { }
 
