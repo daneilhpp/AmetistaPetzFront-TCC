@@ -4,11 +4,13 @@ import { FormsModule } from '@angular/forms';
 
 import { CarteirinhaRoutingModule } from './carteirinha-routing.module';
 import { CarteirinhaComponent } from './pages/carteirinha.component';
+import { SelecaoComponent } from './pages/selecao/selecao.component';
 
 
 @NgModule({
   declarations: [
-    CarteirinhaComponent
+    CarteirinhaComponent,
+    SelecaoComponent
   ],
   imports: [
     CommonModule,

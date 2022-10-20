@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CarteirinhaComponent } from './pages/carteirinha.component';
+import { SelecaoComponent } from './pages/selecao/selecao.component';
 
 const routes: Routes = [
   {
     path: '',
     children: [
-      { path: '', component: CarteirinhaComponent },
+      { path: '', component: SelecaoComponent },
       { path: ':id', component: CarteirinhaComponent }
     ],
   },

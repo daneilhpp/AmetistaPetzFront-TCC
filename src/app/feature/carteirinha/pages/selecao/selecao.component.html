@@ -1,0 +1,11 @@
+<a routerLink="/" id="back">
+    <img src="assets/back.png" style="width: 20px; height: inherit; margin-top: 30px; margin-left: 10%;">
+  </a>
+<div class="center">
+    <div class="content">
+        <div class="card mt-5">
+            <h3 align="center" class="mb-4">Selecione um animal, para ver sua carteirinha:</h3>
+            <a *ngFor="let animal of animals$" class="btn" routerLink="/carteirinha/{{animal.id}}">{{animal.animalName}}</a>
+        </div>
+    </div>
+</div>

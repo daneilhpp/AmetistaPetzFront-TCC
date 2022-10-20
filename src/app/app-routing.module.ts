@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: () => import('./feature/entrar/entrar.module').then((m) => m.EntrarModule)
   },
   {
+    path: 'selecione',
+    loadChildren: () => import('./feature/carteirinha/carteirinha.module').then(m => m.CarteirinhaModule)
+  },
+  {
     path: 'carteirinha',
     loadChildren: () => import('./feature/carteirinha/carteirinha.module').then(m => m.CarteirinhaModule)
   },
