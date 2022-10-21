@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'any'
@@ -14,17 +14,21 @@ export class CarteirinhaService {
     return of(vaccineCardMock);
   }
 
-  public getVaccineCardList(): Observable<VaccineCardType[]> {
-    return this.http.get<VaccineCardType[]>(`${this.apiUrl}/Listar`);
+  public getMockCard(): Observable<CardVaccineType[]> {
+    return of(CardVaccine);
   }
 
-  public getVaccineCardById(cardId: number): Observable<VaccineCardType>{
-    return this.http.get<VaccineCardType>(`${this.apiUrl}/${cardId}`);
-  }
+  // public getVaccineCardList(): Observable<VaccineCardType[]> {
+  //   return this.http.get<VaccineCardType[]>(`${this.apiUrl}/Listar`);
+  // }
 
-  public addVaccineCard(vaccineCardType: VaccineCardType): Observable<VaccineCardType>{
-    return this.http.post<VaccineCardType>(`${this.apiUrl}/Add`,vaccineCardType);
-  }
+  // public getVaccineCardById(cardId: number): Observable<VaccineCardType>{
+  //   return this.http.get<VaccineCardType>(`${this.apiUrl}/${cardId}`);
+  // }
+
+  // public addVaccineCard(vaccineCardType: VaccineCardType): Observable<VaccineCardType>{
+  //   return this.http.post<VaccineCardType>(`${this.apiUrl}/Add`,vaccineCardType);
+  // }
 
   public deleteVaccineCard(cardId: number): Observable<void>{
     return this.http.delete<void>(`${this.apiUrl}/ApagarVacinas/${cardId}`);
@@ -48,39 +52,74 @@ export class CarteirinhaService {
   }
 }
 
-export type VaccineCardType = {
-  VaccineAnimalType: any;
-}
+
+  
 
 export type VaccineAnimalType = {
-  animalName: string;
   id: number;
   vaccine: string;
   vaccineDate: Date;
   nextVaccineDate: Date;
 }
 export const vaccineCardMock: VaccineAnimalType[] = [
-  { animalName: 'name', id: 1, vaccine: 'teste1', vaccineDate: new Date(1666033027665), nextVaccineDate: new Date(1666033027665) },
-  { animalName: 'name', id: 2, vaccine: 'teste2', vaccineDate: new Date(1666033027665), nextVaccineDate: new Date(1666033027665) },
-  { animalName: 'name', id: 3, vaccine: 'teste3', vaccineDate: new Date(1666033027665), nextVaccineDate: new Date(1666033027665) },
+  { id: 1, vaccine: 'teste1', vaccineDate: new Date(1666033027665), nextVaccineDate: new Date(1666033027665) },
+  { id: 2, vaccine: 'teste2', vaccineDate: new Date(1666033027665), nextVaccineDate: new Date(1666033027665) },
+  { id: 3, vaccine: 'teste3', vaccineDate: new Date(1666033027665), nextVaccineDate: new Date(1666033027665) },
+];
+export const vaccineCardMock2: VaccineAnimalType[] = [
+  { id: 1, vaccine: 'tetano', vaccineDate: new Date(1666033027665), nextVaccineDate: new Date(1666033027665) },
+  { id: 2, vaccine: 'raiva', vaccineDate: new Date(1666033027665), nextVaccineDate: new Date(1666033027665) },
+  { id: 3, vaccine: 'peste', vaccineDate: new Date(1666033027665), nextVaccineDate: new Date(1666033027665) },
+  { id: 4, vaccine: 'pulga', vaccineDate: new Date(1666033027665), nextVaccineDate: new Date(1666033027665) },
 ];
 
-// export const vaccineCardMock2: VaccineAnimalType[] = [
-//   { animalName: 'name', id: 1, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-//   { animalName: 'name', id: 2, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-//   { animalName: 'name', id: 3, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-//   { animalName: 'name', id: 4, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-//   { animalName: 'name', id: 5, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-//   { animalName: 'name', id: 6, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-//   { animalName: 'name', id: 7, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-//   { animalName: 'name', id: 8, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-//   { animalName: 'name', id: 9, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-//   { animalName: 'name', id: 10, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-//   { animalName: 'name', id: 11, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-//   { animalName: 'name', id: 12, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-//   { animalName: 'name', id: 13, vaccine: 'teste', vaccineDate: Date.now(), nextVaccineDate: Date.now() },
-// ];
-
-/* export const CardList: VaccineCardType = [
+export var CardInfo: Array<VaccineAnimalType[]> = [
   vaccineCardMock, vaccineCardMock2
+]
+
+const mapVaccines = [];
+
+for(var i = 1; i < CardInfo.length; i++){
+  var ids = CardInfo[i].map((obj) => obj.id);
+  mapVaccines.push(ids);
+  var vaccines = CardInfo[i].map((obj) => obj.vaccine);
+  mapVaccines.push(vaccines);
+  var vdates = CardInfo[i].map((obj) => obj.vaccineDate);
+  mapVaccines.push(vdates);
+  var vndates = CardInfo[i].map((obj) => obj.nextVaccineDate);
+  mapVaccines.push(vndates);
+}
+/* const ids = vaccineCardMock.map((obj) => obj.id);
+const vaccines = vaccineCardMock.map((obj) => obj.vaccine);
+const vdates = vaccineCardMock.map((obj) => obj.vaccineDate);
+const vndates = vaccineCardMock.map((obj) => obj.nextVaccineDate); */
+
+/* const ids2 = vaccineCardMock2.map((obj) => obj.id);
+const vaccines2 = vaccineCardMock2.map((obj) => obj.vaccine);
+const vdates2 = vaccineCardMock2.map((obj) => obj.vaccineDate);
+const vndates2 = vaccineCardMock2.map((obj) => obj.nextVaccineDate); */
+
+
+/* export const mapVaccines2 = [
+  {ids2, vaccines2, vdates2, vndates2}
 ]; */
+
+export type CardVaccineType = {
+  id: number;
+  animalName: string;
+  animalVaccines: typeof mapVaccines;
+}
+
+
+
+export const CardVaccine: CardVaccineType[] = [
+  { id: 1, animalName: 'Teste', animalVaccines: mapVaccines },
+  { id: 2, animalName: 'Rosa', animalVaccines: mapVaccines }
+]
+
+/* function filterById(){
+  const cardInfoId = mapVaccines!.map((ciId: { ids: any; }) => ciId.ids);
+  const cardId = CardVaccine.map((cId) => cId.id);
+  if(cardInfoId == cardId)
+    return cardInfoId;
+} */

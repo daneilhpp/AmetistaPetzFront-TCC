@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { CarteirinhaService, VaccineAnimalType, vaccineCardMock } from '../../services/carteirinha.service';
+import { CardVaccine, CarteirinhaService, VaccineAnimalType, vaccineCardMock } from '../../services/carteirinha.service';
 
 @Component({
   selector: 'app-selecao',
@@ -14,10 +14,10 @@ export class SelecaoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getMockFromCarteirinha(): Observable<VaccineAnimalType[]>{
+  /* getMockFromCarteirinha(): Observable<VaccineAnimalType[]>{
     return this.carteirinhaService.getMock();
-  }
+  } */
 
-  public animals$ = vaccineCardMock;
+  public cards$ = CardVaccine;
 
 }

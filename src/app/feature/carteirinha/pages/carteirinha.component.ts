@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil, switchMap } from 'rxjs';
-import { CarteirinhaService, VaccineAnimalType } from '../services/carteirinha.service';
+import { CardVaccineType, CarteirinhaService, VaccineAnimalType } from '../services/carteirinha.service';
 
 declare var window: any;
 
@@ -15,6 +15,7 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
   public animals$!: VaccineAnimalType[];
   private ngDestroyed$ = new Subject();
   public vaccineList!: VaccineAnimalType[];
+  public cards$!: CardVaccineType[];
 
   constructor(private carteirinhaService: CarteirinhaService) { }
 
@@ -22,6 +23,10 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
     this.carteirinhaService.getMock()
       .pipe(takeUntil(this.ngDestroyed$))
       .subscribe(animalData => this.animals$ = animalData);
+
+    this.carteirinhaService.getMockCard()
+      .pipe(takeUntil(this.ngDestroyed$))
+      .subscribe(cardData => this.cards$ = cardData);
 
     this.formAddModal = new window.bootstrap.Modal(
       document.getElementById("addVaccine")
@@ -69,6 +74,9 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
   deleteAllAnimalVaccine() {
     this.carteirinhaService.deleteAllAnimalVaccine();
   }
+
+
+  
 }
 
 
