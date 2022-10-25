@@ -15,7 +15,7 @@ export interface Usuario {
 
 export enum Perfil {
     tutor = 1,
-    adocao = 2,
-    veterinario = 3,
-    petshop = 4
+    //adocao = 2,
+    veterinario = 2,
+    petshop = 3
 }

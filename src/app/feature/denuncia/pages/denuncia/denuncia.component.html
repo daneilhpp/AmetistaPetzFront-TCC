@@ -6,15 +6,64 @@
         <h1 id="title">Um animal sumido? Informe!</h1>
         <h3 id="text">Selecione um animal para gerar um cartaz com suas informações</h3>
         <select id="animal" class="form-control shadow" formControlName="animal">
-            <option selected>Selecione o animal</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+            <option *ngFor="let rga of rgas$" value="{{rga.id}}">{{rga.nomeAnimal}}</option>
         </select>
+        <a class="btn shadow" id="botao"><b>Criar cartaz</b></a>
         <h4 id="text">ou</h4>
         <h3 id="text">Crie um cartaz novo com informações de um animal novo</h3>
         <!-- <button class="btn shadow" routerLink="/carteirinha"><b>Criar cartaz novo</b></button> -->
 
-        <a class="btn shadow" id="botao" routerLink="/carteirinha"><b>Criar cartaz novo</b></a>
+        <a class="btn shadow" id="botao" (click)="openCreateModal()"><b>Criar cartaz novo</b></a>
     </div>
 </div>
+
+<div class="modal" tabindex="-1" id="openCreate">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Adicione as informações do animal desaparecido</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row">
+              <div class="col">
+                  <div class="block">
+                      <label id="lbl" for="name"><b>Nome do animal</b></label>
+                      <input type="text" class="form-control shadow-sm mb-4" id="name" placeholder="Nome">
+                  </div>
+                  <div class="block">
+                      <label id="lbl" for="espec"><b>Espécie</b></label>
+                      <input type="text" class="form-control shadow-sm mb-4" id="espec" placeholder="Espécie">
+                  </div>
+                  <div class="block">
+                      <label id="lbl" for="raca"><b>Raça</b></label>
+                      <input type="text" class="form-control shadow-sm mb-4" id="raca" placeholder="Raça">
+                  </div>
+                  <div class="block">
+                      <label id="lbl" for="email"><b>Data de desaparecimento</b></label>
+                      <input type="date" class="form-control shadow-sm mb-4" id="date2">
+                  </div>
+                  <div class="block">
+                    <label id="lbl" for="email"><b>Local do desaparecimento</b></label>
+                    <input type="text" class="form-control shadow-sm mb-4" id="date2" placeholder="Endereço">
+                  </div>
+                  <div class="block">
+                    <label id="lbl" for="email"><b>Telefone de contato</b></label>
+                    <input type="number" class="form-control shadow-sm mb-4" id="date2" placeholder="Telefone">
+                  </div>
+                  <div class="block">
+                    <label id="lbl" for="email"><b>Foto do animal</b></label>
+                    <input type="image" class="form-control shadow-sm mb-4" id="date2">
+                  </div>
+              </div>
+          </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="closeSaveModal()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

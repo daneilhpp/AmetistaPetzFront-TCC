@@ -20,3 +20,14 @@ a{
     background-color: white;
     margin: 0;
 }
+
+#cardAddBtn{
+  margin-bottom: 5px;
+  background-color: #8B40EB;
+  color: white;
+}
+
+
+.filterArea{
+  margin-top: 40px;
+}

@@ -172,3 +172,24 @@ table {
 th {
     color: #244D60;
 }
+
+#sexo,
+#filterby,
+#filter{
+    border-radius: 10px;
+    border-color: #8B40EB;
+    font-style: italic;
+    font-size: larger;
+    padding-left: 10px;
+    height: 35px;
+    margin-right: 50px;
+}
+
+#rgaAddBtn{
+  margin-bottom: 5px;
+}
+
+
+.filterArea{
+  margin-top: 40px;
+}

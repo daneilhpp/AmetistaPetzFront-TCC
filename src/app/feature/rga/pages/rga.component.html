@@ -2,13 +2,21 @@
     <img src="assets/back.png" style="width: 20px; height: inherit; margin-top: 30px; margin-left: 10%;">
   </a>
 <div id="center" class="container">
+    <div class="filterArea" align="center">
+        <select name="filter" id="filter" class="shadow">
+          <option id="filterOpt" value="{{rga.nomeAnimal}}" *ngFor="let rga of rgas$">{{rga.nomeAnimal}}</option>
+        </select>
+        <select name="filterby" id="filterby" class="shadow">
+          <option value="1" selected>Alfabético</option>
+          <option value="2">Mais Recente</option>
+        </select>
+        <button id="rgaAddBtn" class="btn shadow" (click)="openAddModal()"><b>Adicionar RGA</b></button>
+      </div>
     <div *ngFor="let rga of rgas$" class="cards">
         <div class="card shadow">
             <section class="animalinfo">
                 <h1 id="title">{{rga.nomeAnimal}}</h1>
                 <div class="head">
-                    <!-- <button class="btn shadow" abrirmodal><b>Importar RGA</b></button> -->
-                    <button class="btn shadow" (click)="openEditModal()"><b>Editar RGA</b></button>
                     <button class="btn shadow" (click)="openRemoveModal()"><b>Remover RGA</b></button>
                 </div>
                 <div class="line-1"></div>
@@ -57,7 +65,7 @@
                                     </tr>
                                     <tr>
                                         <td>{{rga.cor}}</td>
-                                        <td>{{rga.nascimento}}</td>
+                                        <td>{{rga.nascimento | date:'d/M/y'}}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -113,18 +121,54 @@
                 <div class="col">
                     <div class="block">
                         <label id="lbl" for="name"><b>Nome do animal</b></label>
-                        <input type="name" class="form-control shadow-sm mb-4" id="name" placeholder="Nome da vacina">
+                        <input type="name" class="form-control shadow-sm mb-4" id="name" placeholder="Nome">
                     </div>
                     <div class="block">
-                        <label id="lbl" for="email"><b>Data de aplicação</b></label>
-                        <input type="date" class="form-control shadow-sm mb-4" id="date">
+                        <label id="lbl" for="sexo"><b>Nome do animal</b></label>
+                        <input type="text" class="form-control shadow-sm mb-4" id="name" placeholder="Sexo">
+                        <!-- <select name="" id="sexo">
+                            <option selected>Selecione o sexo</option>
+                            <option value="f">Fêmea</option>
+                            <option value="m">Macho</option>
+                        </select> -->
                     </div>
                     <div class="block">
-                        <label id="lbl" for="email"><b>Data da próxima dose</b></label>
-                        <input type="date" class="form-control shadow-sm mb-4" id="date2">
+                        <label id="lbl" for="espec"><b>Espécie do animal</b></label>
+                        <input type="text" class="form-control shadow-sm mb-4" id="espec" placeholder="Espécie">
                     </div>
-    
+                    <div class="block">
+                      <label id="lbl" for="raca"><b>Raça do animal</b></label>
+                      <input type="text" class="form-control shadow-sm mb-4" id="raca" placeholder="Raça">
+                  </div>
+                  <div class="block">
+                    <label id="lbl" for="cor"><b>Cor do animal</b></label>
+                    <input type="text" class="form-control shadow-sm mb-4" id="cor" placeholder="Cor">
                 </div>
+                <div class="block">
+                  <label id="lbl" for="data"><b>Data Nascimento do animal</b></label>
+                  <input type="date" class="form-control shadow-sm mb-4" id="data">
+                </div>
+                <div class="block">
+                  <label id="lbl" for="micro"><b>Microship do animal</b></label>
+                  <input type="text" class="form-control shadow-sm mb-4" id="micro" placeholder="Microship">
+                </div>
+                <div class="block">
+                  <label id="lbl" for="rga3"><b>RGA do animal</b></label>
+                  <input type="text" class="form-control shadow-sm mb-4" id="rga3" placeholder="RGA">
+                </div>
+                <div class="block">
+                  <label id="lbl" for="foto5"><b>Foto da Pata do animal</b></label>
+                  <input type="image" class="form-control shadow-sm mb-4" id="foto5">
+                </div>
+                <div class="block">
+                  <label id="lbl" for="foto2"><b>Foto do animal</b></label>
+                  <input type="image" class="form-control shadow-sm mb-4" id="foto2">
+                </div>
+                <div class="block">
+                  <label id="lbl" for="foto3"><b>Foto da assinatura do tutor</b></label>
+                  <input type="image" class="form-control shadow-sm mb-4" id="foto3">
+                </div>
+              </div>
             </div>
           </form>
         </div>
@@ -179,7 +223,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <h1>remove</h1>
+          <h4>Tem certeza que quer remover esse RGA?</h4>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" (click)="closeRemoveModal()">Save changes</button>
