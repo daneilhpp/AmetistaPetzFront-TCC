@@ -1,0 +1,93 @@
+.card{
+  margin-top: 80px;
+  margin-right: 40px;
+  width: 310px;
+  border-width: 2px;
+  border-color: #FFFFFF;
+  border-radius: 15px;
+  font-size: large;
+  text-align: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.center{
+display: flex;
+justify-content:center;
+}
+
+#img{
+border-radius: 300px;
+margin-top: 10px;
+background-color:#ffcdc6;
+height: 40%;
+width: 90%;
+
+}
+
+
+
+.btn{
+  align-items: center;
+  margin-top: 30px;
+  background-color: #afd6f2;
+  border-radius: 9px;
+  border-width: 0px;
+  width: 200px;
+}
+
+#bntroxo{
+  background-color: #a26bea;
+  border-color: plum;
+  align-items: center;
+  margin-top: 30px;
+  border-radius: 9px;
+  border-width: 0px;
+  color: #FFFFFF;
+  width: 200px;
+
+}
+
+
+#inforCard{
+  margin-top: 80px;
+  margin-right: 40px;
+  width: 600px;
+  border-width: 2px;
+  border-color: #FFFFFF;
+  font-size: large;
+  text-align: center;
+  justify-content:center;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.card-text{
+  text-align: justify;
+
+}
+
+.card-header{
+  background-color: #cba9f8;
+  width: 100%;
+ 
+}
+h3{
+  text-align: center;
+  justify-content:center;
+  margin-top: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+.card-body{
+  margin-bottom: 10%;
+}
+
+
+#lastCard{
+    margin-right: 0px;
+}
+
