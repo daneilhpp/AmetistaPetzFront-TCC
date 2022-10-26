@@ -2,7 +2,6 @@
   <img src="assets/back.png" style="width: 20px; height: inherit; margin-top: 30px; margin-left: 10%;">
 </a>
 <div id="center" class="container">
-  <button (click)="getAnimalVaccineList()">aaaa</button>
     <div *ngFor="let card of cards$" class="cards">
         <div class="card shadow">
             <section class="animalinfo">
@@ -24,13 +23,13 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let animal of animals$">
-                                <th scope="row">{{animal.id}}</th>
-                                <!-- <td>{{animal.vacina}}</td>
-                                <td>{{animal.dtVacina | date:'d/M/y'}}</td>
-                                <td>{{animal.proxVacina | date:'d/M/y'}}</td> -->
-                                <td>{{animal.vaccine}}</td>
+                                <th scope="row">{{animal?.idCarteira}}</th>
+                                 <td>{{animal?.medicamento}}</td>
+                                <td>{{animal?.dataVacina | date:'d/M/y'}}</td>
+                                <td>{{animal?.proximaVacina | date:'d/M/y'}}</td> 
+                                <!--<td>{{animal.vaccine}}</td>
                                 <td>{{animal.vaccineDate | date:'d/M/y'}}</td>
-                                <td>{{animal.nextVaccineDate | date:'d/M/y'}}</td>
+                                <td>{{animal.nextVaccineDate | date:'d/M/y'}}</td>-->
                             </tr>
                         </tbody>
                     </table>
@@ -86,12 +85,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <select name="vaccines" id="vaccineList">
-            <option *ngFor="let animal of animals$" value="{{animal.id}}">{{animal.vaccine<!-- vacina -->}}</option>
+          <select #vaccines name="vaccines" id="vaccineList" (change)="onSelected(vaccines.value)">
+            <option *ngFor="let animal of animals$" value="{{animal.idCarteira}}">{{animal.medicamento}}</option>
           </select>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="closeRemoveModal()">Save changes</button>
+          <button type="button" class="btn btn-primary" (click)="deleteAnimalVaccine()">Deletar</button>
         </div>
       </div>
     </div>

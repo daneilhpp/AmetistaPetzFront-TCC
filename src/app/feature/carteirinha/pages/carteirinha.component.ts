@@ -14,19 +14,22 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
   formAddModal: any;
   formAddCard: any;
   removeModal: any;
-  //public animals$!: Carteirinha[];
-  public animals$!: VaccineAnimalType[];
+  public animals$!: Carteirinha[];
+  //public animals$!: VaccineAnimalType[];
   private ngDestroyed$ = new Subject();
   public vaccineList!: Carteirinha[];
   public cards$!: CardVaccineType[];
 
   constructor(private carteirinhaService: CarteirinhaService) { }
+  selectedItem = '';
 
   ngOnInit(): void {
-    /* this.getAnimalVaccineList(); */
-    this.carteirinhaService.getMock()
+     this.carteirinhaService.getAnimalVaccineList()
+     .pipe(takeUntil(this.ngDestroyed$))
+     .subscribe(animalData => this.animals$ = animalData); 
+    /*this.carteirinhaService.getMock()
       .pipe(takeUntil(this.ngDestroyed$))
-      .subscribe(animalData => this.animals$ = animalData);
+      .subscribe(animalData => this.animals$ = animalData);*/
 
     this.carteirinhaService.getMockCard()
       .pipe(takeUntil(this.ngDestroyed$))
@@ -67,6 +70,10 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.ngDestroyed$.next(true);
     this.ngDestroyed$.complete();
+  }
+
+  onSelected(value: string): void {
+    this.selectedItem = value;
   }
 
   getAnimalVaccineList() {

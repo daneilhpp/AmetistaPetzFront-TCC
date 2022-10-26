@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
 import { Animal, Especie, Raca, Situacao } from '../../../core/interfaces/Animal';
@@ -11,7 +11,11 @@ import { Usuario } from '../../../core/interfaces/Usuario';
 export class CarteirinhaService {
   private apiUrl?: 'http://localhost:5000/api/Carteirinha';
 
-  constructor(private http: HttpClient/*, private card: Carteirinha, private vacina: Vacina*/) { }
+  constructor(private http: HttpClient/*,  private card: Carteirinha,  private vacina: Vacina*/) { }
+
+  private getHeaders() {
+    return new HttpHeaders().append('Content-type', 'application/json');
+}
 
   public getMock(): Observable<VaccineAnimalType[]> {
     return of(vaccineCardMock);
@@ -39,7 +43,7 @@ export class CarteirinhaService {
 
   
   public getAnimalVaccineList(): Observable<Carteirinha[]> {
-    return this.http.get<Carteirinha[]>(`${this.apiUrl}/Vacina/Listar`);
+    return this.http.get<Carteirinha[]>("http://localhost:5000/api/Carteirinha/Listar", {headers: this.getHeaders()});
   }
 
   public addAnimalVaccine(vaccineAnimalType: VaccineAnimalType): Observable<VaccineAnimalType>{
@@ -47,7 +51,7 @@ export class CarteirinhaService {
   }
 
   public deleteAnimalVaccine(cardId: number): Observable<void>{
-    return this.http.delete<void>(`${this.apiUrl}/Vacina/ApagarVacinas/${cardId}`);
+    return this.http.delete<void>(`http://localhost:5000/api/Carteirinha/${cardId}`);
   }
   
   public deleteAllAnimalVaccine(): Observable<void>{
