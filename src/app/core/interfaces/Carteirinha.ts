@@ -1,6 +1,6 @@
 import { Animal, Especie } from "./Animal";
 
-export interface Carteirinha{
+export interface Vaccine{
     idCarteira: number;
     dataVacina: Date;
     medicamento: string;
@@ -10,10 +10,16 @@ export interface Carteirinha{
     //idVacina: Vacina["id"];
 }
 
-export interface Vacina{
+export interface Card{
+    Id: number;
+    animal: string;
+    carteiraVacina: Vaccine;
+}
+
+/* export interface Vacina{
     id: number;
     descricao: string;
     idEspecie: Especie["id"];
     dose: number;
     intervalo: number;
-}
+} */

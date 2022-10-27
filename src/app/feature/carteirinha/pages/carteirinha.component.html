@@ -5,7 +5,7 @@
     <div *ngFor="let card of cards$" class="cards">
         <div class="card shadow">
             <section class="animalinfo">
-                <h1 id="title">{{card.animalName}}</h1>
+                <h1 id="title">{{card.animal}}</h1>
                 <div class="head">
                     <button class="btn shadow" (click)="openAddModal()"><b>Adicionar Vacina</b></button>
                     <button class="btn shadow" (click)="openRemoveModal()"><b>Remover Vacina</b></button>
@@ -22,11 +22,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let animal of animals$">
-                                <th scope="row">{{animal?.idCarteira}}</th>
-                                 <td>{{animal?.medicamento}}</td>
-                                <td>{{animal?.dataVacina | date:'d/M/y'}}</td>
-                                <td>{{animal?.proximaVacina | date:'d/M/y'}}</td> 
+                            <tr *ngFor="let animal of vaccines$">
+                                <th scope="row">{{animal.idCarteira}}</th>
+                                 <td>{{animal.medicamento}}</td>
+                                <td>{{animal.dataVacina | date:'d/M/y'}}</td>
+                                <td>{{animal.proximaVacina | date:'d/M/y'}}</td> 
                                 <!--<td>{{animal.vaccine}}</td>
                                 <td>{{animal.vaccineDate | date:'d/M/y'}}</td>
                                 <td>{{animal.nextVaccineDate | date:'d/M/y'}}</td>-->
@@ -44,7 +44,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Adicionar vacina na carteirinha de {{'nomeAnimal'}} </h5>
+          <h5 class="modal-title">Adicionar vacina na carteirinha de {{''}} </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -86,11 +86,11 @@
         </div>
         <div class="modal-body">
           <select #vaccines name="vaccines" id="vaccineList" (change)="onSelected(vaccines.value)">
-            <option *ngFor="let animal of animals$" value="{{animal.idCarteira}}">{{animal.medicamento}}</option>
+            <option *ngFor="let animal of vaccines$" value="{{animal.idCarteira}}">{{animal.medicamento}}</option>
           </select>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="deleteAnimalVaccine()">Deletar</button>
+          <button type="button" class="btn btn-primary" (click)="deleteAnimalVaccine(+selectedItem)">Deletar</button>
         </div>
       </div>
     </div>

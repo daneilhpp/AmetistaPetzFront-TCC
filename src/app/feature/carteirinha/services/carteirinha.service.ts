@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
 import { Animal, Especie, Raca, Situacao } from '../../../core/interfaces/Animal';
-import { Carteirinha, Vacina } from '../../../core/interfaces/Carteirinha';
+import { Vaccine, Card } from '../../../core/interfaces/Carteirinha';
 import { Usuario } from '../../../core/interfaces/Usuario';
 
 @Injectable({
@@ -11,7 +11,7 @@ import { Usuario } from '../../../core/interfaces/Usuario';
 export class CarteirinhaService {
   private apiUrl?: 'http://localhost:5000/api/Carteirinha';
 
-  constructor(private http: HttpClient/*,  private card: Carteirinha,  private vacina: Vacina*/) { }
+  constructor(private http: HttpClient) { }
 
   private getHeaders() {
     return new HttpHeaders().append('Content-type', 'application/json');
@@ -25,9 +25,9 @@ export class CarteirinhaService {
     return of(CardVaccine);
   }
 
-  // public getVaccineCardList(): Observable<VaccineCardType[]> {
-  //   return this.http.get<VaccineCardType[]>(`${this.apiUrl}/Listar`);
-  // }
+  public getVaccineCardList(): Observable<Card[]> {
+    return this.http.get<Card[]>("http://localhost:5000/api/Carteirinha/Card/Listar", {headers: this.getHeaders()});
+  }
 
   // public getVaccineCardById(cardId: number): Observable<VaccineCardType>{
   //   return this.http.get<VaccineCardType>(`${this.apiUrl}/${cardId}`);
@@ -42,8 +42,8 @@ export class CarteirinhaService {
   }
 
   
-  public getAnimalVaccineList(): Observable<Carteirinha[]> {
-    return this.http.get<Carteirinha[]>("http://localhost:5000/api/Carteirinha/Listar", {headers: this.getHeaders()});
+  public getAnimalVaccineList(): Observable<Vaccine[]> {
+    return this.http.get<Vaccine[]>("http://localhost:5000/api/Carteirinha/Listar", {headers: this.getHeaders()});
   }
 
   public addAnimalVaccine(vaccineAnimalType: VaccineAnimalType): Observable<VaccineAnimalType>{
@@ -59,16 +59,6 @@ export class CarteirinhaService {
   }
 }
 
-/* export interface Vaccine{
-  id: number;
-  vaccine: string;
-  vaccineDate: Date;
-  nextVaccine: Date;
-  idAnimal: number;
-}
-export type Vaccines = Vaccine[
-  {id: 1, vaccine: 'teste', vaccineDate: new Date(1666033027665), nextVaccine: new Date(1666033027665), idAnimal: 1}
-]; */
 
 
 export type VaccineAnimalType = {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { CardVaccine, CarteirinhaService, VaccineAnimalType, vaccineCardMock } from '../../services/carteirinha.service';
+import { Card } from 'src/app/core/interfaces/Carteirinha';
 
 declare var window: any;
 

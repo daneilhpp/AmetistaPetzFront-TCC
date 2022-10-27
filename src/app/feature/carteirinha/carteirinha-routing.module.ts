@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      { path: '', component: SelecaoComponent },
+      { path: '', component: CarteirinhaComponent },
       { path: ':id', component: CarteirinhaComponent }
     ],
   },

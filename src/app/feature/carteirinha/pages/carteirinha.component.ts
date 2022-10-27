@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil, switchMap } from 'rxjs';
-import { Carteirinha, Vacina } from 'src/app/core/interfaces/Carteirinha';
+import { Vaccine, Card } from 'src/app/core/interfaces/Carteirinha';
 import { CardVaccineType, CarteirinhaService, VaccineAnimalType } from '../services/carteirinha.service';
 
 declare var window: any;
@@ -14,11 +14,12 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
   formAddModal: any;
   formAddCard: any;
   removeModal: any;
-  public animals$!: Carteirinha[];
-  //public animals$!: VaccineAnimalType[];
+  public vaccines$!: Vaccine[];
+  //public vaccines$!: VaccineAnimalType[];
   private ngDestroyed$ = new Subject();
-  public vaccineList!: Carteirinha[];
-  public cards$!: CardVaccineType[];
+  public vaccineList!: Vaccine[];
+  public cards$!: Card[];
+  //public cards$!: CardVaccineType[];
 
   constructor(private carteirinhaService: CarteirinhaService) { }
   selectedItem = '';
@@ -26,14 +27,17 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
      this.carteirinhaService.getAnimalVaccineList()
      .pipe(takeUntil(this.ngDestroyed$))
-     .subscribe(animalData => this.animals$ = animalData); 
+     .subscribe(animalData => this.vaccines$ = animalData); 
     /*this.carteirinhaService.getMock()
       .pipe(takeUntil(this.ngDestroyed$))
-      .subscribe(animalData => this.animals$ = animalData);*/
+      .subscribe(animalData => this.vaccines$ = animalData);*/
 
-    this.carteirinhaService.getMockCard()
+      this.carteirinhaService.getVaccineCardList()
       .pipe(takeUntil(this.ngDestroyed$))
-      .subscribe(cardData => this.cards$ = cardData);
+      .subscribe(cardData => this.cards$ = cardData)
+    /* this.carteirinhaService.getMockCard()
+      .pipe(takeUntil(this.ngDestroyed$))
+      .subscribe(cardData => this.cards$ = cardData); */
 
     this.formAddModal = new window.bootstrap.Modal(
       document.getElementById("addVaccine")
@@ -55,7 +59,7 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
     this.removeModal.show();
   }
   closeRemoveModal() {
-    //this.deleteAnimalVaccine(this.animals$.id);
+    //this.deleteAnimalVaccine(this.vaccines$.id);
     this.removeModal.hide();
   }
 
@@ -63,7 +67,7 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
     this.formAddCard.show();
   }
   closeAddCardModal() {
-    //this.deleteAnimalVaccine(this.animals$.id);
+    //this.deleteAnimalVaccine(this.vaccines$.id);
     this.formAddCard.hide();
   }
   
@@ -76,11 +80,11 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
     this.selectedItem = value;
   }
 
-  getAnimalVaccineList() {
+  /* getAnimalVaccineList() {
     this.carteirinhaService.getAnimalVaccineList()
       .pipe(takeUntil(this.ngDestroyed$))
       .subscribe(vaccineData => this.vaccineList = vaccineData);
-  }
+  } */
 
   addAnimalVaccine(vaccineAnimalType: VaccineAnimalType) {
     this.carteirinhaService.addAnimalVaccine(vaccineAnimalType).subscribe();
@@ -88,6 +92,7 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
 
   deleteAnimalVaccine(id: number) {
     this.carteirinhaService.deleteAnimalVaccine(id).subscribe();
+    this.removeModal.hide();
   }
 
   deleteAllAnimalVaccine() {
