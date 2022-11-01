@@ -46,12 +46,13 @@ export class CarteirinhaService {
     return this.http.get<Vaccine[]>("http://localhost:5000/api/Carteirinha/Listar", {headers: this.getHeaders()});
   }
 
-  public addAnimalVaccine(vaccineAnimalType: VaccineAnimalType): Observable<VaccineAnimalType>{
-    return this.http.post<VaccineAnimalType>(`${this.apiUrl}/Vacina/Add`,vaccineAnimalType);
+  public addAnimalVaccine(vaccine: Vaccine): Observable<Vaccine>{
+    return this.http.post<Vaccine>("http://localhost:5000/api/Carteirinha/AddV",vaccine, {headers: this.getHeaders()});
   }
 
   public deleteAnimalVaccine(cardId: number): Observable<void>{
     return this.http.delete<void>(`http://localhost:5000/api/Carteirinha/${cardId}`);
+    
   }
   
   public deleteAllAnimalVaccine(): Observable<void>{

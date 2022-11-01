@@ -1,19 +1,18 @@
 import { Animal, Especie } from "./Animal";
 
 export interface Vaccine{
-    idCarteira: number;
+    idVacina: number;
     dataVacina: Date;
-    medicamento: string;
-    TipoVacina: string;
     proximaVacina: Date;
-    AnimalIdAnimal: Animal["id"];
+    medicamento: string;
+    animalIdAnimal: number;
+    carteiraId: number;
     //idVacina: Vacina["id"];
 }
 
 export interface Card{
-    Id: number;
-    animal: string;
-    carteiraVacina: Vaccine;
+    id: number;
+    petName: string;
 }
 
 /* export interface Vacina{

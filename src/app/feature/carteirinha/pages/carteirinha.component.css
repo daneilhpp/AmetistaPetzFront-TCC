@@ -54,6 +54,22 @@ table {
     margin-left: auto;
 }
 
+#idVacina,
+#proximaVacina,
+#dataVacina,
+#medicamento,
+#carteiraId{
+    border-radius: 10px;
+    border-color: #8B40EB;
+    font-style: italic;
+    font-size: larger;
+    height: 40px;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
 #vaccineList {
     border-radius: 10px;
     border-color: #8B40EB;
@@ -66,3 +82,13 @@ table {
     padding-left: 10px;
 }
 
+#filterby,
+#filter{
+    border-radius: 10px;
+    border-color: #8B40EB;
+    font-style: italic;
+    font-size: larger;
+    padding-left: 10px;
+    height: 35px;
+    margin-right: 50px;
+}

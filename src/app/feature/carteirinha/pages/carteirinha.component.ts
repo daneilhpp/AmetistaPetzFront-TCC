@@ -23,6 +23,7 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
 
   constructor(private carteirinhaService: CarteirinhaService) { }
   selectedItem = '';
+  
 
   ngOnInit(): void {
      this.carteirinhaService.getAnimalVaccineList()
@@ -47,6 +48,7 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
       document.getElementById("removeVaccine")
     );
   }
+
 
   openAddModal() {
     this.formAddModal.show();
@@ -86,8 +88,9 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
       .subscribe(vaccineData => this.vaccineList = vaccineData);
   } */
 
-  addAnimalVaccine(vaccineAnimalType: VaccineAnimalType) {
-    this.carteirinhaService.addAnimalVaccine(vaccineAnimalType).subscribe();
+  addAnimalVaccine(vaccine: Vaccine): void {
+    this.carteirinhaService.addAnimalVaccine(vaccine).subscribe();
+    this.formAddModal.hide();
   }
 
   deleteAnimalVaccine(id: number) {
@@ -97,9 +100,7 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
 
   deleteAllAnimalVaccine() {
     this.carteirinhaService.deleteAllAnimalVaccine();
-  }
-
-
+  } 
   
 }
 
