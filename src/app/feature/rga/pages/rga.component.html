@@ -4,7 +4,7 @@
 <div id="center" class="container">
     <div class="filterArea" align="center">
         <select name="filter" id="filter" class="shadow">
-          <option id="filterOpt" value="{{rga.nomeAnimal}}" *ngFor="let rga of rgas$">{{rga.nomeAnimal}}</option>
+          <option id="filterOpt" value="{{rga.nome}}" *ngFor="let rga of rgas$">{{rga.nome}}</option>
         </select>
         <select name="filterby" id="filterby" class="shadow">
           <option value="1" selected>Alfabético</option>
@@ -15,7 +15,7 @@
     <div *ngFor="let rga of rgas$" class="cards">
         <div class="card shadow">
             <section class="animalinfo">
-                <h1 id="title">{{rga.nomeAnimal}}</h1>
+                <h1 id="title">{{rga.nome}}</h1>
                 <div class="head">
                     <button class="btn shadow" (click)="openRemoveModal()"><b>Remover RGA</b></button>
                 </div>
@@ -38,7 +38,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <img src={{rga.pata}} id="pata">
+                            <img src="assets/pata.png" id="pata">
                         </div>
                         <div class="col">
                             <div id="info">
@@ -48,30 +48,36 @@
                                         <th>Sexo</th>
                                     </tr>
                                     <tr>
-                                        <td>{{rga.nomeAnimal}}</td>
-                                        <td>{{rga.sexo}}</td>
+                                        <td>{{rga.nome}}</td>
+                                        <!-- <div *ngFor="let sexo of sexos$">
+                                          <td  *ngIf="sexo.idSexo == rga.idSexo">{{sexo.dsSexo}}</td>
+                                        </div> -->
+                                        <td *ngIf="rga.idSexo == 1; else elseBlock">Macho</td>
+                                        <ng-template #elseBlock>Fêmea</ng-template>
                                     </tr>
                                     <tr>
                                         <th>Espécie</th>
                                         <th>Raça</th>
                                     </tr>
                                     <tr>
-                                        <td>{{rga.especie}}</td>
-                                        <td>{{rga.raca}}</td>
+                                        <td *ngIf="rga.idEspecie == 1; else elseBlock">Cachorro</td>
+                                        <ng-template #elseBlock>Gato</ng-template>
+                                        <td *ngIf="rga.idRaca == 1; else elseBlock">Pitbull</td>
+                                        <ng-template #elseBlock>Não especificado</ng-template>
                                     </tr>
                                     <tr>
                                         <th>Cor</th>
                                         <th>Nascimento</th>
                                     </tr>
                                     <tr>
-                                        <td>{{rga.cor}}</td>
-                                        <td>{{rga.nascimento | date:'d/M/y'}}</td>
+                                        <td>{{rga.pelagem}}</td>
+                                        <td>{{rga.dtNascimento | date:'d/M/y'}}</td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
                         <div class="col">
-                            <img src={{rga.foto}} id="foto">
+                            <img src="assets/fotomock2.jpg" id="foto">
                         </div>
                     </div>
                     <div class="row" id="lin3">
@@ -93,7 +99,7 @@
                         </div>
                         <div class="col">
                             <div id="assinatura">
-                                <img id="ass" src={{rga.ass}} alt="">
+                                <img id="ass" src="assets/ass.png" alt="">
                                 <div class="line-1"></div>
                                 Assinatura do Titular
                             </div>

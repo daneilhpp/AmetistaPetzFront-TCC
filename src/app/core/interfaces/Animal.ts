@@ -1,12 +1,12 @@
 export interface Animal{
     id: number;
     nome: string;
-    especie: Especie["id"];
-    raca: Raca["id"];
+    idEspecie: number;
+    idRaca: number;
+    idSexo: number;
     dtNascimento: Date;
     pelagem: string;
-    situacao: Situacao["id"];
-    idRGA: number;
+    idSituacao: number;
     peso: number;
 }
 
@@ -17,7 +17,7 @@ export interface Especie{
 }
 export interface Raca{
     id: number;
-    idEspecie: Especie["id"];
+    idEspecie: number;
     descricao: string;
     porte: string;
     crRaca: string;
@@ -25,4 +25,8 @@ export interface Raca{
 export interface Situacao{
     id: number;
     descricao: string;
+}
+export interface Sexos{
+    idSexo: number;
+    dsSexo: string;
 }

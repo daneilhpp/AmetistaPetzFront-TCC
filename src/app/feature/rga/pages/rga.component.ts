@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { RgaAnimalType, RgaService } from '../services/rga.service';
+import { RGA } from 'src/app/core/interfaces/Rga';
+import { Sexos } from 'src/app/core/interfaces/Animal';
 
 declare var window: any;
 
@@ -13,7 +15,8 @@ export class RgaComponent implements OnInit {
   formAddModal: any;
   removeModal: any;
   editModal: any;
-  public rgas$!: RgaAnimalType[];
+  public rgas$!: RGA[];
+  public sexos$!: Sexos[];
 
   private ngDestroyed$ = new Subject();
 

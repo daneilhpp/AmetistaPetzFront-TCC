@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil, switchMap } from 'rxjs';
 import { Vaccine, Card } from 'src/app/core/interfaces/Carteirinha';
+import { Animal } from 'src/app/core/interfaces/Animal';
 import { CardVaccineType, CarteirinhaService, VaccineAnimalType } from '../services/carteirinha.service';
 
 declare var window: any;
@@ -19,6 +20,7 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
   private ngDestroyed$ = new Subject();
   public vaccineList!: Vaccine[];
   public cards$!: Card[];
+  public animals$!: Animal[];
   //public cards$!: CardVaccineType[];
 
   constructor(private carteirinhaService: CarteirinhaService) { }
@@ -43,7 +45,9 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
     this.formAddModal = new window.bootstrap.Modal(
       document.getElementById("addVaccine")
     );
-    
+    this.formAddCard = new window.bootstrap.Modal(
+      document.getElementById("addCard")
+    );   
     this.removeModal = new window.bootstrap.Modal(
       document.getElementById("removeVaccine")
     );
@@ -54,14 +58,13 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
     this.formAddModal.show();
   }
   closeAddModal() {
-    //this.addAnimalVaccine();
     this.formAddModal.hide();
   }
+
   openRemoveModal() {
     this.removeModal.show();
   }
   closeRemoveModal() {
-    //this.deleteAnimalVaccine(this.vaccines$.id);
     this.removeModal.hide();
   }
 
@@ -69,9 +72,9 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
     this.formAddCard.show();
   }
   closeAddCardModal() {
-    //this.deleteAnimalVaccine(this.vaccines$.id);
     this.formAddCard.hide();
   }
+
   
   ngOnDestroy(): void {
     this.ngDestroyed$.next(true);
@@ -100,7 +103,14 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
 
   deleteAllAnimalVaccine() {
     this.carteirinhaService.deleteAllAnimalVaccine();
-  } 
+  }
+
+
+
+  addCard(card: Card): void {
+    this.carteirinhaService.addVaccineCard(card).subscribe();
+    this.formAddCard.hide();
+  }
   
 }
 

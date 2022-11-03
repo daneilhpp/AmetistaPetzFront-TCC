@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable,of } from 'rxjs';
+import { RGA } from 'src/app/core/interfaces/Rga';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,16 @@ export class RgaService {
 
   constructor(private http: HttpClient) { }
 
+  private getHeaders() {
+    return new HttpHeaders().append('Content-type', 'application/json');
+}
+
   public getRgaMockList(): Observable<RgaAnimalType[]> {
     return of(rgaMock);
   }
 
-  public getRgaList(): Observable<RgaAnimalType[]> {
-    return of(rgaMock);
+  public getRgaList(): Observable<RGA[]> {
+    return this.http.get<RGA[]>("http://localhost:5000/RGA/Listar", {headers: this.getHeaders()});
   }
 
   public getRgaById(rgaId: number): Observable<RgaAnimalType>{

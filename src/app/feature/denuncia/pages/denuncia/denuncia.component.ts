@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { RgaAnimalType, RgaService } from 'src/app/feature/rga/services/rga.service';
+import { RGA } from 'src/app/core/interfaces/Rga';
 
 declare var window: any;
 
@@ -11,7 +12,7 @@ declare var window: any;
 })
 export class DenunciaComponent implements OnInit {
   createModal: any;
-  public rgas$!: RgaAnimalType[];
+  public rgas$!: RGA[];
   private ngDestroyed$ = new Subject();
 
   constructor(private rgaService: RgaService) { }

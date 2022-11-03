@@ -9,7 +9,7 @@ import { Usuario } from '../../../core/interfaces/Usuario';
   providedIn: 'any'
 })
 export class CarteirinhaService {
-  private apiUrl?: 'http://localhost:5000/api/Carteirinha';
+  private apiUrl?: 'http://localhost:5000/Carteirinha';
 
   constructor(private http: HttpClient) { }
 
@@ -26,32 +26,33 @@ export class CarteirinhaService {
   }
 
   public getVaccineCardList(): Observable<Card[]> {
-    return this.http.get<Card[]>("http://localhost:5000/api/Carteirinha/Card/Listar", {headers: this.getHeaders()});
+    return this.http.get<Card[]>("http://localhost:5000/Carteirinha/Card/Listar", {headers: this.getHeaders()});
   }
 
   // public getVaccineCardById(cardId: number): Observable<VaccineCardType>{
   //   return this.http.get<VaccineCardType>(`${this.apiUrl}/${cardId}`);
   // }
 
-  // public addVaccineCard(vaccineCardType: VaccineCardType): Observable<VaccineCardType>{
-  //   return this.http.post<VaccineCardType>(`${this.apiUrl}/Add`,vaccineCardType);
-  // }
+  public addVaccineCard(card: Card): Observable<Card>{
+    return this.http.post<Card>(`http://localhost:5000/Carteirinha/AddC`,card, {headers: this.getHeaders()});
+  }
 
   public deleteVaccineCard(cardId: number): Observable<void>{
-    return this.http.delete<void>(`${this.apiUrl}/ApagarVacinas/${cardId}`);
+    return this.http.delete<void>(`http://localhost:5000/Carteirinha/DeleteC/${cardId}`, {headers: this.getHeaders()});
   }
+  
 
   
   public getAnimalVaccineList(): Observable<Vaccine[]> {
-    return this.http.get<Vaccine[]>("http://localhost:5000/api/Carteirinha/Listar", {headers: this.getHeaders()});
+    return this.http.get<Vaccine[]>("http://localhost:5000/Carteirinha/Listar", {headers: this.getHeaders()});
   }
 
   public addAnimalVaccine(vaccine: Vaccine): Observable<Vaccine>{
-    return this.http.post<Vaccine>("http://localhost:5000/api/Carteirinha/AddV",vaccine, {headers: this.getHeaders()});
+    return this.http.post<Vaccine>("http://localhost:5000/Carteirinha/AddV",vaccine, {headers: this.getHeaders()});
   }
 
   public deleteAnimalVaccine(cardId: number): Observable<void>{
-    return this.http.delete<void>(`http://localhost:5000/api/Carteirinha/${cardId}`);
+    return this.http.delete<void>(`http://localhost:5000/Carteirinha/${cardId}`);
     
   }
   
