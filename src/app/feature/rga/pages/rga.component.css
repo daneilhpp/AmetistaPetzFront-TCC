@@ -193,3 +193,17 @@ th {
 .filterArea{
   margin-top: 40px;
 }
+
+#rgaList,
+#sel{
+    border-radius: 10px;
+    border-color: #8B40EB;
+    font-style: italic;
+    font-size: larger;
+    height: 40px;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}

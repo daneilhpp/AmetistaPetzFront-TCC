@@ -27,8 +27,8 @@ export class RgaService {
     return this.http.get<RgaAnimalType>(`${this.apiUrl}/find/${rgaId}`);
   }
 
-  public addRga(rgaAnimalType: RgaAnimalType): Observable<RgaAnimalType>{
-    return this.http.post<RgaAnimalType>(`${this.apiUrl}/add`,rgaAnimalType);
+  public addRga(rgaAnimalType: RGA): Observable<RGA>{
+    return this.http.post<RGA>("http://localhost:5000/RGA/Add", rgaAnimalType, {headers: this.getHeaders()});
   }
 
   public updateRga(rgaAnimalType: RgaAnimalType): Observable<RgaAnimalType>{
@@ -36,7 +36,7 @@ export class RgaService {
   }
 
   public deleteRga(rgaId: number): Observable<void>{
-    return this.http.delete<void>(`${this.apiUrl}/delete/${rgaId}`);
+    return this.http.delete<void>(`http://localhost:5000/RGA/Remover/${rgaId}`, {headers: this.getHeaders()});
   }
 }
 

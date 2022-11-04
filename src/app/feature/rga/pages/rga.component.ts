@@ -21,6 +21,7 @@ export class RgaComponent implements OnInit {
   private ngDestroyed$ = new Subject();
 
   constructor(private rgaService: RgaService) { }
+  selectedItem = '';
 
   ngOnInit(): void {
     this.rgaService.getRgaList()
@@ -65,15 +66,17 @@ export class RgaComponent implements OnInit {
     this.removeModal.hide();
   }
 
-  nomeAnimal = 'Nome do Animal';
-  sexo = 'Macho';
-  especie = '??';
-  raca = 'Elmo';
-  cor = 'Vermelho';
-  nascimento = '00/0000';
-  ass = 'assets/ass.png'
-  pata = 'assets/patamock.svg'
-  chip = 123456789123456;
-  rga = 1234567;
-  foto = 'assets/fotomock2.jpg';
+  deleteRGA(id: number){
+    this.rgaService.deleteRga(id).subscribe();
+    this.removeModal.hide();
+  }
+
+  addRGA(rga: RGA){
+    this.rgaService.addRga(rga).subscribe();
+    this.formAddModal.hide();
+  }
+
+  onSelected(value: string): void {
+    this.selectedItem = value;
+  }
 }

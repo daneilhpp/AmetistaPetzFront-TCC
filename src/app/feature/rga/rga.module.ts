@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { RgaRoutingModule } from './rga-routing.module';
 import { RgaComponent } from './pages/rga.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import { RgaComponent } from './pages/rga.component';
   ],
   imports: [
     CommonModule,
-    RgaRoutingModule
+    RgaRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class RgaModule { }

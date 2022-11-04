@@ -11,14 +11,13 @@
           <option value="2">Mais Recente</option>
         </select>
         <button id="rgaAddBtn" class="btn shadow" (click)="openAddModal()"><b>Adicionar RGA</b></button>
+        
+        <button class="btn shadow" (click)="openRemoveModal()"><b>Remover RGA</b></button>
       </div>
     <div *ngFor="let rga of rgas$" class="cards">
         <div class="card shadow">
             <section class="animalinfo">
                 <h1 id="title">{{rga.nome}}</h1>
-                <div class="head">
-                    <button class="btn shadow" (click)="openRemoveModal()"><b>Remover RGA</b></button>
-                </div>
                 <div class="line-1"></div>
                 <div class="card shadow" id="rga">
                     <div class="row" id="lin1">
@@ -38,7 +37,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <img src="assets/pata.png" id="pata">
+                            <img src="{{rga.pata}}" id="pata">
                         </div>
                         <div class="col">
                             <div id="info">
@@ -52,18 +51,26 @@
                                         <!-- <div *ngFor="let sexo of sexos$">
                                           <td  *ngIf="sexo.idSexo == rga.idSexo">{{sexo.dsSexo}}</td>
                                         </div> -->
-                                        <td *ngIf="rga.idSexo == 1; else elseBlock">Macho</td>
-                                        <ng-template #elseBlock>Fêmea</ng-template>
+                                        <td *ngIf="rga.idSexo == 1; else elseBlock1">Macho</td>
+                                        <ng-template #elseBlock1>Fêmea</ng-template>
                                     </tr>
                                     <tr>
                                         <th>Espécie</th>
                                         <th>Raça</th>
                                     </tr>
                                     <tr>
-                                        <td *ngIf="rga.idEspecie == 1; else elseBlock">Cachorro</td>
-                                        <ng-template #elseBlock>Gato</ng-template>
-                                        <td *ngIf="rga.idRaca == 1; else elseBlock">Pitbull</td>
-                                        <ng-template #elseBlock>Não especificado</ng-template>
+                                        <td *ngIf="rga.idEspecie == 1; else elseBlock2">Cachorro</td>
+                                        <ng-template #elseBlock2>Gato</ng-template>
+                                        <td *ngIf="rga.idRaca == 1; else else1">Akita</td>
+                                        <ng-template #else1>
+                                          <ng-container *ngIf="rga.idRaca == 2; else else2">Basset Hounder</ng-container>
+                                          <ng-template #else2>
+                                            <ng-container *ngIf="rga.idRaca == 3; else else3">Oregon Rex</ng-container>
+                                            <ng-template #else3>
+                                              <ng-container *ngIf="rga.idRaca == 37">Pitbull</ng-container>
+                                            </ng-template>
+                                          </ng-template>
+                                        </ng-template>
                                     </tr>
                                     <tr>
                                         <th>Cor</th>
@@ -77,7 +84,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <img src="assets/fotomock2.jpg" id="foto">
+                            <img src="{{rga.foto}}" id="foto">
                         </div>
                     </div>
                     <div class="row" id="lin3">
@@ -99,7 +106,7 @@
                         </div>
                         <div class="col">
                             <div id="assinatura">
-                                <img id="ass" src="assets/ass.png" alt="">
+                                <img id="ass" src="{{rga.assinatura}}" alt="">
                                 <div class="line-1"></div>
                                 Assinatura do Titular
                             </div>
@@ -122,100 +129,77 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form #addRga="ngForm" (ngSubmit)="addRGA(addRga.value)">
             <div class="row">
                 <div class="col">
                     <div class="block">
                         <label id="lbl" for="name"><b>Nome do animal</b></label>
-                        <input type="name" class="form-control shadow-sm mb-4" id="name" placeholder="Nome">
+                        <input type="name" class="form-control shadow-sm mb-4" id="sel" placeholder="Nome" ngModel name="nome">
                     </div>
+                    <!-- <div class="block">
+                        <label for="a" id="id">Id do animal</label>
+                        <input type="number" class="form-control shadow-sm mb-4" id="sel" placeholder="Id" ngModel name="idAnimal">
+                    </div> -->
                     <div class="block">
-                        <label id="lbl" for="sexo"><b>Nome do animal</b></label>
-                        <input type="text" class="form-control shadow-sm mb-4" id="name" placeholder="Sexo">
-                        <!-- <select name="" id="sexo">
+                        <label id="lbl" for="sexo"><b>Sexo do animal</b></label>
+                        <!-- <input type="text" class="form-control shadow-sm mb-4" id="name" placeholder="Sexo"> -->
+                        <select name="sexo" id="sel" ngModel name="idSexo">
                             <option selected>Selecione o sexo</option>
-                            <option value="f">Fêmea</option>
-                            <option value="m">Macho</option>
-                        </select> -->
+                            <option value="2">Fêmea</option>
+                            <option value="1">Macho</option>
+                        </select>
                     </div>
                     <div class="block">
                         <label id="lbl" for="espec"><b>Espécie do animal</b></label>
-                        <input type="text" class="form-control shadow-sm mb-4" id="espec" placeholder="Espécie">
+                        <select name="espec" id="sel" ngModel name="idEspecie">
+                          <option selected>Selecione a espécie</option>
+                          <option value="1">Cachorro</option>
+                          <option value="2">Gato</option>
+                      </select>
                     </div>
                     <div class="block">
                       <label id="lbl" for="raca"><b>Raça do animal</b></label>
-                      <input type="text" class="form-control shadow-sm mb-4" id="raca" placeholder="Raça">
+                      <select name="espec" id="sel" ngModel name="idRaca">
+                        <option selected>Selecione a raça</option>
+                        <option value="1">Akita</option>
+                        <option value="37">Pitbull</option>
+                        <option value="3">Bulldog</option>
+                      </select>
                   </div>
                   <div class="block">
                     <label id="lbl" for="cor"><b>Cor do animal</b></label>
-                    <input type="text" class="form-control shadow-sm mb-4" id="cor" placeholder="Cor">
+                    <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="Cor" ngModel name="pelagem">
                 </div>
                 <div class="block">
                   <label id="lbl" for="data"><b>Data Nascimento do animal</b></label>
-                  <input type="date" class="form-control shadow-sm mb-4" id="data">
+                  <input type="date" class="form-control shadow-sm mb-4" id="sel" ngModel name="dtNascimento">
                 </div>
                 <div class="block">
                   <label id="lbl" for="micro"><b>Microship do animal</b></label>
-                  <input type="text" class="form-control shadow-sm mb-4" id="micro" placeholder="Microship">
+                  <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="Microship" ngModel name="chip">
                 </div>
                 <div class="block">
                   <label id="lbl" for="rga3"><b>RGA do animal</b></label>
-                  <input type="text" class="form-control shadow-sm mb-4" id="rga3" placeholder="RGA">
+                  <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="RGA" ngModel name="rga">
                 </div>
                 <div class="block">
                   <label id="lbl" for="foto5"><b>Foto da Pata do animal</b></label>
-                  <input type="image" class="form-control shadow-sm mb-4" id="foto5">
+                  <input type="text" class="form-control shadow-sm mb-4" id="sel" ngModel name="pata">
                 </div>
                 <div class="block">
                   <label id="lbl" for="foto2"><b>Foto do animal</b></label>
-                  <input type="image" class="form-control shadow-sm mb-4" id="foto2">
+                  <input type="text" class="form-control shadow-sm mb-4" id="sel" ngModel name="foto">
                 </div>
                 <div class="block">
                   <label id="lbl" for="foto3"><b>Foto da assinatura do tutor</b></label>
-                  <input type="image" class="form-control shadow-sm mb-4" id="foto3">
+                  <input type="text" class="form-control shadow-sm mb-4" id="sel" ngModel name="assinatura">
                 </div>
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="closeAddModal()">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  
-<div class="modal" tabindex="-1" id="editRga">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Adicionar vacina na carteirinha de {{'nomeAnimal'}} </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="row">
-                <div class="col">
-                    <div class="block">
-                        <label id="lbl" for="name"><b>Nome vacina</b></label>
-                        <input type="name" class="form-control shadow-sm mb-4" id="name" placeholder="Nome da vacina">
-                    </div>
-                    <div class="block">
-                        <label id="lbl" for="email"><b>Data de aplicação</b></label>
-                        <input type="date" class="form-control shadow-sm mb-4" id="date">
-                    </div>
-                    <div class="block">
-                        <label id="lbl" for="email"><b>Data da próxima dose</b></label>
-                        <input type="date" class="form-control shadow-sm mb-4" id="date2">
-                    </div>
-    
-                </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="closeAddModal()">Save changes</button>
+          <button type="submit" class="btn btn-primary" (click)="addRGA(addRga.value)">Save changes</button>
         </div>
       </div>
     </div>
@@ -225,14 +209,16 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Selecione a vacina que quer remover</h5>
+          <h5 class="modal-title">Selecione o RGA que quer remover</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <h4>Tem certeza que quer remover esse RGA?</h4>
+          <select #rgas name="rgas" id="rgaList" (change)="onSelected(rgas.value)">
+            <option *ngFor="let rga of rgas$" value="{{rga.idRGA}}">{{rga.nome}}</option>
+          </select>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="closeRemoveModal()">Save changes</button>
+          <button type="button" class="btn btn-primary" (click)="deleteRGA(+selectedItem)">Save changes</button>
         </div>
       </div>
     </div>
