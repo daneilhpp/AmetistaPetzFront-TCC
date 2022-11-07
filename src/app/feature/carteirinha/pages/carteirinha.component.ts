@@ -15,6 +15,7 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
   formAddModal: any;
   formAddCard: any;
   removeModal: any;
+  removeCard: any;
   public vaccines$!: Vaccine[];
   //public vaccines$!: VaccineAnimalType[];
   private ngDestroyed$ = new Subject();
@@ -25,6 +26,7 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
 
   constructor(private carteirinhaService: CarteirinhaService) { }
   selectedItem = '';
+  selectedItem2 = '';
   
 
   ngOnInit(): void {
@@ -51,6 +53,9 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
     this.removeModal = new window.bootstrap.Modal(
       document.getElementById("removeVaccine")
     );
+    this.removeCard = new window.bootstrap.Modal(
+      document.getElementById("removeCard")
+    );
   }
 
 
@@ -75,6 +80,13 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
     this.formAddCard.hide();
   }
 
+  openRemoveCard() {
+    this.removeCard.show();
+  }
+  closeRemoveCard() {
+    this.removeCard.hide();
+  }
+
   
   ngOnDestroy(): void {
     this.ngDestroyed$.next(true);
@@ -83,6 +95,9 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
 
   onSelected(value: string): void {
     this.selectedItem = value;
+  }
+  onSelected2(value: string): void {
+    this.selectedItem2 = value;
   }
 
   /* getAnimalVaccineList() {
@@ -94,11 +109,13 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
   addAnimalVaccine(vaccine: Vaccine): void {
     this.carteirinhaService.addAnimalVaccine(vaccine).subscribe();
     this.formAddModal.hide();
+    this.formAddModal.reset();
   }
 
   deleteAnimalVaccine(id: number) {
     this.carteirinhaService.deleteAnimalVaccine(id).subscribe();
     this.removeModal.hide();
+    this.removeModal.reset();
   }
 
   deleteAllAnimalVaccine() {
@@ -110,6 +127,12 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
   addCard(card: Card): void {
     this.carteirinhaService.addVaccineCard(card).subscribe();
     this.formAddCard.hide();
+    this.formAddCard.reset();
+  }
+  deleteCard(id: number) {
+    this.carteirinhaService.deleteVaccineCard(id).subscribe();
+    this.removeCard.hide();
+    this.removeCard.reset();
   }
   
 }

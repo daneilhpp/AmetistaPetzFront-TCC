@@ -17,7 +17,7 @@
     <div *ngFor="let rga of rgas$" class="cards">
         <div class="card shadow">
             <section class="animalinfo">
-                <h1 id="title">{{rga.nome}}</h1>
+                <h1 id="title">{{rga.idRGA}} - {{rga.nome}}</h1>
                 <div class="line-1"></div>
                 <div class="card shadow" id="rga">
                     <div class="row" id="lin1">
@@ -214,7 +214,7 @@
         </div>
         <div class="modal-body">
           <select #rgas name="rgas" id="rgaList" (change)="onSelected(rgas.value)">
-            <option *ngFor="let rga of rgas$" value="{{rga.idRGA}}">{{rga.nome}}</option>
+            <option *ngFor="let rga of rgas$" value="{{rga.idRGA}}">{{rga.idRGA}} - {{rga.nome}}</option>
           </select>
         </div>
         <div class="modal-footer">

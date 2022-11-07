@@ -14,8 +14,33 @@
         <!-- <button class="btn shadow" routerLink="/carteirinha"><b>Criar cartaz novo</b></button> -->
 
         <a class="btn shadow" id="botao" (click)="openCreateModal()"><b>Criar cartaz novo</b></a>
+
+        <div id="content" #content>
+          <table *ngFor="let ani of anis$">
+            <tr>
+              <td align="center"><h2>{{ani.name}}</h2></td>
+            </tr>
+            <tr>
+              <th><img src="{{ani.foto}}" style="width: 400px; height: inherit;"></th>
+            </tr>
+            <tr>
+              <td align="center">Espécie: {{ani.especie}}, Raça: {{ani.raca}}</td>
+            </tr>
+            <tr>
+              <td align="center">Ultima vez visto em <b>{{ani.local}}</b> no dia <b>{{ani.desap | date: 'd/M/y'}}</b></td>
+            </tr>
+            <tr>
+              <td align="center"><b>Caso o veja, contate {{ani.dono}} no telefone {{ani.tel}}</b></td>
+            </tr>
+          </table>
+        </div>
+        <input type="button" value="Download PDF" class="btn btn-success" (click)="SavePDF()">
+
+
     </div>
 </div>
+
+
 
 <div class="modal" tabindex="-1" id="openCreate">
     <div class="modal-dialog">
@@ -54,7 +79,7 @@
                   </div>
                   <div class="block">
                     <label id="lbl" for="email"><b>Foto do animal</b></label>
-                    <input type="image" class="form-control shadow-sm mb-4" id="date2">
+                    <input type="text" class="form-control shadow-sm mb-4" id="date2">
                   </div>
               </div>
           </div>
