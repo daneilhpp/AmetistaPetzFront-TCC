@@ -1,225 +1,221 @@
 <a routerLink="/">
-    <img src="assets/back.png" style="width: 20px; height: inherit; margin-top: 30px; margin-left: 10%;">
-  </a>
+  <img src="assets/back.png" style="width: 20px; height: inherit; margin-top: 30px; margin-left: 10%;">
+</a>
 <div id="center" class="container">
-    <div class="filterArea" align="center">
-        <select name="filter" id="filter" class="shadow">
-          <option id="filterOpt" value="{{rga.nome}}" *ngFor="let rga of rgas$">{{rga.nome}}</option>
-        </select>
-        <select name="filterby" id="filterby" class="shadow">
-          <option value="1" selected>Alfabético</option>
-          <option value="2">Mais Recente</option>
-        </select>
-        <button id="rgaAddBtn" class="btn shadow" (click)="openAddModal()"><b>Adicionar RGA</b></button>
-        
-        <button class="btn shadow" (click)="openRemoveModal()"><b>Remover RGA</b></button>
-      </div>
-    <div *ngFor="let rga of rgas$" class="cards">
-        <div class="card shadow">
-            <section class="animalinfo">
-                <h1 id="title">{{rga.idRGA}} - {{rga.nome}}</h1>
-                <div class="line-1"></div>
-                <div class="card shadow" id="rga">
-                    <div class="row" id="lin1">
-                        <div class="col">
-                            <img id="sp" src="assets/sp.png" alt="">
-                        </div>
-                        <div class="col">
-                            <div align="center">
-                                <b>SECRETARIA MUNICIPAL DA SAÚDE</b><br>
-                                COORDENADORIA DE SAÚDE<br>
-                                E PROTEÇÃO AO ANIMAL DOMÉSTICO
-                            </div>
-                        </div>
-                        <div class="col">
-                            <img id="cosap" src="assets/cosap.png" alt="">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <img src="{{rga.pata}}" id="pata">
-                        </div>
-                        <div class="col">
-                            <div id="info">
-                                <table>
-                                    <tr>
-                                        <th>Nome</th>
-                                        <th>Sexo</th>
-                                    </tr>
-                                    <tr>
-                                        <td>{{rga.nome}}</td>
-                                        <!-- <div *ngFor="let sexo of sexos$">
+  <div class="filterArea" align="center">
+    <select name="filter" id="filter" class="shadow">
+      <option id="filterOpt" value="{{animal.id}}" *ngFor="let animal of animals$">{{animal.nome}}</option>
+    </select>
+    <select name="filterby" id="filterby" class="shadow">
+      <option value="1" selected>Alfabético</option>
+      <option value="2">Mais Recente</option>
+    </select>
+    <button id="rgaAddBtn" class="btn shadow" (click)="openAddModal()"><b>Adicionar RGA</b></button>
+
+    <button class="btn shadow" (click)="openRemoveModal()"><b>Remover RGA</b></button>
+  </div>
+  <ng-container *ngFor="let animal of animals$">
+    <div class="cards" *ngFor="let rga of rgas$">
+      <div class="card shadow" *ngIf="animal.id == rga.idAnimal">
+        <section class="animalinfo">
+          <h1 id="title">{{animal.id}} - {{animal.nome}}</h1>
+          <div class="line-1"></div>
+          <div class="card shadow" id="rga">
+            <div class="row" id="lin1">
+              <div class="col">
+                <img id="sp" src="assets/sp.png" alt="">
+              </div>
+              <div class="col">
+                <div align="center">
+                  <b>SECRETARIA MUNICIPAL DA SAÚDE</b><br>
+                  COORDENADORIA DE SAÚDE<br>
+                  E PROTEÇÃO AO ANIMAL DOMÉSTICO
+                </div>
+              </div>
+              <div class="col">
+                <img id="cosap" src="assets/cosap.png" alt="">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <img src="{{rga.pata}}" id="pata">
+              </div>
+              <div class="col">
+                <div id="info">
+                  <table>
+                    <tr>
+                      <th>Nome</th>
+                      <th>Sexo</th>
+                    </tr>
+                    <tr>
+                      <td>{{animal.nome}}</td>
+                      <!-- <div *ngFor="let sexo of sexos$">
                                           <td  *ngIf="sexo.idSexo == rga.idSexo">{{sexo.dsSexo}}</td>
                                         </div> -->
-                                        <td *ngIf="rga.idSexo == 1; else elseBlock1">Macho</td>
-                                        <ng-template #elseBlock1>Fêmea</ng-template>
-                                    </tr>
-                                    <tr>
-                                        <th>Espécie</th>
-                                        <th>Raça</th>
-                                    </tr>
-                                    <tr>
-                                        <td *ngIf="rga.idEspecie == 1; else elseBlock2">Cachorro</td>
-                                        <ng-template #elseBlock2>Gato</ng-template>
-                                        <td *ngIf="rga.idRaca == 1; else else1">Akita</td>
-                                        <ng-template #else1>
-                                          <ng-container *ngIf="rga.idRaca == 2; else else2">Basset Hounder</ng-container>
-                                          <ng-template #else2>
-                                            <ng-container *ngIf="rga.idRaca == 3; else else3">Oregon Rex</ng-container>
-                                            <ng-template #else3>
-                                              <ng-container *ngIf="rga.idRaca == 37">Pitbull</ng-container>
-                                            </ng-template>
-                                          </ng-template>
-                                        </ng-template>
-                                    </tr>
-                                    <tr>
-                                        <th>Cor</th>
-                                        <th>Nascimento</th>
-                                    </tr>
-                                    <tr>
-                                        <td>{{rga.pelagem}}</td>
-                                        <td>{{rga.dtNascimento | date:'d/M/y'}}</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <img src="{{rga.foto}}" id="foto">
-                        </div>
-                    </div>
-                    <div class="row" id="lin3">
-                        <div class="col">
-                            <div id="microship">
-                                <img id="microimg" src="assets/chip.png">
-                                <div id="items">
-                                    <b>Microship</b><br>
-                                    <b id="m">{{rga.chip}}</b><br><br>
-                                </div>
-                            </div><br>
-                            <div id="rga2">
-                                <img id="rgaimg" src="assets/rga.png">
-                                <div id="items">
-                                    <b id="r">RGA</b><br>
-                                    <b>{{rga.rga}}</b><br><br>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div id="assinatura">
-                                <img id="ass" src="{{rga.assinatura}}" alt="">
-                                <div class="line-1"></div>
-                                Assinatura do Titular
-                            </div>
-                        </div>
-                        <div class="col">
-                            <span class="badge">USE PLAQUETA DE IDENTIFICAÇÃO</span>
-                        </div>
-                    </div>
+                      <td *ngIf="animal.idSexo == 1; else elseBlock1">Macho</td>
+                      <ng-template #elseBlock1>Fêmea</ng-template>
+                    </tr>
+                    <tr>
+                      <th>Espécie</th>
+                      <th>Raça</th>
+                    </tr>
+                    <tr>
+                      <td *ngIf="animal.idEspecie == 1; else elseBlock2">Cachorro</td>
+                      <ng-template #elseBlock2>Gato</ng-template>
+                      <td *ngIf="animal.idRaca == 1; else else1">Akita</td>
+                      <ng-template #else1>
+                        <ng-container *ngIf="animal.idRaca == 2; else else2">Basset Hounder</ng-container>
+                        <ng-template #else2>
+                          <ng-container *ngIf="animal.idRaca == 3; else else3">Oregon Rex</ng-container>
+                          <ng-template #else3>
+                            <ng-container *ngIf="animal.idRaca == 37">Pitbull</ng-container>
+                          </ng-template>
+                        </ng-template>
+                      </ng-template>
+                    </tr>
+                    <tr>
+                      <th>Cor</th>
+                      <th>Nascimento</th>
+                    </tr>
+                    <tr>
+                      <td>{{animal.pelagem}}</td>
+                      <td>{{animal.dtNascimento | date:'d/M/y'}}</td>
+                    </tr>
+                  </table>
                 </div>
-            </section>
-        </div>
+              </div>
+              <div class="col">
+                <img src="{{rga.foto}}" id="foto">
+              </div>
+            </div>
+            <div class="row" id="lin3">
+              <div class="col">
+                <div id="microship">
+                  <img id="microimg" src="assets/chip.png">
+                  <div id="items">
+                    <b>Microship</b><br>
+                    <b id="m">{{rga.chip}}</b><br><br>
+                  </div>
+                </div><br>
+                <div id="rga2">
+                  <img id="rgaimg" src="assets/rga.png">
+                  <div id="items">
+                    <b id="r">RGA</b><br>
+                    <b>{{rga.rga}}</b><br><br>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div id="assinatura">
+                  <img id="ass" src="{{rga.assinatura}}" alt="">
+                  <div class="line-1"></div>
+                  Assinatura do Titular
+                </div>
+              </div>
+              <div class="col">
+                <span class="badge">USE PLAQUETA DE IDENTIFICAÇÃO</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
+  </ng-container>
 </div>
 
 <div class="modal" tabindex="-1" id="addRga">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Adicionar vacina na carteirinha de {{'nomeAnimal'}} </h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form #addRga="ngForm" (ngSubmit)="addRGA(addRga.value)">
-            <div class="row">
-                <div class="col">
-                    <div class="block">
-                        <label id="lbl" for="name"><b>Nome do animal</b></label>
-                        <input type="name" class="form-control shadow-sm mb-4" id="sel" placeholder="Nome" ngModel name="nome">
-                    </div>
-                    <!-- <div class="block">
-                        <label for="a" id="id">Id do animal</label>
-                        <input type="number" class="form-control shadow-sm mb-4" id="sel" placeholder="Id" ngModel name="idAnimal">
-                    </div> -->
-                    <div class="block">
-                        <label id="lbl" for="sexo"><b>Sexo do animal</b></label>
-                        <!-- <input type="text" class="form-control shadow-sm mb-4" id="name" placeholder="Sexo"> -->
-                        <select name="sexo" id="sel" ngModel name="idSexo">
-                            <option selected>Selecione o sexo</option>
-                            <option value="2">Fêmea</option>
-                            <option value="1">Macho</option>
-                        </select>
-                    </div>
-                    <div class="block">
-                        <label id="lbl" for="espec"><b>Espécie do animal</b></label>
-                        <select name="espec" id="sel" ngModel name="idEspecie">
-                          <option selected>Selecione a espécie</option>
-                          <option value="1">Cachorro</option>
-                          <option value="2">Gato</option>
-                      </select>
-                    </div>
-                    <div class="block">
-                      <label id="lbl" for="raca"><b>Raça do animal</b></label>
-                      <select name="espec" id="sel" ngModel name="idRaca">
-                        <option selected>Selecione a raça</option>
-                        <option value="1">Akita</option>
-                        <option value="37">Pitbull</option>
-                        <option value="3">Bulldog</option>
-                      </select>
-                  </div>
-                  <div class="block">
-                    <label id="lbl" for="cor"><b>Cor do animal</b></label>
-                    <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="Cor" ngModel name="pelagem">
-                </div>
-                <div class="block">
-                  <label id="lbl" for="data"><b>Data Nascimento do animal</b></label>
-                  <input type="date" class="form-control shadow-sm mb-4" id="sel" ngModel name="dtNascimento">
-                </div>
-                <div class="block">
-                  <label id="lbl" for="micro"><b>Microship do animal</b></label>
-                  <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="Microship" ngModel name="chip">
-                </div>
-                <div class="block">
-                  <label id="lbl" for="rga3"><b>RGA do animal</b></label>
-                  <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="RGA" ngModel name="rga">
-                </div>
-                <div class="block">
-                  <label id="lbl" for="foto5"><b>Foto da Pata do animal</b></label>
-                  <input type="text" class="form-control shadow-sm mb-4" id="sel" ngModel name="pata">
-                </div>
-                <div class="block">
-                  <label id="lbl" for="foto2"><b>Foto do animal</b></label>
-                  <input type="text" class="form-control shadow-sm mb-4" id="sel" ngModel name="foto">
-                </div>
-                <div class="block">
-                  <label id="lbl" for="foto3"><b>Foto da assinatura do tutor</b></label>
-                  <input type="text" class="form-control shadow-sm mb-4" id="sel" ngModel name="assinatura">
-                </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Adicionar RGA</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #addRga="ngForm" (ngSubmit)="addRGA(addRga.value)">
+          <div class="row">
+            <div class="col">
+              <div class="block">
+                <label id="lbl" for="name"><b>Selecione o animal</b></label>
+                <select name="animals" id="sel">
+                  <option *ngFor="let animal of animals$" value="{{animal.id}}">{{animal.nome}}</option>
+                </select>
+              </div>
+              <div class="block">
+                <label id="lbl" for="sexo"><b>Sexo do animal</b></label>
+                <select name="sexo" id="sel" ngModel name="idSexo">
+                  <option *ngFor="let sex of sexos$" value="{{sex.idSexo}}">{{sex.dsSexo}}</option>
+                </select>
+              </div>
+              <div class="block">
+                <label id="lbl" for="espec"><b>Espécie do animal</b></label>
+                <select name="espec" id="sel" ngModel name="idEspecie">
+                  <option *ngFor="let espec of especies$" value="{{espec.id}}">{{espec.especieAnimal}}</option>
+                </select>
+              </div>
+              <div class="block">
+                <label id="lbl" for="raca"><b>Raça do animal</b></label>
+                <select name="espec" id="sel" ngModel name="idRaca">
+                  <option *ngFor="let raca of racas$" value="{{raca.idRaca}}">{{raca.dsRaca}}</option>
+                </select>
+              </div>
+              <div class="block">
+                <label id="lbl" for="cor"><b>Cor do animal</b></label>
+                <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="Cor" ngModel
+                  name="pelagem">
+              </div>
+              <div class="block">
+                <label id="lbl" for="data"><b>Data Nascimento do animal</b></label>
+                <input type="date" class="form-control shadow-sm mb-4" id="sel" ngModel name="dtNascimento">
+              </div>
+              <div class="block">
+                <label id="lbl" for="micro"><b>Microship do animal</b></label>
+                <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="Microship" ngModel
+                  name="chip">
+              </div>
+              <div class="block">
+                <label id="lbl" for="rga3"><b>RGA do animal</b></label>
+                <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="RGA" ngModel name="rga">
+              </div>
+              <div class="block">
+                <label id="lbl" for="foto5"><b>Foto da Pata do animal</b></label>
+                <input type="text" class="form-control shadow-sm mb-4" id="sel" ngModel name="pata">
+              </div>
+              <div class="block">
+                <label id="lbl" for="foto2"><b>Foto do animal</b></label>
+                <input type="text" class="form-control shadow-sm mb-4" id="sel" ngModel name="foto">
+              </div>
+              <div class="block">
+                <label id="lbl" for="foto3"><b>Foto da assinatura do tutor</b></label>
+                <input type="text" class="form-control shadow-sm mb-4" id="sel" ngModel name="assinatura">
               </div>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" (click)="addRGA(addRga.value)">Save changes</button>
-        </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" (click)="addRGA(addRga.value)">Save changes</button>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="modal" tabindex="-1" id="removeRga">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Selecione o RGA que quer remover</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <select #rgas name="rgas" id="rgaList" (change)="onSelected(rgas.value)">
-            <option *ngFor="let rga of rgas$" value="{{rga.idRGA}}">{{rga.idRGA}} - {{rga.nome}}</option>
-          </select>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="deleteRGA(+selectedItem)">Save changes</button>
-        </div>
+<div class="modal" tabindex="-1" id="removeRga">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Selecione o RGA que quer remover</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <select #rgas name="rgas" id="rgaList" (change)="onSelected(rgas.value)">
+          <option *ngFor="let rga of rgas$" value="{{rga.idRGA}}">{{rga.idRGA}} -
+            <!-- {{rga.nome}} -->
+          </option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="deleteRGA(+selectedItem)">Save changes</button>
       </div>
     </div>
   </div>
+</div>

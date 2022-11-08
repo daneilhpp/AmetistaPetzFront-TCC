@@ -4,7 +4,7 @@
 <div id="center" class="container">
   <div class="filterArea" align="center">
     <select name="filter" id="filter" class="shadow">
-      <option id="filterOpt" value="{{card.petName}}" *ngFor="let card of cards$">{{card.petName}}</option>
+      <option id="filterOpt" value="{{animal.id}}" *ngFor="let animal of animals$">{{animal.nome}}</option>
     </select>
     <select name="filterby" id="filterby" class="shadow">
       <option value="1" selected>Alfabético</option>
@@ -15,159 +15,167 @@
     <button id="openForm" class="btn shadow" (click)="openAddModal()"><b>Adicionar Vacina</b></button>
     <button id="openForm" class="btn shadow" (click)="openRemoveModal()"><b>Remover Vacina</b></button>
   </div>
+  <ng-container *ngFor="let animal of animals$">
     <div *ngFor="let card of cards$" class="cards">
-        <div class="card shadow">
-            <section class="animalinfo">
-                <h1 id="title">{{card.id}} - {{card.petName}}</h1>
-                <div class="line-1"></div>
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered">
-                        <thead id="head">
-                            <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Vacina</th>
-                                <th scope="col">Data de Aplicação</th>
-                                <th scope="col">Próxima Dose</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                          
-                            <tr *ngFor="let vaccine of vaccines$">
-                              <ng-container *ngIf="card.id == vaccine.carteiraId">
-                                <th scope="row">{{vaccine.idVacina}}</th>
-                                <td>{{vaccine.medicamento}}</td>
-                               <td>{{vaccine.dataVacina | date:'d/M/y'}}</td>
-                               <td>{{vaccine.proximaVacina | date:'d/M/y'}}</td> 
-                              </ng-container>
-                               
-                                <!--<td>{{animal.vaccine}}</td>
+      <div class="card shadow" *ngIf="animal.id == card.animalIdAnimal">
+        <section class="animalinfo">
+          <h1 id="title">{{card.animalIdAnimal}} - {{animal.nome}}</h1>
+          <div class="line-1"></div>
+          <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+              <thead id="head">
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Vacina</th>
+                  <th scope="col">Data de Aplicação</th>
+                  <th scope="col">Próxima Dose</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let vaccine of vaccines$">
+                  <ng-container *ngIf="card.id == vaccine.carteiraId">
+                    <th scope="row">{{vaccine.idVacina}}</th>
+                    <td>{{vaccine.medicamento}}</td>
+                    <td>{{vaccine.dataVacina | date:'d/M/y'}}</td>
+                    <td>{{vaccine.proximaVacina | date:'d/M/y'}}</td>
+                  </ng-container>
+
+                  <!--<td>{{animal.vaccine}}</td>
                                 <td>{{animal.vaccineDate | date:'d/M/y'}}</td>
                                 <td>{{animal.nextVaccineDate | date:'d/M/y'}}</td>-->
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </div>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
     </div>
+  </ng-container>
 </div>
 
-
 <div class="modal" tabindex="-1" id="addVaccine">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Adicionar vacina</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form #vaccine="ngForm" (ngSubmit)="addAnimalVaccine(vaccine.value)">
-            <div class="row">
-                <div class="col">
-                  <div class="block">
-                    <label id="lbl" for="name"><b>Selecione a Carteira</b></label>
-                    <select id="carteiraId" ngModel name="carteiraId">
-                      <option *ngFor="let card of cards$" value="{{card.id}}" selected>{{card.petName}}</option>
-                    </select>
-                  </div>
-                    <div class="block">
-                        <label id="lbl" for="name"><b>Selecione a vacina</b></label>
-                        <select id="medicamento" ngModel name="medicamento">
-                          <option selected>Selecione uma vacina</option>
-                          <option value="Raiva">Raiva</option>
-                          <option value="Pulga">Pulga</option>
-                          <option value="V8">V8</option>
-                          <option value="V10">V10</option>
-                        </select>
-                    </div>
-                    <div class="block">
-                        <label id="lbl" for="email"><b>Data de aplicação</b></label>
-                        <input type="date" ngModel name="dataVacina" class="form-control shadow-sm mb-4" id="dataVacina">
-                    </div>    
-                    <div class="block">
-                        <label id="lbl" for="email"><b>Data de retorno</b></label>
-                        <input type="date" ngModel name="proximaVacina" class="form-control shadow-sm mb-4" id="proximaVacina">
-                    </div>    
-                </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Adicionar vacina</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #vaccine="ngForm" (ngSubmit)="addAnimalVaccine(vaccine.value)">
+          <div class="row">
+            <div class="col">
+              <div class="block">
+                <label id="lbl" for="name"><b>Selecione a Carteira</b></label>
+                <select id="carteiraId" ngModel name="carteiraId">
+                  <option *ngFor="let card of cards$" value="{{card.id}}" selected>
+                    <!-- {{card.petName}} -->
+                  </option>
+                </select>
+              </div>
+              <div class="block">
+                <label id="lbl" for="name"><b>Selecione a vacina</b></label>
+                <select id="medicamento" ngModel name="medicamento">
+                  <option selected>Selecione uma vacina</option>
+                  <option value="Raiva">Raiva</option>
+                  <option value="Pulga">Pulga</option>
+                  <option value="V8">V8</option>
+                  <option value="V10">V10</option>
+                </select>
+              </div>
+              <div class="block">
+                <label id="lbl" for="email"><b>Data de aplicação</b></label>
+                <input type="date" ngModel name="dataVacina" class="form-control shadow-sm mb-4" id="dataVacina">
+              </div>
+              <div class="block">
+                <label id="lbl" for="email"><b>Data de retorno</b></label>
+                <input type="date" ngModel name="proximaVacina" class="form-control shadow-sm mb-4" id="proximaVacina">
+              </div>
             </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" id="add-vaccine-form" (click)="addAnimalVaccine(vaccine.value)">Adicionar</button>
-        </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" id="add-vaccine-form"
+          (click)="addAnimalVaccine(vaccine.value)">Adicionar</button>
       </div>
     </div>
   </div>
+</div>
 
-  
 
-  <div class="modal" tabindex="-1" id="removeVaccine">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Selecione a vacina que quer remover</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <select #vaccines name="vaccines" id="vaccineList"  (change)="onSelected(vaccines.value)">
-            <ng-container *ngFor="let vaccine of vaccines$">
-              <ng-container *ngFor="let card of cards$">
-                <option *ngIf="vaccine.carteiraId == card.id" value="{{vaccine.idVacina}}">{{vaccine.idVacina}} - {{vaccine.medicamento}}</option>
-              </ng-container>
+
+<div class="modal" tabindex="-1" id="removeVaccine">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Selecione a vacina que quer remover</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <select #vaccines name="vaccines" id="vaccineList" (change)="onSelected(vaccines.value)">
+          <ng-container *ngFor="let vaccine of vaccines$">
+            <ng-container *ngFor="let card of cards$">
+              <option *ngIf="vaccine.carteiraId == card.id" value="{{vaccine.idVacina}}">{{vaccine.idVacina}} -
+                {{vaccine.medicamento}}</option>
             </ng-container>
-            <!-- <div *ngFor="let vaccine of vaccines$">
+          </ng-container>
+          <!-- <div *ngFor="let vaccine of vaccines$">
               <div *ngFor="let card of cards$">
                   <option *ngIf="vaccine.carteiraId == card.id" value="{{vaccine.idVacina}}">{{vaccine.medicamento}}</option>
                 
               </div>
             </div> -->
-          </select>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="deleteAnimalVaccine(+selectedItem)">Deletar</button>
-        </div>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="deleteAnimalVaccine(+selectedItem)">Deletar</button>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="modal" tabindex="-1" id="addCard">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Insira as informações da carteirinha</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form #card="ngForm" (ngSubmit)="addCard(card.value)">
-            <label for="name"><b>Nome do animal</b></label>
-            <input type="text" ngModel name="petName" placeholder="Nome do animal" id="dataVacina">
-           <!--  <select ngModel name="petName" id="medicamento">
+<div class="modal" tabindex="-1" id="addCard">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Insira as informações da carteirinha</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #card="ngForm" (ngSubmit)="addCard(card.value)">
+          <label for="name"><b>Nome do animal</b></label>
+          <input type="text" ngModel name="petName" placeholder="Nome do animal" id="dataVacina">
+          <!--  <select ngModel name="petName" id="medicamento">
               <option *ngFor="let animal of animals$" value="{{animal.id}}">{{animal.nome}}</option>
             </select> -->
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" (click)="addCard(card.value)">Adicionar</button>
-        </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" (click)="addCard(card.value)">Adicionar</button>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="modal" tabindex="-1" id="removeCard">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Selecione a carteira que quer remover</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <select #cards name="cards" id="vaccineList"  (change)="onSelected2(cards.value)">
-            <option *ngFor="let card of cards$" value="{{card.id}}">{{card.id}} - {{card.petName}}</option>
-          </select>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="deleteCard(+selectedItem2)">Deletar</button>
-        </div>
+<div class="modal" tabindex="-1" id="removeCard">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Selecione a carteira que quer remover</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <select #cards name="cards" id="vaccineList" (change)="onSelected2(cards.value)">
+           <ng-container *ngFor="let animal of animals$">
+          <option *ngFor="let card of cards$" value="{{card.id}}">{{card.id}} - {{animal.nome}}</option>
+
+           </ng-container>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="deleteCard(+selectedItem2)">Deletar</button>
       </div>
     </div>
   </div>
+</div>

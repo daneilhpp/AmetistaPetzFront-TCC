@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { RgaAnimalType, RgaService } from '../services/rga.service';
 import { RGA } from 'src/app/core/interfaces/Rga';
-import { Sexos } from 'src/app/core/interfaces/Animal';
+import { Animal, Especie, Raca, Sexos } from 'src/app/core/interfaces/Animal';
+import { AnimalServiceService } from '../../carteirinha/services/animal-service.service'
 
 declare var window: any;
 
@@ -16,11 +17,15 @@ export class RgaComponent implements OnInit {
   removeModal: any;
   editModal: any;
   public rgas$!: RGA[];
+  public animals$!: Animal[];
+
+  public especies$!: Especie[];
+  public racas$!: Raca[];
   public sexos$!: Sexos[];
 
   private ngDestroyed$ = new Subject();
 
-  constructor(private rgaService: RgaService) { }
+  constructor(private rgaService: RgaService, private animalService: AnimalServiceService) { }
   selectedItem = '';
 
   ngOnInit(): void {
@@ -28,14 +33,25 @@ export class RgaComponent implements OnInit {
       .pipe(takeUntil(this.ngDestroyed$))
       .subscribe(rgaData => this.rgas$ = rgaData);
 
+      this.animalService.getAnimals()
+      .pipe(takeUntil(this.ngDestroyed$))
+      .subscribe(an => this.animals$ = an);
+
+      this.animalService.getEspecies()
+      .pipe(takeUntil(this.ngDestroyed$))
+      .subscribe(es => this.especies$ = es);
+      this.animalService.getRacas()
+      .pipe(takeUntil(this.ngDestroyed$))
+      .subscribe(rc => this.racas$ = rc);
+      this.animalService.getSexos()
+      .pipe(takeUntil(this.ngDestroyed$))
+      .subscribe(sx => this.sexos$ = sx);      
+
       this.formAddModal = new window.bootstrap.Modal(
         document.getElementById("addRga")
       );
       this.removeModal = new window.bootstrap.Modal(
         document.getElementById("removeRga")
-      );
-      this.editModal = new window.bootstrap.Modal(
-        document.getElementById("editRga")
       );
   }
 

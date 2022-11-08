@@ -12,7 +12,8 @@ export interface Vaccine{
 
 export interface Card{
     id: number;
-    petName: string;
+    //petName: string;
+    animalIdAnimal: number;
 }
 
 /* export interface Vacina{

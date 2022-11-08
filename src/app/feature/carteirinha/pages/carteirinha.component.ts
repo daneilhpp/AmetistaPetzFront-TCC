@@ -3,6 +3,7 @@ import { Subject, takeUntil, switchMap } from 'rxjs';
 import { Vaccine, Card } from 'src/app/core/interfaces/Carteirinha';
 import { Animal } from 'src/app/core/interfaces/Animal';
 import { CardVaccineType, CarteirinhaService, VaccineAnimalType } from '../services/carteirinha.service';
+import { AnimalServiceService } from 'src/app/feature/carteirinha/services/animal-service.service';
 
 declare var window: any;
 
@@ -24,7 +25,7 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
   public animals$!: Animal[];
   //public cards$!: CardVaccineType[];
 
-  constructor(private carteirinhaService: CarteirinhaService) { }
+  constructor(private carteirinhaService: CarteirinhaService, private animalService: AnimalServiceService) { }
   selectedItem = '';
   selectedItem2 = '';
   
@@ -33,16 +34,14 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
      this.carteirinhaService.getAnimalVaccineList()
      .pipe(takeUntil(this.ngDestroyed$))
      .subscribe(animalData => this.vaccines$ = animalData); 
-    /*this.carteirinhaService.getMock()
-      .pipe(takeUntil(this.ngDestroyed$))
-      .subscribe(animalData => this.vaccines$ = animalData);*/
 
       this.carteirinhaService.getVaccineCardList()
       .pipe(takeUntil(this.ngDestroyed$))
-      .subscribe(cardData => this.cards$ = cardData)
-    /* this.carteirinhaService.getMockCard()
+      .subscribe(cardData => this.cards$ = cardData);
+
+      this.animalService.getAnimals()
       .pipe(takeUntil(this.ngDestroyed$))
-      .subscribe(cardData => this.cards$ = cardData); */
+      .subscribe(an => this.animals$ = an);
 
     this.formAddModal = new window.bootstrap.Modal(
       document.getElementById("addVaccine")
@@ -99,12 +98,6 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
   onSelected2(value: string): void {
     this.selectedItem2 = value;
   }
-
-  /* getAnimalVaccineList() {
-    this.carteirinhaService.getAnimalVaccineList()
-      .pipe(takeUntil(this.ngDestroyed$))
-      .subscribe(vaccineData => this.vaccineList = vaccineData);
-  } */
 
   addAnimalVaccine(vaccine: Vaccine): void {
     this.carteirinhaService.addAnimalVaccine(vaccine).subscribe();

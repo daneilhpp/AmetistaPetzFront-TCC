@@ -16,10 +16,10 @@ export interface Especie{
     grupoAnimal: string;
 }
 export interface Raca{
-    id: number;
+    idRaca: number;
     idEspecie: number;
-    descricao: string;
-    porte: string;
+    dsRaca: string;
+    ptRaca: string;
     crRaca: string;
 }
 export interface Situacao{

@@ -1,15 +1,15 @@
 export interface RGA{
     idRGA: number;
     idAnimal: number;
-    nome: string;
+    chip: number;
+    rga: number;
+    assinatura: string;
+    pata: string;
+    foto: string;
+}
+    /*nome: string;
     idEspecie: number;
     idRaca: number;
     idSexo: number;
     dtNascimento: Date;
-    pelagem: string;
-    assinatura: string;
-    pata: string;
-    chip: number;
-    rga: number;
-    foto: string;
-}
+    pelagem: string;*/
