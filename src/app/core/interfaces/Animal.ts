@@ -10,6 +10,19 @@ export interface Animal{
     peso: number;
 }
 
+export interface Desaparecido{
+    id: number;
+    nome: string;
+    idEspecie: number;
+    idRaca: number;
+    dtDesaparecimento: Date;
+    lugar: string;
+    dono: string;
+    telefone: string;
+    //idAnimal: number;
+    foto: string;
+}
+
 export interface Especie{
     id: number;
     especieAnimal: string;

@@ -1,8 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { of, Subject, takeUntil } from 'rxjs';
-import { RgaAnimalType, RgaService } from 'src/app/feature/rga/services/rga.service';
 import { RGA } from 'src/app/core/interfaces/Rga';
 import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import { Desaparecido, Animal } from 'src/app/core/interfaces/Animal';
+import { DenunciaService } from '../../services/denuncia.service';
+import { AnimalServiceService } from 'src/app/feature/carteirinha/services/animal-service.service';
+import { RgaService } from 'src/app/feature/rga/services/rga.service';
 
 declare var window: any;
 
@@ -13,18 +17,25 @@ declare var window: any;
 })
 export class DenunciaComponent implements OnInit {
   createModal: any;
-  public rgas$!: RGA[];
   private ngDestroyed$ = new Subject();
+  public desaps$!: Desaparecido[];
+  public animals$!: Animal[];
+  public rgas$!: RGA[];
 
-  public anis$!: DataType[];
-
-  constructor(private rgaService: RgaService) { }
+  constructor(private denService: DenunciaService, private aniService: AnimalServiceService, private rgaService: RgaService) { }
 
   ngOnInit(): void {
-    /* this.rgaService.getRgaList()
-      .pipe(takeUntil(this.ngDestroyed$))
-      .subscribe(rgaData => this.rgas$ = rgaData); */
-      this.getmock().pipe(takeUntil(this.ngDestroyed$)).subscribe(data => this.anis$ = data);
+    this.denService.getDesaparecidos()
+    .pipe(takeUntil(this.ngDestroyed$))
+    .subscribe(data => this.desaps$ = data);
+    this.aniService.getAnimals()
+    .pipe(takeUntil(this.ngDestroyed$))
+    .subscribe(data => this.animals$ = data);
+    this.rgaService.getRgaList()
+    .pipe(takeUntil(this.ngDestroyed$))
+    .subscribe(data => this.rgas$ = data);
+          //this.getmock().pipe(takeUntil(this.ngDestroyed$)).subscribe(data => this.anis$ = data);
+
     this.createModal = new window.bootstrap.Modal(
       document.getElementById("openCreate")
     );
@@ -41,9 +52,38 @@ export class DenunciaComponent implements OnInit {
   getmock(){
     return of(Datas);
   }
+
+  addDesaparecido(desap: Desaparecido){
+    this.denService.addDesaparecido(desap);
+    
+  }
   
   
-  
+  @ViewChild('htmlData') htmlData!: ElementRef;
+  animal = [
+    {
+      name: 'Marquinhos',
+      especie: 'Cachorro',
+      raca: 'Akita', 
+      desap: new Date(Date.now()), 
+      local: 'Vila Maria', 
+      tel: 123456789, 
+      foto: 'assets/fotomock2.jpg', 
+      dono: 'Daniel'}
+  ];
+
+  public openPDF(): void {
+    let DATA: any = document.getElementById('htmlData');
+    html2canvas(DATA).then((canvas: { height: number; width: number; toDataURL: (arg0: string) => any; }) => {
+      let fileWidth = 310;
+      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      const FILEURI = canvas.toDataURL('image/png');
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      let position = 0;
+      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight, );
+      PDF.save('Cartaz_Desaparecimento.pdf');
+    });
+  }
 
 }
 
