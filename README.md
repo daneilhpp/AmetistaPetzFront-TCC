@@ -1,27 +1,28 @@
 # AmetistaPetz
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.9.
+Projeto feito no desenvolvimento de TCC focado em ajudar a vida de donos de animais de estimação, oferecendo as funções principais para cuidar do seu Pet.
 
-## Development server
+## Funções
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+* ### Carteirinha de Vacina. Você pode adicionar quantas vacinas quiser na carteirinha referente ao Pet.
 
-## Code scaffolding
+* ### RGA do animal. Nele você pode conferir as informações do animal adicionado anteriormente.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* ### GeoPetz. Para localizar um veterinário ou petshop próximo a sua localização.
 
-## Build
+* ### Denúncia. Caso o animal tenha desaparecido, é possível gerar um cartaz automáticamente.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Como foi feito
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+O projeto foi desenvolvido em Angular (ou TypeScript) com a hierarquia baseada em módulos, utilizando o [BackEnd](https://github.com/HiagoLCarvalho/CarteiraVacinacao) feito em DotNet / Asp, com conexão no banco de dados no somee, em MSSQL.
 
-## Running end-to-end tests
+## Como rodar o repositório
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Para rodar o projeto por meio desse repositório, basta ir no terminal local e usar **git clone /github.com/daneilhpp/AmetistaPetzFront-TCC**.
+Depois disso, dentro da pasta copiada rode o comando **npm i** para instalar os pacotes necessários.
+E por fim dê o comando **ng serve -o**.
 
-## Further help
+### Quaisquer dúvidas
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Contate o desenvolvedor de grande parte desse projeto no email carvalhosilvad88@gmail.com
