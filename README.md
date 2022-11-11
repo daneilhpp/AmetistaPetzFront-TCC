@@ -19,11 +19,11 @@ O projeto foi desenvolvido em Angular (ou TypeScript) com a hierarquia baseada e
 
 ## Como rodar o repositório
 
-Para rodar o projeto por meio desse repositório, basta ir no terminal local e usar **git clone https://github.com/daneilhpp/AmetistaPetzFront-TCC**.
+Para rodar o projeto por meio desse repositório, basta ir no terminal local e usar '**git clone https://github.com/daneilhpp/AmetistaPetzFront-TCC**'.
 
-Depois disso, dentro da pasta copiada rode o comando **npm i** para instalar os pacotes necessários.
+Depois disso, dentro da pasta copiada rode o comando '**npm i**' para instalar os pacotes necessários.
 
-E por fim dê o comando **ng serve -o**.
+E por fim dê o comando '**ng serve -o**'.
 
 ### Quaisquer dúvidas
 
