@@ -72,10 +72,10 @@ export class DenunciaComponent implements OnInit {
       dono: 'Daniel'}
   ];
 
-  public openPDF(): void {
+  /* public openPDF(): void {
     let DATA: any = document.getElementById('htmlData');
     html2canvas(DATA).then((canvas: { height: number; width: number; toDataURL: (arg0: string) => any; }) => {
-      let fileWidth = 310;
+      let fileWidth = 270;
       let fileHeight = (canvas.height * fileWidth) / canvas.width;
       const FILEURI = canvas.toDataURL('image/png');
       let PDF = new jsPDF('p', 'mm', 'a4');
@@ -83,6 +83,28 @@ export class DenunciaComponent implements OnInit {
       PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight, );
       PDF.save('Cartaz_Desaparecimento.pdf');
     });
+  } */
+
+  public openPDF(){
+    let DATA: any = document.getElementById('htmlData');
+    var imageDataURL: any;
+    var image = new Image();
+
+    image = DATA;
+
+    image.onload = function(){
+      let w = image.naturalWidth;
+      let h = image.naturalHeight;
+
+      const pdf = new jsPDF({
+        orientation: h > w ? "portrait": "landscape",
+        unit: "px",
+        format: [h,w]
+      });
+      pdf.addImage(imageDataURL, 0, 0, pdf.internal.pageSize.getWidth(),pdf.internal.pageSize.getHeight());
+      pdf.save('Cartaz_Desaparecimento.pdf');
+    }
+    image.src = imageDataURL;
   }
 
 }

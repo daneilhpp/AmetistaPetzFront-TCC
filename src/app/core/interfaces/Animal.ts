@@ -19,7 +19,7 @@ export interface Desaparecido{
     lugar: string;
     dono: string;
     telefone: string;
-    //idAnimal: number;
+    idAnimal: number;
     foto: string;
 }
 
