@@ -1,119 +1,115 @@
 <a routerLink="/" id="back">
-    <img src="assets/back.png" style="width: 20px; height: inherit; margin-top: 30px; margin-left: 10%;">
-  </a>
+  <img src="assets/back.png" style="width: 20px; height: inherit; margin-top: 30px; margin-left: 10%;">
+</a>
 <div class="container">
-    <div class="content">
-        <h1 id="title">Um animal sumido? Informe!</h1>
-        <h3 id="text">Selecione um animal para gerar um cartaz com suas informações</h3>
-        <select id="animal" class="form-control shadow" formControlName="animal" #animal2 (change)="animal2.value">
-            <option *ngFor="let animal of animals$" value="{{animal.id}}">{{animal.nome}}</option>
-        </select>
-        <a class="btn shadow" id="botao"><b>Criar cartaz</b></a>
-        <h4 id="text">ou</h4>
-        <h3 id="text">Crie um cartaz novo com informações de um animal novo</h3>
-        <!-- <button class="btn shadow" routerLink="/carteirinha"><b>Criar cartaz novo</b></button> -->
+  <div class="content">
+    <h1 id="title">Um animal sumido? Informe!</h1>
+    <h3 id="text">Selecione um animal para gerar um cartaz com suas informações</h3>
+    <select id="animal" class="form-control shadow" formControlName="animal" #animal2 (change)="animal2.value">
+      <option selected>Selecione um animal</option>
+      <option *ngFor="let animal of animals$" value="{{animal.id}}">{{animal.nome}}</option>
+    </select>
+    <a class="btn shadow" id="botao"><b>Criar cartaz</b></a>
+    <h4 id="text">ou</h4>
+    <h3 id="text">Crie um cartaz novo com informações de um animal novo</h3>
+    <!-- <button class="btn shadow" routerLink="/carteirinha"><b>Criar cartaz novo</b></button> -->
 
-        <a class="btn shadow" id="botao" (click)="openCreateModal()"><b>Criar cartaz novo</b></a>
+    <a class="btn shadow" id="botao" (click)="openCreateModal()"><b>Criar cartaz novo</b></a>
 
-        <ng-container *ngFor="let rga of rgas$">
+
+    <ng-container *ngFor="let desap of desaps$">
+      <ng-container *ngFor="let rga of rgas$">
         <ng-container *ngFor="let animal of animals$">
-        <div id="htmlData" *ngFor="let ani of desaps$">
-          <table *ngIf="ani.id == (+animal2.value); else elseBlock" style="font-size: xx-large; margin-top: 40px; margin-left: 40px">
-            <tr>
-              <td align="center"><h1>{{animal.nome}}</h1></td>
-            </tr>
-            <tr>
-              <th align="center"><img src="{{rga.foto}}" style="width: 600px; height: inherit;"></th>
-            </tr>
-            <tr>
-              <td align="center">Espécie: {{animal.idEspecie}}, Raça: {{ani.idRaca}}</td>
-            </tr>
-            <tr>
-              <td align="center">Ultima vez visto em <b>{{ani.lugar}}</b> no dia <b>{{ani.dtDesaparecimento | date: 'd/M/y'}}</b></td>
-            </tr>
-            <tr>
-              <td align="center"><b>Caso o veja, contate {{ani.dono}} no telefone {{ani.telefone}}</b></td>
-            </tr>
-          </table>
-          <ng-template #elseBlock>
-            <table *ngIf="ani.id != (+animal2.value); else elseBlock2" style="font-size: xx-large; margin-top: 40px; margin-left: 40px">
-              <tr>
-                <td align="center"><h1>{{ani.nome}}</h1></td>
-              </tr>
-              <tr>
-                <th align="center"><img src="{{ani.foto}}" style="width: 600px; height: inherit;"></th>
-              </tr>
-              <tr>
-                <td align="center">Espécie: {{ani.idEspecie}}, Raça: {{ani.idRaca}}</td>
-              </tr>
-              <tr>
-                <td align="center">Ultima vez visto em <b>{{ani.lugar}}</b> no dia <b>{{ani.dtDesaparecimento | date: 'd/M/y'}}</b></td>
-              </tr>
-              <tr>
-                <td align="center"><b>Caso o veja, contate {{ani.dono}} no telefone {{ani.telefone}}</b></td>
-              </tr>
-            </table>
-            <ng-template #elseBlock2>
-              
-            </ng-template>
-          </ng-template>
-        </div>
-        
+          <container-element [ngSwitch]="animal.id">
+            <div id="htmlData" *ngSwitchCase="+animal2.value">
+              <ng-container *ngIf="animal.id == desap.idAnimal">
+                <table class="center" style="margin-top: 40px;" *ngIf="desap.idAnimal == rga.idAnimal">
+                  <tr>
+                    <td align="center">
+                      <h1>{{animal.nome}}</h1>
+                    </td>
+                  </tr>
+                  <tr>
+                    <ng-container *ngIf="rga.foto != null; else elseBlock">
+                      <th><img src="{{rga.foto}}"
+                          style="width: 500px; height: inherit; display: block; margin: 0 auto;"></th>
+                    </ng-container>
+                    <ng-template #elseBlock>
+                      <th><img src="assets/seminfo.png"
+                          style="width: 600px; height: inherit; display: block; margin: 0 auto;"></th>
+                    </ng-template>
+                  </tr>
+                  <tr>
+                    <td align="center">Espécie: {{animal.idEspecie}}, Raça: {{animal.idRaca}}</td>
+                  </tr>
+                  <tr>
+                    <td align="center">Ultima vez visto em <b>{{desap.lugar}}</b> no dia <b>{{desap.dtDesaparecimento |
+                        date:
+                        'd/M/y'}}</b></td>
+                  </tr>
+                  <tr>
+                    <td align="center"><b>Caso o veja, contate {{desap.dono}} no telefone {{desap.telefone}}</b></td>
+                  </tr>
+                </table>
+              </ng-container>
+            </div>
+            <div *ngSwitchDefault></div>
+          </container-element>
+        </ng-container>
       </ng-container>
-      </ng-container>
-        <button class="btn btn-success" (click)="openPDF()">Baixar pdf</button>
-    </div>
+    </ng-container>
+    <button class="btn btn-success" (click)="openPDF()">Baixar pdf</button>
+  </div>
 </div>
 
 
 
 <div class="modal" tabindex="-1" id="openCreate">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Adicione as informações do animal desaparecido</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="row">
-              <div class="col">
-                  <div class="block">
-                      <label id="lbl" for="name"><b>Nome do animal</b></label>
-                      <input type="text" class="form-control shadow-sm mb-4" id="name" placeholder="Nome">
-                  </div>
-                  <div class="block">
-                      <label id="lbl" for="espec"><b>Espécie</b></label>
-                      <input type="text" class="form-control shadow-sm mb-4" id="espec" placeholder="Espécie">
-                  </div>
-                  <div class="block">
-                      <label id="lbl" for="raca"><b>Raça</b></label>
-                      <input type="text" class="form-control shadow-sm mb-4" id="raca" placeholder="Raça">
-                  </div>
-                  <div class="block">
-                      <label id="lbl" for="email"><b>Data de desaparecimento</b></label>
-                      <input type="date" class="form-control shadow-sm mb-4" id="date2">
-                  </div>
-                  <div class="block">
-                    <label id="lbl" for="email"><b>Local do desaparecimento</b></label>
-                    <input type="text" class="form-control shadow-sm mb-4" id="date2" placeholder="Endereço">
-                  </div>
-                  <div class="block">
-                    <label id="lbl" for="email"><b>Telefone de contato</b></label>
-                    <input type="number" class="form-control shadow-sm mb-4" id="date2" placeholder="Telefone">
-                  </div>
-                  <div class="block">
-                    <label id="lbl" for="email"><b>Foto do animal</b></label>
-                    <input type="text" class="form-control shadow-sm mb-4" id="date2">
-                  </div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Adicione as informações do animal desaparecido</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col">
+              <div class="block">
+                <label id="lbl" for="name"><b>Nome do animal</b></label>
+                <input type="text" class="form-control shadow-sm mb-4" id="name" placeholder="Nome">
               </div>
+              <div class="block">
+                <label id="lbl" for="espec"><b>Espécie</b></label>
+                <input type="text" class="form-control shadow-sm mb-4" id="espec" placeholder="Espécie">
+              </div>
+              <div class="block">
+                <label id="lbl" for="raca"><b>Raça</b></label>
+                <input type="text" class="form-control shadow-sm mb-4" id="raca" placeholder="Raça">
+              </div>
+              <div class="block">
+                <label id="lbl" for="email"><b>Data de desaparecimento</b></label>
+                <input type="date" class="form-control shadow-sm mb-4" id="date2">
+              </div>
+              <div class="block">
+                <label id="lbl" for="email"><b>Local do desaparecimento</b></label>
+                <input type="text" class="form-control shadow-sm mb-4" id="date2" placeholder="Endereço">
+              </div>
+              <div class="block">
+                <label id="lbl" for="email"><b>Telefone de contato</b></label>
+                <input type="number" class="form-control shadow-sm mb-4" id="date2" placeholder="Telefone">
+              </div>
+              <div class="block">
+                <label id="lbl" for="email"><b>Foto do animal</b></label>
+                <input type="text" class="form-control shadow-sm mb-4" id="date2">
+              </div>
+            </div>
           </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" (click)="closeSaveModal()">Save changes</button>
-        </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="closeSaveModal()">Save changes</button>
       </div>
     </div>
   </div>
-  
+</div>

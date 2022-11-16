@@ -57,3 +57,8 @@ a {
     margin: 0 auto;
     margin-top: 40px;
 }
+
+.center{
+    margin-left: auto;
+    margin-right: auto;
+}
