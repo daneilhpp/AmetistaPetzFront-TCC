@@ -3,13 +3,13 @@
 </a>
 <div id="center" class="container">
   <div class="filterArea" align="center">
-    <input list="names" name="names" id="filter">
+    <!-- <input list="names" name="names" id="filter">
     <datalist id="names">
       <option *ngFor="let animal of animals$" value="{{animal.id}}">{{animal.nome}}</option>
-    </datalist>
-    <!-- <select name="filter" id="filter" class="shadow">
+    </datalist> -->
+    <select name="filter" id="filter" class="shadow">
       <option id="filterOpt" value="{{animal.id}}" *ngFor="let animal of animals$">{{animal.nome}}</option>
-    </select> -->
+    </select>
     <select name="filterby" id="filterby" class="shadow">
       <option value="1" selected>Alfabético</option>
       <option value="2">Mais Recente</option>
