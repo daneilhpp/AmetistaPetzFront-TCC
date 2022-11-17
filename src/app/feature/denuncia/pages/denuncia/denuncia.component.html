@@ -21,7 +21,7 @@
       <ng-container *ngFor="let rga of rgas$">
         <ng-container *ngFor="let animal of animals$">
           <container-element [ngSwitch]="animal.id">
-            <div id="htmlData" *ngSwitchCase="+animal2.value">
+            <div id="htmlData" #htmlData *ngSwitchCase="+animal2.value">
               <ng-container *ngIf="animal.id == desap.idAnimal">
                 <table class="center" style="margin-top: 40px;" *ngIf="desap.idAnimal == rga.idAnimal">
                   <tr>
@@ -58,7 +58,7 @@
         </ng-container>
       </ng-container>
     </ng-container>
-    <button class="btn btn-success" (click)="openPDF()">Baixar pdf</button>
+    <button class="btn btn-success" (click)="savePDF()">Baixar pdf</button>
   </div>
 </div>
 
