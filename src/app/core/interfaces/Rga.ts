@@ -6,6 +6,7 @@ export interface RGA{
     assinatura: string;
     pata: string;
     foto: string;
+    dataAdicao: Date;
 }
     /*nome: string;
     idEspecie: number;

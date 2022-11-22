@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subject, takeUntil, switchMap } from 'rxjs';
 import { Vaccine, Card } from 'src/app/core/interfaces/Carteirinha';
 import { Animal } from 'src/app/core/interfaces/Animal';
@@ -23,6 +23,8 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
   public vaccineList!: Vaccine[];
   public cards$!: Card[];
   public animals$!: Animal[];
+  public animalDropDown$!: Animal[];
+  public animalDropDown2$!: Animal[];
   //public cards$!: CardVaccineType[];
 
   constructor(private carteirinhaService: CarteirinhaService, private animalService: AnimalServiceService) { }
@@ -42,6 +44,9 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
       this.animalService.getAnimals()
       .pipe(takeUntil(this.ngDestroyed$))
       .subscribe(an => this.animals$ = an);
+      this.animalService.getAnimals()
+      .pipe(takeUntil(this.ngDestroyed$))
+      .subscribe(an => this.animalDropDown$ = an);
 
     this.formAddModal = new window.bootstrap.Modal(
       document.getElementById("addVaccine")
@@ -116,7 +121,16 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
   }
 
 
-
+  getCards(){
+    this.carteirinhaService.getVaccineCardList().subscribe();
+    this.animals$ = this.animalDropDown$;
+    this.animals$.sort(function (a, b) {
+      return a.id - b.id;
+    });
+    this.cards$.sort(function (a, b) {
+      return a.id - b.id;
+    });
+  }
   addCard(card: Card): void {
     this.carteirinhaService.addVaccineCard(card).subscribe();
     this.formAddCard.hide();
@@ -127,7 +141,57 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
     this.removeCard.hide();
     this.removeCard.reset();
   }
-  
+
+  public selectedCard: any;
+  public selecionado() {
+    this.animals$ = this.animalDropDown$.filter((item) => item.nome === this.selectedCard);
+  }
+
+  public filtered: any;
+  public filters() {
+    var e = (document.getElementById('filterby')) as HTMLSelectElement;
+    var s = e.selectedIndex;
+    var o = e.options[s];
+    var v = (<HTMLSelectElement><unknown>o).value;
+
+    switch (v) {
+      case v = '1':
+        var antigo =
+          this.cards$.sort(function (a, b) {
+            return +new Date(a.dataAdicao) - +new Date(b.dataAdicao);
+          }) &&
+          this.animals$.sort(function (a, b) {
+            return +new Date(a.dataAdicao) - +new Date(b.dataAdicao);
+          });
+
+        this.filtered = antigo;
+        break;
+
+      case v = '2':
+        var recente =
+          this.cards$.sort(function (a, b) {
+            return +new Date(b.dataAdicao) - +new Date(a.dataAdicao);
+          }) &&
+          this.animals$.sort(function (a, b) {
+            return +new Date(b.dataAdicao) - +new Date(a.dataAdicao);
+          });
+
+        this.filtered = recente;
+        break;
+
+      case v = '3':
+        var alfabetico =
+          this.animals$.sort(function (a, b) {
+            return a.nome.localeCompare(b.nome);
+          });
+
+        this.filtered = alfabetico;
+        break;
+      default:
+        this.getCards();
+        break;
+    }
+  }
 }
 
 

@@ -9,13 +9,14 @@
       <option selected>Selecione um animal</option>
       <option *ngFor="let animal of animals$" value="{{animal.id}}">{{animal.nome}}</option>
     </select>
-    <a class="btn shadow" id="botao"><b>Criar cartaz</b></a>
+    <!-- <a class="btn shadow" id="botao"><b>Criar cartaz</b></a> -->
     <h4 id="text">ou</h4>
     <h3 id="text">Crie um cartaz novo com informações de um animal novo</h3>
     <!-- <button class="btn shadow" routerLink="/carteirinha"><b>Criar cartaz novo</b></button> -->
 
     <a class="btn shadow" id="botao" (click)="openCreateModal()"><b>Criar cartaz novo</b></a>
 
+    <h4 id="text">E por fim baixe:</h4>
 
     <ng-container *ngFor="let desap of desaps$">
       <ng-container *ngFor="let rga of rgas$">
@@ -58,7 +59,7 @@
         </ng-container>
       </ng-container>
     </ng-container>
-    <button class="btn btn-success" (click)="savePDF()">Baixar pdf</button>
+    <button class="btn" (click)="savePDF()"><b>Baixar pdf</b></button>
   </div>
 </div>
 

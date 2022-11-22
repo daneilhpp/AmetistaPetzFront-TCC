@@ -194,6 +194,7 @@ th {
   margin-top: 40px;
 }
 
+#selectAddAnimal,
 #rgaList,
 #sel{
     border-radius: 10px;
@@ -206,4 +207,15 @@ th {
     margin: 0 auto;
     padding-left: 10px;
     margin-bottom: 20px;
+}
+
+#filterby,
+#filter{
+    border-radius: 15px;
+    border-color: #8B40EB;
+    font-style: italic;
+    font-size: larger;
+    padding-left: 10px;
+    height: 35px;
+    margin-right: 10px;
 }

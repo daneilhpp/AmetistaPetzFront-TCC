@@ -8,6 +8,7 @@ export interface Animal{
     pelagem: string;
     idSituacao: number;
     peso: number;
+    dataAdicao: Date;
 }
 
 export interface Desaparecido{

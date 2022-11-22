@@ -3,16 +3,29 @@
 </a>
 <div id="center" class="container">
   <div class="filterArea" align="center">
-    <select name="filter" id="filter" class="shadow">
-      <option id="filterOpt" value="{{animal.id}}" *ngFor="let animal of animals$">{{animal.nome}}</option>
+    <!-- <input list="names" name="names" id="filter">
+    <datalist id="names">
+      <option *ngFor="let animal of animals$" value="{{animal.id}}">{{animal.nome}}</option>
+    </datalist> -->
+    <!-- <select name="filter" id="filter" class="shadow">
+      <option #carteirinha (change)="carteirinha.value" id="filterOpt" value="{{animal.id}}" *ngFor="let animal of animals$">{{animal.nome}}</option>
+    </select> -->
+    <button id="openFormFilter" class="btn shadow" (click)="getRGA()"><b>Mostrar Todas</b></button>
+    <select [(ngModel)]="selectedCard" (change)="selecionado()" class="shadow" id="filter">
+      <option selected style="color: #4f4f4f;">Animais</option>
+      <option id="filterOpt" value="{{animal.nome}}" *ngFor="let animal of animalDropDown$" selected>{{animal.nome}}
+      </option>
     </select>
-    <select name="filterby" id="filterby" class="shadow">
-      <option value="1" selected>Alfabético</option>
+    <select [(ngModel)]="filtered" (change)="filters()" id="filterby" class="shadow">
+      <option selected style="color: #4f4f4f;">Filtros</option>
+      <option value="1">Mais antigo</option>
       <option value="2">Mais Recente</option>
+      <option value="3">Alfabético</option>
+      <option>Numérico</option>
     </select>
-    <button id="rgaAddBtn" class="btn shadow" (click)="openAddModal()"><b>Adicionar RGA</b></button>
-
-    <button class="btn shadow" (click)="openRemoveModal()"><b>Remover RGA</b></button>
+    <b>|</b>
+    <button id="openForm" class="btn shadow" (click)="openAddModal()"><b>Adicionar RGA</b></button>
+    <button id="openForm" class="btn shadow" (click)="openRemoveModal()"><b>Remover RGA</b></button>
   </div>
   <ng-container *ngFor="let animal of animals$">
     <div class="cards" *ngFor="let rga of rgas$">
@@ -136,37 +149,45 @@
             <div class="col">
               <div class="block">
                 <label id="lbl" for="name"><b>Selecione o animal</b></label>
-                <select name="animals" id="sel">
-                  <option *ngFor="let animal of animals$" value="{{animal.id}}">{{animal.nome}}</option>
+                <select #selectedValue name="animals" id="selectAddAnimal">
+                  <ng-container *ngFor="let rga of rgas$">
+                    <ng-container *ngFor="let animal of animals$">
+                      <option *ngIf="rga.idAnimal == animal.id;else elseBlock3" value="{{animal.id}}" disabled>
+                        {{animal.nome}}</option>
+                      <ng-template #elseBlock3>
+                        <option *ngIf="animal.id != rga.idAnimal" value="{{animal.id}}">{{animal.nome}}</option>
+                      </ng-template>
+                    </ng-container>
+                  </ng-container>
                 </select>
               </div>
-              <div class="block">
+              <!-- <div class="block">
                 <label id="lbl" for="sexo"><b>Sexo do animal</b></label>
                 <select name="sexo" id="sel" ngModel name="idSexo">
-                  <option *ngFor="let sex of sexos$" value="{{sex.idSexo}}">{{sex.dsSexo}}</option>
+                  <option *ngFor="let sex of sexos$" value="{{sex.idSexo}}" selected disabled>{{sex.dsSexo}}</option>
                 </select>
               </div>
               <div class="block">
                 <label id="lbl" for="espec"><b>Espécie do animal</b></label>
                 <select name="espec" id="sel" ngModel name="idEspecie">
-                  <option *ngFor="let espec of especies$" value="{{espec.id}}">{{espec.especieAnimal}}</option>
+                  <option *ngFor="let espec of especies$" value="{{espec.id}}" selected disabled>{{espec.especieAnimal}}</option>
                 </select>
               </div>
               <div class="block">
                 <label id="lbl" for="raca"><b>Raça do animal</b></label>
                 <select name="espec" id="sel" ngModel name="idRaca">
-                  <option *ngFor="let raca of racas$" value="{{raca.idRaca}}">{{raca.dsRaca}}</option>
+                  <option *ngFor="let raca of racas$" value="{{raca.idRaca}}" selected disabled>{{raca.dsRaca}}</option>
                 </select>
               </div>
               <div class="block">
                 <label id="lbl" for="cor"><b>Cor do animal</b></label>
                 <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="Cor" ngModel
-                  name="pelagem">
+                  name="pelagem" disabled>
               </div>
               <div class="block">
                 <label id="lbl" for="data"><b>Data Nascimento do animal</b></label>
                 <input type="date" class="form-control shadow-sm mb-4" id="sel" ngModel name="dtNascimento">
-              </div>
+              </div> -->
               <div class="block">
                 <label id="lbl" for="micro"><b>Microship do animal</b></label>
                 <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="Microship" ngModel
@@ -188,6 +209,9 @@
                 <label id="lbl" for="foto3"><b>Foto da assinatura do tutor</b></label>
                 <input type="text" class="form-control shadow-sm mb-4" id="sel" ngModel name="assinatura">
               </div>
+              <ng-container ngModel name="dataAdicao" id="date">
+                <input type="date">
+              </ng-container>
             </div>
           </div>
         </form>

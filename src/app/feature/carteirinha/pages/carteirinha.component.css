@@ -84,11 +84,15 @@ table {
 
 #filterby,
 #filter{
-    border-radius: 10px;
+    border-radius: 15px;
     border-color: #8B40EB;
     font-style: italic;
     font-size: larger;
     padding-left: 10px;
     height: 35px;
-    margin-right: 50px;
+    margin-right: 10px;
+}
+
+#openFormFilter{
+    margin-right: 10px;
 }

@@ -1,13 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { of, Subject, takeUntil } from 'rxjs';
 import { RGA } from 'src/app/core/interfaces/Rga';
-//import jsPDF from 'jspdf';
-import { jsPDF } from 'jspdf';
-import html2canvas from 'html2canvas';
 import { Desaparecido, Animal } from 'src/app/core/interfaces/Animal';
 import { DenunciaService } from '../../services/denuncia.service';
 import { AnimalServiceService } from 'src/app/feature/carteirinha/services/animal-service.service';
 import { RgaService } from 'src/app/feature/rga/services/rga.service';
+import jspdf from 'jspdf';
+import html2canvas from 'html2canvas';
 
 declare var window: any;
 
@@ -50,9 +49,9 @@ export class DenunciaComponent implements OnInit {
     this.createModal.hide();
   }
 
-  getmock() {
+  /* getmock() {
     return of(Datas);
-  }
+  } */
 
   addDesaparecido(desap: Desaparecido) {
     this.denService.addDesaparecido(desap);
@@ -74,6 +73,46 @@ export class DenunciaComponent implements OnInit {
   ];
 
   @ViewChild('htmlData') htmlData!: ElementRef;
+  public savePDF(): void{
+    let DATA: any = document.getElementById('htmlData');
+    let image = new Image(DATA);
+    html2canvas(image).then((canvas: { height: number; width: number; toDataURL: (arg0: string) => any; }) => {
+      const FILEURI = canvas.toDataURL('image/png');
+      let PDF = new jspdf('p','mm','a4');
+      image.onload = function(){
+        PDF.addImage(FILEURI, 'PNG', 0, 0, image.width, image.height);
+        PDF.save('Cartaz_Desaparecimento.pdf');
+      }
+    });
+  }
+
+
+  /* public savePDF(): void {
+    let DATA: any = document.getElementById('htmlData');
+    html2canvas(DATA).then((canvas: { height: number; width: number; toDataURL: (arg0: string) => any; }) => {
+      let fileWidth = 270;
+      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      const FILEURI = canvas.toDataURL('image/png');
+      let PDF = new jspdf('p', 'mm', 'a4');
+      let position = 0;
+      var image = new Image(fileHeight, fileWidth);
+      image.onload = function(){
+        PDF.addImage(FILEURI, 'PNG', 0, position, image.width, image.height, );
+        PDF.save('Cartaz_Desaparecimento.pdf');
+      }
+    });
+  } */
+
+  /* public savePDF() {
+    const pdfTable = this.htmlData.nativeElement;
+    var html = htmlToPdfmake(pdfTable.innerHTML);
+    const documentDefinition = { content: html };
+    pdfMake.createPdf(documentDefinition).download(); 
+     
+  } */
+  
+
+  /*@ViewChild('htmlData') htmlData!: ElementRef;
   public savePDF(): void {
     let DATA: any = document.getElementById('htmlData');
     html2canvas(DATA).then((canvas: { height: number; width: number; toDataURL: (arg0: string) => any; }) => {
@@ -90,7 +129,7 @@ export class DenunciaComponent implements OnInit {
     });
   }
 
-  /* public savePDF() {
+   public savePDF() {
     let DATA: any = document.getElementById('htmlData');
     var imageDataURL: any;
     var image = new Image();
@@ -112,9 +151,9 @@ export class DenunciaComponent implements OnInit {
       };
     }
     image.src = imageDataURL;
-  } */
+  } 
 
-  /* @ViewChild('htmlData') htmlData!: ElementRef<HTMLImageElement>;
+  @ViewChild('htmlData') htmlData!: ElementRef<HTMLImageElement>;
   savePDF() {
     let DATA: any = document.getElementById('htmlData');
     html2canvas(DATA).then((canvas) => {
@@ -147,6 +186,10 @@ export type DataType = {
   dono: string;
 }
 
-export const Datas: DataType[] = [
+/* export const Datas: DataType[] = [
   { name: 'Marquinhos', especie: 'Cachorro', raca: 'Akita', desap: new Date(Date.now()), local: 'Vila Maria', tel: 123456789, foto: 'https://www.petlove.com.br/images/breeds/193433/profile/original/akita_p.jpg?1532538103', dono: 'Daniel' }
 ]
+function html2canvas(arg0: any) {
+  throw new Error('Function not implemented.');
+} */
+
