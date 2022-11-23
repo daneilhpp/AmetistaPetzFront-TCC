@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="content">
+        <h1 id="text">Selecione o tipo de estabelecimento</h1>
+
+        <div class="center">
+            <div class="row">
+                <div class="card" [ngStyle]="{'width': '18rem'}">
+                    <img id="vet" src="assets/veterinario.png" class="card-img-top">
+                    <div class="card-body">
+                        <button class="btn shadow" routerLink="/geopetz/veterinario"><b>VETERINÁRIO</b></button>
+                    </div>
+                </div>
+                <div id="lastCard" class="card" [ngStyle]="{'width': '18rem'}">
+                    <img id="pet" src="assets/petshop.png" class="card-img-top">
+                    <div class="card-body">
+                        <button class="btn shadow" routerLink="/geopetz/petshop"><b>PETSHOP</b></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

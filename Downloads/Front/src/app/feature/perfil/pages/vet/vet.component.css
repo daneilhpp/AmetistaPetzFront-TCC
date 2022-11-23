@@ -1,0 +1,32 @@
+#bntroxo{
+    background-color: #a26bea;
+    border-color: plum;
+    align-items: center;
+    margin-top: 30px;
+    border-radius: 9px;
+    border-width: 0px;
+    color: white;
+    width: 200px;
+  
+  }
+  
+
+#pesquisa{
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    border-color: plum;
+
+}
+
+form{
+    width: 70%;
+    justify-content: right;
+    margin-left: 15% ;
+   
+    
+}
+.btn {
+    background-color: #a26bea;
+    color:white;
+}

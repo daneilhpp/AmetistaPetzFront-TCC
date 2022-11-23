@@ -1,0 +1,33 @@
+
+<div *ngIf="!isAuthenticated">
+<div class="container">
+    <div class="row">
+        <figure class="col">
+            <img src="assets/entrarimg.jpg" width="200px" height="200px" alt="" class="center">
+        </figure>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form #login="ngForm" (ngSubmit)="Autenticar(login.value)">
+            <div clas="form-group">
+                <div class="block">
+                    <label id="lblemail" for="email"><b>Seu username</b></label>
+                    <input ngModel name="username" id="email" type="email" class="form-control shadow" placeholder="username">
+                </div>
+
+                <div class="block">
+                    <label id="lblsenha" for="senha"><b>Sua senha secreta</b></label>
+                    <input ngModel name="passwordString" id="senha" type="password" class="form-control shadow" placeholder="Senha">
+                </div>
+                <ng-container *ngIf="autenticado">
+
+                </ng-container>
+                <a id="entrar" class="btn btn-primary shadow" (click)="Autenticar(login.value)"><b>Entrar</b></a>
+                <a id="entrar" class="btn btn-primary shadow" routerLink="/perfil/vet"><b>Entrar vet</b></a>
+                <a id="esqueci" class="btn" href="/esqueci"><u>Esqueci minha senha</u></a>
+                <a id="registrar" class="btn" href="/registrar"><u>Registre uma conta nova</u></a>
+            </div>
+         </form>
+    </div>
+</div>
+</div>

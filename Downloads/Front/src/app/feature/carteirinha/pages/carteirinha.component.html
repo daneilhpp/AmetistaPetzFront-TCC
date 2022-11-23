@@ -1,0 +1,89 @@
+<div id="center" class="container">
+    <div ngforaqui class="cards">
+        <div class="card shadow">
+            <section class="animalinfo">
+                <h1 id="title">{{'nomeAnimal'}}</h1>
+                <div class="head">
+                    <button class="btn shadow" (click)="openAddModal()"><b>Adicionar Vacina</b></button>
+                    <button class="btn shadow" (click)="openRemoveModal()"><b>Remover Vacina</b></button>
+                </div>
+                <div class="line-1"></div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead id="head">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Vacina</th>
+                                <th scope="col">Data de Aplicação</th>
+                                <th scope="col">Próxima Dose</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let animal of animals$">
+                                <th scope="row">{{animal.id}}</th>
+                                <td>{{animal.vaccine}}</td>
+                                <td>{{animal.vaccineDate | date:'d/M/y'}}</td>
+                                <td>{{animal.nextVaccineDate | date:'d/M/y'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal" tabindex="-1" id="addVaccine">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Adicionar vacina na carteirinha de {{'nomeAnimal'}} </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="row">
+                <div class="col">
+                    <div class="block">
+                        <label id="lbl" for="name"><b>Nome vacina</b></label>
+                        <input type="name" class="form-control shadow-sm mb-4" id="name" placeholder="Nome da vacina">
+                    </div>
+                    <div class="block">
+                        <label id="lbl" for="email"><b>Data de aplicação</b></label>
+                        <input type="date" class="form-control shadow-sm mb-4" id="date">
+                    </div>
+                    <div class="block">
+                        <label id="lbl" for="email"><b>Data da próxima dose</b></label>
+                        <input type="date" class="form-control shadow-sm mb-4" id="date2">
+                    </div>
+    
+                </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="closeAddModal()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" tabindex="-1" id="removeVaccine">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Selecione a vacina que quer remover</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <select name="vaccines" id="vaccineList">
+            <option *ngFor="let animal of animals$" value="{{animal.id}}">{{animal.vaccine}}</option>
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="closeRemoveModal()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
