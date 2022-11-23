@@ -149,13 +149,13 @@
             <div class="col">
               <div class="block">
                 <label id="lbl" for="name"><b>Selecione o animal</b></label>
-                <select #selectedValue name="animals" id="selectAddAnimal">
+                <select #selectedValue name="animals" id="selectAddAnimal" ngModel name="idAnimal">
                   <ng-container *ngFor="let rga of rgas$">
                     <ng-container *ngFor="let animal of animals$">
-                      <option *ngIf="rga.idAnimal == animal.id;else elseBlock3" value="{{animal.id}}" disabled>
-                        {{animal.nome}}</option>
+                      <option  *ngIf="rga.idAnimal == animal.id;else elseBlock3" value="{{animal.id}}" disabled>
+                        {{animal.id}} - {{animal.nome}}</option>
                       <ng-template #elseBlock3>
-                        <option *ngIf="animal.id != rga.idAnimal" value="{{animal.id}}">{{animal.nome}}</option>
+                        <option *ngIf="animal.id != rga.idAnimal" value="{{animal.id}}">{{animal.id}} - {{animal.nome}}</option>
                       </ng-template>
                     </ng-container>
                   </ng-container>
@@ -209,9 +209,6 @@
                 <label id="lbl" for="foto3"><b>Foto da assinatura do tutor</b></label>
                 <input type="text" class="form-control shadow-sm mb-4" id="sel" ngModel name="assinatura">
               </div>
-              <ng-container ngModel name="dataAdicao" id="date">
-                <input type="date">
-              </ng-container>
             </div>
           </div>
         </form>

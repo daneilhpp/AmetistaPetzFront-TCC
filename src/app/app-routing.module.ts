@@ -42,6 +42,10 @@ const routes: Routes = [
   {
     path: 'denuncia',
     loadChildren: () => import('./feature/denuncia/denuncia.module').then(m => m.DenunciaModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./feature/perfil/perfil.module').then(m => m.PerfilModule)
   }
 
 ];

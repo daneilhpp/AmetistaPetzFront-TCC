@@ -19,3 +19,11 @@ export enum Perfil {
     veterinario = 2,
     petshop = 3
 }
+
+export interface Login{
+    id: number;
+    username: string;
+    passwordString: string;
+    passwordSHash: Blob[];
+    passwordSalt: Blob[];
+}

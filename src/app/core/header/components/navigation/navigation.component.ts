@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EntrarComponent } from 'src/app/feature/entrar/pages/entrar.component';
 
 @Component({
   selector: 'app-navigation',
@@ -6,13 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-
+  autenticado!: boolean;
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
 
 }
 

@@ -157,10 +157,17 @@
       <div class="modal-body">
         <form #card="ngForm" (ngSubmit)="addCard(card.value)">
           <label for="name"><b>Nome do animal</b></label>
-          <input type="text" ngModel name="petName" placeholder="Nome do animal" id="dataVacina">
-          <!--  <select ngModel name="petName" id="medicamento">
-              <option *ngFor="let animal of animals$" value="{{animal.id}}">{{animal.nome}}</option>
-            </select> -->
+                <select #selectedValue name="animals" id="carteiraId" ngModel name="animalIdAnimal">
+                  <ng-container *ngFor="let card of cards$">
+                    <ng-container *ngFor="let animal of animals$">
+                      <option  *ngIf="card.animalIdAnimal == animal.id;else elseBlock" value="{{animal.id}}" disabled>
+                        {{animal.id}} - {{animal.nome}}</option>
+                      <ng-template #elseBlock>
+                        <option *ngIf="animal.id != card.animalIdAnimal" value="{{animal.id}}">{{animal.id}} - {{animal.nome}}</option>
+                      </ng-template>
+                    </ng-container>
+                  </ng-container>
+                </select>
         </form>
       </div>
       <div class="modal-footer">

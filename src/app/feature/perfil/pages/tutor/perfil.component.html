@@ -1,0 +1,95 @@
+<h3>MEUS PETZ</h3>
+<div class="center">
+    <div class="row">
+        <figure class="card" *ngFor="let animal of animals$">
+            <img id="img" src="" class="card-img-top" alt=".">
+            <div class="card-body d-flex flex-column">
+                <figcaption class="card-title">{{animal.id}} - {{animal.nome}}</figcaption>
+                <p class="card-text">
+                </p>
+                <a class="align-self-bottom btn shadow"><b>RGA</b></a>
+                <a  id="bntroxo" class="btn btn-primary" routerLink="/carteirinha">Carteirinha</a>
+            </div>
+        </figure>
+
+        <!--
+            o que eu fiz foi, chamei o atributo que a gente criou do tipo animal,
+            que ta sendo passado no metodo que ta puxando aquele array,
+            fiz um for tambem pra ele passar por cada um dos objetos do array, e pra cada um ele
+            fazer um card novo, cada um com a propria informação.
+
+            ve la se deu certo no navegador
+            perai
+            foii, o animal que puxou é o do back? "animal.id"
+        
+            nao ainda nao, esse animal.id é o seguinte.
+            no for do angular, vc precisa declarar um valor que vc vai usar só dentro de uma parte.
+
+                            esse é o tipo da variavel, que é o tipo animal que guarda o array de objetos
+                            ||
+                            \/
+            let animal of animals$
+                /\
+                ||
+            isso aqui é a variavel local
+
+            desse jeito, o for vai passar por todos os objetos do array, e pra cada objeto ele vai
+            atribuir os valores na variavel local, por isso que cada card fica com um valor entendeu?
+            ah simm, entendi
+
+            beleza, agora vou te mostrar como vai fazer pra mostrar do back.blz
+            
+
+        -->
+
+
+        <!-- <figure class="card">
+            <img id="img" src="assets/pipoca.jpg" class="card-img-top" alt=".">
+            <div class="card-body d-flex flex-column">
+                <figcaption class="card-title">PIPOCA</figcaption>
+                <p class="card-text">
+                </p>
+                <a class="align-self-bottom btn shadow"><b>RGA</b></a>
+                <a  id="bntroxo" class="btn btn-primary" routerLink="/carteirinha">Carteirinha</a>
+            </div>
+        </figure>
+
+        <figure class="card">
+            <img id="img" src="assets/amora.jpg" class="card-img-top" alt=".">
+            <div class="card-body d-flex flex-column">
+                <figcaption class="card-title">AMORA</figcaption>
+                <p class="card-text">
+                </p>
+                <a class="align-self-bottom btn shadow"><b>RGA</b></a>
+                <a  id="bntroxo" class="btn btn-primary" routerLink="/carteirinha">Carteirinha</a>
+            </div>
+        </figure>
+
+         <div class="card" >
+            <img src="assets/adocao.jpg" class="card-img-top" alt=".">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Adoção</h5>
+              <p class="card-text">
+               A possibilidade de colocar seu animal para adoção ou adotar o de outras pessoas.
+             </p>
+              <a routerLink="/adocao" class="align-self-bottom btn shadow"><b>Acessar</b></a>
+            </div>
+        </div> 
+
+
+        <figure id="lastCard" class="card">
+            <img id="img" src="assets/docura.jpg" class="card-img-top" alt=".">
+            <div class="card-body d-flex flex-column">
+                <figcaption class="card-title">DOÇURA</figcaption>
+                <p class="card-text">
+                </p>
+                <a class="align-self-bottom btn shadow"><b>RGA</b></a>
+                <a  id="bntroxo" class="btn btn-primary" routerLink="/carteirinha">Carteirinha</a>
+
+            </div>
+        </figure>-->
+
+    </div>
+</div>
+
+
