@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { EntrarRoutingModule } from './entrar-routing.module';
 import { EntrarComponent } from './pages/entrar.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,7 @@ import { EntrarComponent } from './pages/entrar.component';
   imports: [
     CommonModule,
     EntrarRoutingModule,
-    FormsModule
+    SharedModule
   ]
 })
 export class EntrarModule { }

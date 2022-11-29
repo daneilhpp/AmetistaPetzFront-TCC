@@ -5,10 +5,7 @@
   <div class="content">
     <h1 id="title">Um animal sumido? Informe!</h1>
     <h3 id="text">Selecione um animal para gerar um cartaz com suas informações</h3>
-    <select id="animal" class="form-control shadow" formControlName="animal" #animal2 (change)="animal2.value">
-      <option selected>Selecione um animal</option>
-      <option *ngFor="let animal of animals$" value="{{animal.id}}">{{animal.nome}}</option>
-    </select>
+    <button class="btn shadow" id="botao" (click)="openDesapModal()"><b>Gerar cartaz</b></button>
     <!-- <a class="btn shadow" id="botao"><b>Criar cartaz</b></a> -->
     <h4 id="text">ou</h4>
     <h3 id="text">Crie um cartaz novo com informações de um animal novo</h3>
@@ -16,7 +13,17 @@
 
     <a class="btn shadow" id="botao" (click)="openCreateModal()"><b>Criar cartaz novo</b></a>
 
-    <h4 id="text">E por fim baixe:</h4>
+    <h3 id="text">Selecionar qual cartaz quer ver</h3>
+
+    <select id="cartazes" #animal2 (change)="animal2.value">
+      <ng-container *ngFor="let animal of animals$">
+        <ng-container *ngFor="let desap of desaps$">
+          <option *ngIf="animal.id == desap.idAnimal" value="{{animal.id}}">{{animal.nome}}</option>
+        </ng-container>
+      </ng-container>
+    </select>
+
+    <h4 id="text">E está pronto para tirar print:</h4>
 
     <ng-container *ngFor="let desap of desaps$">
       <ng-container *ngFor="let rga of rgas$">
@@ -24,6 +31,7 @@
           <container-element [ngSwitch]="animal.id">
             <div id="htmlData" #htmlData *ngSwitchCase="+animal2.value">
               <ng-container *ngIf="animal.id == desap.idAnimal">
+
                 <table class="center" style="margin-top: 40px;" *ngIf="desap.idAnimal == rga.idAnimal">
                   <tr>
                     <td align="center">
@@ -41,15 +49,33 @@
                     </ng-template>
                   </tr>
                   <tr>
-                    <td align="center">Espécie: {{animal.idEspecie}}, Raça: {{animal.idRaca}}</td>
+
+                    <ng-container *ngFor="let raca of raca$">
+                      <ng-container *ngFor="let espec of espec$">
+                        <ng-container *ngIf="animal.idEspecie == espec.id">
+                          <ng-container *ngIf="animal.idRaca == raca.idRaca">
+
+                          <td align="center" >Espécie: {{espec.especieAnimal}},
+                            Raça: {{raca.dsRaca}}</td> 
+                            
+                          </ng-container>
+                        </ng-container>
+                      </ng-container>
+                    </ng-container>
                   </tr>
                   <tr>
-                    <td align="center">Ultima vez visto em <b>{{desap.lugar}}</b> no dia <b>{{desap.dtDesaparecimento |
+                    <td align="center">especie {{animal.idEspecie}}, raca: {{animal.idRaca}}</td>
+                  </tr>
+                  <tr>
+                    <td align="center">Ultima vez visto em <b>{{desap.lugar}}</b> no dia
+                      <b>{{desap.dtDesaparecimento |
                         date:
-                        'd/M/y'}}</b></td>
+                        'd/M/y'}}</b>
+                    </td>
                   </tr>
                   <tr>
-                    <td align="center"><b>Caso o veja, contate {{desap.dono}} no telefone {{desap.telefone}}</b></td>
+                    <td align="center"><b>Caso o veja, contate {{desap.dono}} no telefone {{desap.telefone}}</b>
+                    </td>
                   </tr>
                 </table>
               </ng-container>
@@ -59,7 +85,7 @@
         </ng-container>
       </ng-container>
     </ng-container>
-    <button class="btn" (click)="savePDF()"><b>Baixar pdf</b></button>
+    <!-- <button class="btn" (click)="savePDF()"><b>Baixar pdf</b></button> -->
   </div>
 </div>
 
@@ -110,6 +136,42 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="closeSaveModal()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" tabindex="-1" id="openAddDesap">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Adicione as informações do animal desaparecido</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #desap="ngForm" (ngSubmit)="addDesaparecido(desap.value)">
+          <div class="block">
+            <select ngModel name="idAnimal" id="idAnimal">
+              <option *ngFor="let animal of animals$" value="{{animal.id}}">{{animal.nome}}</option>
+            </select>
+          </div>
+          <div class="block">
+            <input ngModel name="dono" type="text" placeholder="Seu nome">
+          </div>
+          <div class="block">
+            <input ngModel name="lugar" type="text" placeholder="Lugar do desaparecimento">
+          </div>
+          <div class="block">
+            <input ngModel name="telefone" type="text">
+          </div>
+          <div class="block">
+            <input ngModel name="dtDesaparecimento" type="date">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" (click)="addDesaparecido(desap.value)">Save changes</button>
       </div>
     </div>
   </div>

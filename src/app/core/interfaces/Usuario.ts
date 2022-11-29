@@ -24,6 +24,6 @@ export interface Login{
     id: number;
     username: string;
     passwordString: string;
-    passwordSHash: Blob[];
-    passwordSalt: Blob[];
+    passwordSHash?: Blob[];
+    passwordSalt?: Blob[];
 }

@@ -1,5 +1,4 @@
-
-<div *ngIf="!isAuthenticated">
+<div *ngIf="!autenticado">
     <div class="container">
         <div class="row">
             <figure class="col">
@@ -8,31 +7,36 @@
         </div>
         <div class="row">
             <div class="col">
-                <form #login="ngForm" (ngSubmit)="Autenticar(login.value)">
-                <div clas="form-group">
-                    <div class="block">
-                        <label id="lblemail" for="email"><b>Seu username</b></label>
-                        <input ngModel name="username" id="email" type="email" class="form-control shadow" placeholder="username">
+                <form [formGroup]="loginForm" (ngSubmit)="enviarFormulario()">
+                    <div clas="form-group">
+                        <div class="block">
+                            <label id="lblemail" for="email"><b>Seu username</b></label>
+                            <input formControlName="username" name="username" id="email" type="text" class="form-control shadow"
+                                placeholder="ex: zezin">
+                            <app-error-mesage-form *ngIf="loginForm.get('username')?.errors?.['required']" errorMessage="CAMPO OBRIGATORIO MUDA ISSO AQUI DEPOIS"></app-error-mesage-form>
+                        </div>
+
+                        <div class="block">
+                            <label id="lblsenha" for="senha"><b>Sua senha secreta</b></label>
+                            <input formControlName="passwordString" name="passwordString" id="senha" type="password" class="form-control shadow"
+                                placeholder="Senha">
+                        </div>
+                        <button id="entrar" class="btn btn-primary shadow"
+                            routerLink="/perfil" [disabled]="loginForm.get('username')?.errors?.['required']"><b>Entrar</b></button>
+                        <!-- <ng-container *ngIf="autenticado; else elseBlock">
+                        </ng-container> -->
+                        <!-- <ng-template #elseBlock>
+                            <a id="entrar" class="btn btn-primary shadow"
+                                (click)="enviarFormulario()"><b>Entrar</b></a>
+                        </ng-template> -->
+                        <a id="esqueci" class="btn" routerLink="/esqueci"><u>Esqueci minha senha</u></a>
+                        <a id="registrar" class="btn" routerLink="/registrar"><u>Registre uma conta nova</u></a>
                     </div>
-    
-                    <div class="block">
-                        <label id="lblsenha" for="senha"><b>Sua senha secreta</b></label>
-                        <input ngModel name="passwordString" id="senha" type="password" class="form-control shadow" placeholder="Senha">
-                    </div>
-                    <ng-container *ngIf="autenticado">
-    
-                    </ng-container>
-                    <ng-container *ngIf="autenticado; else elseBlock">
-                        <a id="entrar" class="btn btn-primary shadow" (click)="Autenticar(login.value)" routerLink="/perfil"><b>Entrar</b></a>
-                    </ng-container>
-                    <ng-template #elseBlock>
-                    <a id="entrar" class="btn btn-primary shadow" (click)="Autenticar(login.value)"><b>Entrar</b></a>
-                    </ng-template>
-                    <a id="entrar" class="btn btn-primary shadow" routerLink="/perfil/vet"><b>Entrar vet</b></a>
-                    <a id="esqueci" class="btn" href="/esqueci"><u>Esqueci minha senha</u></a>
-                    <a id="registrar" class="btn" href="/registrar"><u>Registre uma conta nova</u></a>
-                </div>
-             </form>
+                </form>
+            </div>
         </div>
     </div>
-    </div>
+</div>
+<ng-container *ngIf="erro">
+    deu erro
+</ng-container>

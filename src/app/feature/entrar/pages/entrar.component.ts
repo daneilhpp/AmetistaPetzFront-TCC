@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 import { Login } from 'src/app/core/interfaces/Usuario';
 import { EntrarService } from '../services/entrar.service';
-import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-entrar',
@@ -10,23 +11,45 @@ import {HttpClient} from '@angular/common/http';
 })
 export class EntrarComponent implements OnInit {
   autenticado: boolean = false;
+  erro: boolean = false;
   userLogin: any = {};
   userLogged: any = {};
   isAuthenticated: boolean = false;
+  public loginForm!: FormGroup;
 
-  constructor(private entrarService: EntrarService, private http: HttpClient) { }
+  public response!: Login[] | number;
 
-  ngOnInit(): void {  }
-  
-  public response!: number;
-  Autenticar(login: Login){
-    this.entrarService.postAutenticar(login)
-    .subscribe(() => this.response = 1);
-    console.log(this.response);
-    if(this.response != 1)
-      this.autenticado = true;
-    
+  constructor(
+    private entrarService: EntrarService,
+    private formBuilder: FormBuilder,
+    private route: Router
+  ) { }
+
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      username: ['', [Validators.required]],
+      passwordString: ['', [Validators.required, Validators.maxLength(255), Validators.minLength(10)]]
+    })
   }
 
+  enviarFormulario() {
+    // fçam um interceptor pra pegar o jwt e trafegar na aplicação 
+    if (this.loginForm.valid) {
+      const dadoDoLogin = this.loginForm.getRawValue();
+      console.log(dadoDoLogin);
+      this.entrarService.postAutenticar(dadoDoLogin)
+        .subscribe(
+          { complete: () => {
+            // aqui ce vai bota a rota p mandar pro outro canto
+            this.route.navigate(['/perfil']);
+          } }
+        );
+      console.log(this.response);
+      if (this.response != 1)
+        this.autenticado = true;
+      else
+        this.erro = true;
+    }
+  }
 
 }
