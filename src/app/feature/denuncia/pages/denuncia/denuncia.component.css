@@ -7,6 +7,7 @@ select,
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 15px;
 }
 
 #title {
@@ -18,6 +19,7 @@ select,
     margin-right: auto;
 }
 
+#cartazes,
 #animal {
     font-size: x-large;
     margin-bottom: 25px;
@@ -25,6 +27,10 @@ select,
     border-color: #8B40EB;
     font-style: italic;
     width: 40%;
+}
+
+#cartazes{
+    width: 200px;
 }
 
 a,
@@ -61,4 +67,18 @@ a {
 .center{
     margin-left: auto;
     margin-right: auto;
+}
+
+#idAnimal,
+input{
+    width: 100%;
+    border-radius: 10px;
+    border-color: #8B40EB;
+    font-style: italic;
+    margin-bottom: 25px;
+    height: 35px;
+}
+
+#idAnimal{
+    margin-top: 25px;
 }

@@ -11,14 +11,17 @@
     <h3 id="text">Crie um cartaz novo com informações de um animal novo</h3>
     <!-- <button class="btn shadow" routerLink="/carteirinha"><b>Criar cartaz novo</b></button> -->
 
-    <a class="btn shadow" id="botao" (click)="openCreateModal()"><b>Criar cartaz novo</b></a>
+    <a class="btn shadow" id="botao" (click)="openDesapSRModal()"><b>Criar cartaz novo</b></a>
 
     <h3 id="text">Selecionar qual cartaz quer ver</h3>
 
     <select id="cartazes" #animal2 (change)="animal2.value">
-      <ng-container *ngFor="let animal of animals$">
-        <ng-container *ngFor="let desap of desaps$">
-          <option *ngIf="animal.id == desap.idAnimal" value="{{animal.id}}">{{animal.nome}}</option>
+      <ng-container *ngFor="let desapsr of desapsr$">
+        <ng-container *ngFor="let animal of animals$">
+          <ng-container *ngFor="let desap of desaps$">
+            <option *ngIf="animal.id == desap.idAnimal" value="{{animal.id}}">{{animal.nome}}</option>
+            <option value="{{desapsr.id}}">{{desapsr.id}} - {{desapsr.nome}}</option>
+          </ng-container>
         </ng-container>
       </ng-container>
     </select>
@@ -28,60 +31,84 @@
     <ng-container *ngFor="let desap of desaps$">
       <ng-container *ngFor="let rga of rgas$">
         <ng-container *ngFor="let animal of animals$">
-          <container-element [ngSwitch]="animal.id">
-            <div id="htmlData" #htmlData *ngSwitchCase="+animal2.value">
-              <ng-container *ngIf="animal.id == desap.idAnimal">
-
-                <table class="center" style="margin-top: 40px;" *ngIf="desap.idAnimal == rga.idAnimal">
-                  <tr>
-                    <td align="center">
-                      <h1>{{animal.nome}}</h1>
-                    </td>
-                  </tr>
-                  <tr>
-                    <ng-container *ngIf="rga.foto != null; else elseBlock">
-                      <th><img src="{{rga.foto}}"
-                          style="width: 500px; height: inherit; display: block; margin: 0 auto;"></th>
-                    </ng-container>
-                    <ng-template #elseBlock>
-                      <th><img src="assets/seminfo.png"
-                          style="width: 600px; height: inherit; display: block; margin: 0 auto;"></th>
-                    </ng-template>
-                  </tr>
-                  <tr>
-
-                    <ng-container *ngFor="let raca of raca$">
-                      <ng-container *ngFor="let espec of espec$">
-                        <ng-container *ngIf="animal.idEspecie == espec.id">
-                          <ng-container *ngIf="animal.idRaca == raca.idRaca">
-
-                          <td align="center" >Espécie: {{espec.especieAnimal}},
-                            Raça: {{raca.dsRaca}}</td> 
-                            
+          <ng-container *ngFor="let desapsr of desapsr$">
+            <ng-container *ngIf="+animal2.value != desapsr.id; else desapsrTable">
+              <container-element [ngSwitch]="animal.id">
+                <div id="htmlData" #htmlData *ngSwitchCase="+animal2.value">
+                  <ng-container *ngIf="animal.id == desap.idAnimal">
+                      <table class="center" style="margin-top: 40px;" *ngIf="desap.idAnimal == rga.idAnimal">
+                        <tr>
+                          <td align="center">
+                            <h1>{{animal.nome}}</h1>
+                          </td>
+                        </tr>
+                        <tr>
+                          <ng-container *ngIf="rga.foto != null; else elseBlock">
+                            <th><img src="{{rga.foto}}"
+                                style="width: 500px; height: inherit; display: block; margin: 0 auto;"></th>
                           </ng-container>
-                        </ng-container>
-                      </ng-container>
-                    </ng-container>
-                  </tr>
-                  <tr>
-                    <td align="center">especie {{animal.idEspecie}}, raca: {{animal.idRaca}}</td>
-                  </tr>
-                  <tr>
-                    <td align="center">Ultima vez visto em <b>{{desap.lugar}}</b> no dia
-                      <b>{{desap.dtDesaparecimento |
-                        date:
-                        'd/M/y'}}</b>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td align="center"><b>Caso o veja, contate {{desap.dono}} no telefone {{desap.telefone}}</b>
-                    </td>
-                  </tr>
-                </table>
-              </ng-container>
-            </div>
-            <div *ngSwitchDefault></div>
-          </container-element>
+                          <ng-template #elseBlock>
+                            <th><img src="assets/seminfo.png"
+                                style="width: 600px; height: inherit; display: block; margin: 0 auto;"></th>
+                          </ng-template>
+                        </tr>
+                        <tr>
+                          <ng-container *ngFor="let raca of raca$">
+                            <ng-container *ngFor="let espec of espec$">
+                              <ng-container *ngIf="espec.idEspecie == animal.idEspecie">
+                                <ng-container *ngIf="raca.idRaca == animal.idRaca">
+                                  <td align="center">Espécie: {{espec.especieAnimal}}, Raça: {{raca.dsRaca}}</td>
+                                </ng-container>
+                              </ng-container>
+                            </ng-container>
+                          </ng-container>
+                        </tr>
+                        <tr>
+                          <td align="center">Ultima vez visto em <b>{{desap.lugar}}</b> no dia
+                            <b>{{desap.dtDesaparecimento |
+                              date:
+                              'd/M/y'}}</b>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td align="center"><b>Caso o veja, contate {{desap.dono}} no telefone {{desap.telefone}}</b>
+                          </td>
+                        </tr>
+                      </table>
+                  </ng-container>
+                </div>
+                <div *ngSwitchDefault></div>
+              </container-element>
+            </ng-container>
+            <ng-template #desapsrTable>
+              <table class="center" style="margin-top: 40px;">
+                <tr>
+                  <td align="center">
+                    <h1>{{desapsr.id}} - {{desapsr.nome}}</h1>
+                  </td>
+                </tr>
+                <tr>
+                  <th><img src="{{desapsr.foto}}"
+                      style="width: 500px; height: inherit; display: block; margin: 0 auto;">
+                  </th>
+                </tr>
+                <tr>
+                  <td align="center">Espécie: {{desapsr.especie}}, Raça: {{desapsr.raca}}</td>
+                </tr>
+                <tr>
+                  <td align="center">Ultima vez visto em <b>{{desapsr.lugar}}</b> no dia
+                    <b>{{desapsr.dtDesaparecimento |
+                      date:
+                      'd/M/y'}}</b>
+                  </td>
+                </tr>
+                <tr>
+                  <td align="center"><b>Caso o veja, contate {{desapsr.dono}} no telefone {{desapsr.telefone}}</b>
+                  </td>
+                </tr>
+              </table>
+            </ng-template>
+          </ng-container>
         </ng-container>
       </ng-container>
     </ng-container>
@@ -91,7 +118,7 @@
 
 
 
-<div class="modal" tabindex="-1" id="openCreate">
+<div class="modal" tabindex="-1" id="openAddDesapSR">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -99,43 +126,53 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form>
+        <form #desapSR="ngForm" (ngSubmit)="addDesaparecidoSR(desapSR.value)">
           <div class="row">
             <div class="col">
               <div class="block">
                 <label id="lbl" for="name"><b>Nome do animal</b></label>
-                <input type="text" class="form-control shadow-sm mb-4" id="name" placeholder="Nome">
+                <input ngModel name="nome" type="text" class="form-control shadow-sm mb-4" id="name"
+                  placeholder="Nome do animal">
+              </div>
+              <div class="block">
+                <label id="lbl" for="email"><b>Nome do dono</b></label>
+                <input ngModel name="dono" type="text" class="form-control shadow-sm mb-4" id="date2"
+                  placeholder="Nome do dono">
               </div>
               <div class="block">
                 <label id="lbl" for="espec"><b>Espécie</b></label>
-                <input type="text" class="form-control shadow-sm mb-4" id="espec" placeholder="Espécie">
+                <input ngModel name="especie" type="text" class="form-control shadow-sm mb-4" id="espec"
+                  placeholder="Espécie">
               </div>
               <div class="block">
                 <label id="lbl" for="raca"><b>Raça</b></label>
-                <input type="text" class="form-control shadow-sm mb-4" id="raca" placeholder="Raça">
+                <input ngModel name="raca" type="text" class="form-control shadow-sm mb-4" id="raca" placeholder="Raça">
               </div>
               <div class="block">
                 <label id="lbl" for="email"><b>Data de desaparecimento</b></label>
-                <input type="date" class="form-control shadow-sm mb-4" id="date2">
+                <input ngModel name="dtDesaparecimento" type="date" class="form-control shadow-sm mb-4" id="date2">
               </div>
               <div class="block">
                 <label id="lbl" for="email"><b>Local do desaparecimento</b></label>
-                <input type="text" class="form-control shadow-sm mb-4" id="date2" placeholder="Endereço">
+                <input ngModel name="lugar" type="text" class="form-control shadow-sm mb-4" id="date2"
+                  placeholder="Endereço">
               </div>
               <div class="block">
                 <label id="lbl" for="email"><b>Telefone de contato</b></label>
-                <input type="number" class="form-control shadow-sm mb-4" id="date2" placeholder="Telefone">
+                <input ngModel name="telefone" type="text" class="form-control shadow-sm mb-4" id="date2"
+                  placeholder="Telefone">
               </div>
               <div class="block">
                 <label id="lbl" for="email"><b>Foto do animal</b></label>
-                <input type="text" class="form-control shadow-sm mb-4" id="date2">
+                <input ngModel name="foto" type="text" class="form-control shadow-sm mb-4" id="date2"
+                  placeholder="Insira a foto do animal">
               </div>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="closeSaveModal()">Save changes</button>
+        <button type="button" class="btn btn-primary" (click)="addDesaparecidoSR(desapSR.value)">Save changes</button>
       </div>
     </div>
   </div>
@@ -153,17 +190,23 @@
         <form #desap="ngForm" (ngSubmit)="addDesaparecido(desap.value)">
           <div class="block">
             <select ngModel name="idAnimal" id="idAnimal">
-              <option *ngFor="let animal of animals$" value="{{animal.id}}">{{animal.nome}}</option>
+              <ng-container *ngFor="let desap of desaps$">
+                <ng-container *ngFor="let animal of animals$">
+                  <ng-container *ngIf="desap.idAnimal != animal.id">
+                    <option value="{{animal.id}}">{{animal.nome}}</option>
+                  </ng-container>
+                </ng-container>
+              </ng-container>
             </select>
           </div>
           <div class="block">
-            <input ngModel name="dono" type="text" placeholder="Seu nome">
+            <input ngModel id="dono" name="dono" type="text" placeholder="Seu nome">
           </div>
           <div class="block">
             <input ngModel name="lugar" type="text" placeholder="Lugar do desaparecimento">
           </div>
           <div class="block">
-            <input ngModel name="telefone" type="text">
+            <input ngModel name="telefone" type="text" placeholder="119987654321">
           </div>
           <div class="block">
             <input ngModel name="dtDesaparecimento" type="date">

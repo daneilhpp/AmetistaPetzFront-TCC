@@ -75,16 +75,9 @@
                     <tr>
                       <td *ngIf="animal.idEspecie == 1; else elseBlock2">Cachorro</td>
                       <ng-template #elseBlock2>Gato</ng-template>
-                      <td *ngIf="animal.idRaca == 1; else else1">Akita</td>
-                      <ng-template #else1>
-                        <ng-container *ngIf="animal.idRaca == 2; else else2">Basset Hounder</ng-container>
-                        <ng-template #else2>
-                          <ng-container *ngIf="animal.idRaca == 3; else else3">Oregon Rex</ng-container>
-                          <ng-template #else3>
-                            <ng-container *ngIf="animal.idRaca == 37">Pitbull</ng-container>
-                          </ng-template>
-                        </ng-template>
-                      </ng-template>
+                      <ng-container *ngFor="let raca of racas$">
+                        <td *ngIf="animal.idRaca == raca.idRaca">{{raca.dsRaca}}</td>
+                      </ng-container>
                     </tr>
                     <tr>
                       <th>Cor</th>
@@ -152,10 +145,11 @@
                 <select #selectedValue name="animals" id="selectAddAnimal" ngModel name="idAnimal">
                   <ng-container *ngFor="let rga of rgas$">
                     <ng-container *ngFor="let animal of animals$">
-                      <option  *ngIf="rga.idAnimal == animal.id;else elseBlock3" value="{{animal.id}}" disabled>
+                      <option *ngIf="rga.idAnimal == animal.id;else elseBlock3" value="{{animal.id}}" disabled>
                         {{animal.id}} - {{animal.nome}}</option>
                       <ng-template #elseBlock3>
-                        <option *ngIf="animal.id != rga.idAnimal" value="{{animal.id}}">{{animal.id}} - {{animal.nome}}</option>
+                        <option *ngIf="animal.id != rga.idAnimal" value="{{animal.id}}">{{animal.id}} - {{animal.nome}}
+                        </option>
                       </ng-template>
                     </ng-container>
                   </ng-container>

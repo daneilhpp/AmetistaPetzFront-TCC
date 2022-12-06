@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { of, Subject, takeUntil } from 'rxjs';
 import { RGA } from 'src/app/core/interfaces/Rga';
-import { Desaparecido, Animal, Especie, Raca } from 'src/app/core/interfaces/Animal';
+import { Desaparecido, Animal, Especie, Raca, DesaparecidoSemRegistro } from 'src/app/core/interfaces/Animal';
 import { DenunciaService } from '../../services/denuncia.service';
 import { AnimalServiceService } from 'src/app/feature/carteirinha/services/animal-service.service';
 import { RgaService } from 'src/app/feature/rga/services/rga.service';
@@ -16,10 +16,11 @@ declare var window: any;
   styleUrls: ['./denuncia.component.css']
 })
 export class DenunciaComponent implements OnInit {
-  createModal: any;
-  addDesapModal: any;
+  addDesapModal!: any;
+  addDesapSRModal!: any;
   private ngDestroyed$ = new Subject();
   public desaps$!: Desaparecido[];
+  public desapsr$!: DesaparecidoSemRegistro[];
   public animals$!: Animal[];
   public rgas$!: RGA[];
   public espec$!: Especie[];
@@ -31,6 +32,9 @@ export class DenunciaComponent implements OnInit {
     this.denService.getDesaparecidos()
       .pipe(takeUntil(this.ngDestroyed$))
       .subscribe(data => this.desaps$ = data);
+    this.denService.getDesaparecidosSR()
+      .pipe(takeUntil(this.ngDestroyed$))
+      .subscribe(data => this.desapsr$ = data);
     this.aniService.getAnimals()
       .pipe(takeUntil(this.ngDestroyed$))
       .subscribe(data => this.animals$ = data);
@@ -46,19 +50,12 @@ export class DenunciaComponent implements OnInit {
       .subscribe(data => this.espec$ = data);
 
 
-    this.createModal = new window.bootstrap.Modal(
-      document.getElementById("openCreate")
-    );
     this.addDesapModal = new window.bootstrap.Modal(
       document.getElementById("openAddDesap")
     );
-  }
-  openCreateModal() {
-    this.createModal.show();
-  }
-  closeSaveModal() {
-    //this.addAnimalVaccine();
-    this.createModal.hide();
+    this.addDesapSRModal = new window.bootstrap.Modal(
+      document.getElementById("openAddDesapSR")
+    );
   }
 
   openDesapModal() {
@@ -66,6 +63,10 @@ export class DenunciaComponent implements OnInit {
   }
   closeDesapModal() {
     this.addDesapModal.hide();
+  }
+
+  openDesapSRModal() {
+    this.addDesapSRModal.show();
   }
 
   ngOnDestroy(): void {
@@ -80,6 +81,10 @@ export class DenunciaComponent implements OnInit {
   addDesaparecido(desap: Desaparecido): void {
     this.denService.addDesaparecido(desap).subscribe();
     this.addDesapModal.hide();
+  }
+  addDesaparecidoSR(desap: DesaparecidoSemRegistro): void {
+    this.denService.addDesaparecidoSR(desap).subscribe();
+    this.addDesapSRModal.hide();
   }
 
 

@@ -20,8 +20,20 @@ export interface Desaparecido{
     idAnimal: number;
 }
 
-export interface Especie{
+export interface DesaparecidoSemRegistro{
     id: number;
+    nome: string;
+    raca: string;
+    especie: string;
+    dtDesaparecimento: Date;
+    lugar: string;
+    dono: string;
+    telefone: string;
+    foto: string;
+}
+
+export interface Especie{
+    idEspecie: number;
     especieAnimal: string;
     grupoAnimal: string;
 }
