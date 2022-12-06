@@ -10,9 +10,6 @@ Projeto feito no desenvolvimento de TCC focado em ajudar a vida de donos de anim
 * ### RGA do animal. Nele você pode conferir as informações do animal adicionado anteriormente.
 ![](https://i.imgur.com/fCEyDYv.png)
 
-* ### GeoPetz. Para localizar um veterinário ou petshop próximo a sua localização.
-![](https://i.imgur.com/cKpPrZr.png)
-
 * ### Denúncia. Caso o animal tenha desaparecido, é possível gerar um cartaz automáticamente.
 ![](https://i.imgur.com/09lVgdm.png)
 
