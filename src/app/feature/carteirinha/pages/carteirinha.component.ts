@@ -107,13 +107,11 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
   addAnimalVaccine(vaccine: Vaccine): void {
     this.carteirinhaService.addAnimalVaccine(vaccine).subscribe();
     this.formAddModal.hide();
-    this.formAddModal.reset();
   }
 
   deleteAnimalVaccine(id: number) {
     this.carteirinhaService.deleteAnimalVaccine(id).subscribe();
     this.removeModal.hide();
-    this.removeModal.reset();
   }
 
   deleteAllAnimalVaccine() {
@@ -134,12 +132,10 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
   addCard(card: Card): void {
     this.carteirinhaService.addVaccineCard(card).subscribe();
     this.formAddCard.hide();
-    this.formAddCard.reset();
   }
   deleteCard(id: number) {
     this.carteirinhaService.deleteVaccineCard(id).subscribe();
     this.removeCard.hide();
-    this.removeCard.reset();
   }
 
   public selectedCard: any;
@@ -193,5 +189,3 @@ export class CarteirinhaComponent implements OnInit, OnDestroy {
     }
   }
 }
-
-

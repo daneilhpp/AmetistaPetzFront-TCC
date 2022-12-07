@@ -3,7 +3,8 @@ import { Subject, takeUntil } from 'rxjs';
 import { RgaAnimalType, RgaService } from '../services/rga.service';
 import { RGA } from 'src/app/core/interfaces/Rga';
 import { Animal, Especie, Raca, Sexos } from 'src/app/core/interfaces/Animal';
-import { AnimalServiceService } from '../../carteirinha/services/animal-service.service'
+import { AnimalServiceService } from '../../carteirinha/services/animal-service.service';
+import { MixedAddRGA } from 'src/app/core/interfaces/MixedArrays';
 
 declare var window: any;
 
@@ -23,6 +24,8 @@ export class RgaComponent implements OnInit {
   public especies$!: Especie[];
   public racas$!: Raca[];
   public sexos$!: Sexos[];
+
+  public addRga$!: MixedAddRGA[];
 
   private ngDestroyed$ = new Subject();
 
@@ -50,6 +53,7 @@ export class RgaComponent implements OnInit {
     this.animalService.getSexos()
       .pipe(takeUntil(this.ngDestroyed$))
       .subscribe(sx => this.sexos$ = sx);
+
 
     this.formAddModal = new window.bootstrap.Modal(
       document.getElementById("addRga")

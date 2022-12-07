@@ -16,16 +16,8 @@ const routes: Routes = [
     loadChildren: () => import('./feature/entrar/entrar.module').then((m) => m.EntrarModule)
   },
   {
-    path: 'selecione',
-    loadChildren: () => import('./feature/carteirinha/carteirinha.module').then(m => m.CarteirinhaModule)
-  },
-  {
     path: 'carteirinha',
     loadChildren: () => import('./feature/carteirinha/carteirinha.module').then(m => m.CarteirinhaModule)
-  },
-  {
-    path: 'adocao',
-    loadChildren: () => import('./feature/adocao/adocao.module').then(m => m.AdocaoModule)
   },
   {
     path: 'rga',
@@ -34,10 +26,6 @@ const routes: Routes = [
   {
     path: 'registrar',
     loadChildren: () => import('./feature/registrar/registrar.module').then(m => m.RegistrarModule)
-  },
-  {
-    path: 'geopetz',
-    loadChildren: () => import('./feature/geopetz/geopetz.module').then(m => m.GeopetzModule)
   },
   {
     path: 'denuncia',

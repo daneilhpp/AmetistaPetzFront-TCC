@@ -12,12 +12,10 @@
     </select> -->
     <button id="openFormFilter" class="btn shadow" (click)="getRGA()"><b>Mostrar Todas</b></button>
     <select [(ngModel)]="selectedCard" (change)="selecionado()" class="shadow" id="filter">
-      <option selected style="color: #4f4f4f;">Animais</option>
       <option id="filterOpt" value="{{animal.nome}}" *ngFor="let animal of animalDropDown$" selected>{{animal.nome}}
       </option>
     </select>
     <select [(ngModel)]="filtered" (change)="filters()" id="filterby" class="shadow">
-      <option selected style="color: #4f4f4f;">Filtros</option>
       <option value="1">Mais antigo</option>
       <option value="2">Mais Recente</option>
       <option value="3">Alfabético</option>
@@ -31,7 +29,7 @@
     <div class="cards" *ngFor="let rga of rgas$">
       <div class="card shadow" *ngIf="animal.id == rga.idAnimal">
         <section class="animalinfo">
-          <h1 id="title">{{animal.id}} - {{animal.nome}}</h1>
+          <h1 id="title">{{animal.nome}}</h1>
           <div class="line-1"></div>
           <div class="card shadow" id="rga">
             <div class="row" id="lin1">
@@ -143,15 +141,9 @@
               <div class="block">
                 <label id="lbl" for="name"><b>Selecione o animal</b></label>
                 <select #selectedValue name="animals" id="selectAddAnimal" ngModel name="idAnimal">
-                  <ng-container *ngFor="let rga of rgas$">
-                    <ng-container *ngFor="let animal of animals$">
-                      <option *ngIf="rga.idAnimal == animal.id;else elseBlock3" value="{{animal.id}}" disabled>
-                        {{animal.id}} - {{animal.nome}}</option>
-                      <ng-template #elseBlock3>
-                        <option *ngIf="animal.id != rga.idAnimal" value="{{animal.id}}">{{animal.id}} - {{animal.nome}}
-                        </option>
-                      </ng-template>
-                    </ng-container>
+                  <ng-container *ngFor="let animal of animals$">
+                    <option value="{{animal.id}}" [disabled]="animal.id < animals$.length-1">
+                      {{animal.nome}}</option>
                   </ng-container>
                 </select>
               </div>
@@ -184,24 +176,24 @@
               </div> -->
               <div class="block">
                 <label id="lbl" for="micro"><b>Microship do animal</b></label>
-                <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="Microship" ngModel
+                <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="Número do Microship" ngModel
                   name="chip">
               </div>
               <div class="block">
                 <label id="lbl" for="rga3"><b>RGA do animal</b></label>
-                <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="RGA" ngModel name="rga">
+                <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="Número do RGA" ngModel name="rga">
               </div>
               <div class="block">
                 <label id="lbl" for="foto5"><b>Foto da Pata do animal</b></label>
-                <input type="text" class="form-control shadow-sm mb-4" id="sel" ngModel name="pata">
+                <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="Digital ou foto da pata do animal" ngModel name="pata">
               </div>
               <div class="block">
                 <label id="lbl" for="foto2"><b>Foto do animal</b></label>
-                <input type="text" class="form-control shadow-sm mb-4" id="sel" ngModel name="foto">
+                <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="Foto do seu pet" ngModel name="foto">
               </div>
               <div class="block">
                 <label id="lbl" for="foto3"><b>Foto da assinatura do tutor</b></label>
-                <input type="text" class="form-control shadow-sm mb-4" id="sel" ngModel name="assinatura">
+                <input type="text" class="form-control shadow-sm mb-4" id="sel" placeholder="Sua assinatura" ngModel name="assinatura">
               </div>
             </div>
           </div>
@@ -223,9 +215,11 @@
       </div>
       <div class="modal-body">
         <select #rgas name="rgas" id="rgaList" (change)="onSelected(rgas.value)">
-          <option *ngFor="let rga of rgas$" value="{{rga.idRGA}}">{{rga.idRGA}} -
-            <!-- {{rga.nome}} -->
-          </option>
+          <ng-container *ngFor="let animal of animals$">
+            <ng-container *ngFor="let rga of rgas$">
+              <option *ngIf="rga.idAnimal == animal.id" value="{{rga.idRGA}}">{{animal.nome}}</option>
+            </ng-container>
+          </ng-container>
         </select>
       </div>
       <div class="modal-footer">

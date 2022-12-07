@@ -7,15 +7,23 @@
     <datalist id="names">
       <option *ngFor="let animal of animals$" value="{{animal.id}}">{{animal.nome}}</option>
     </datalist> -->
-    <select name="filter" id="filter" class="shadow">
-      <option id="filterOpt" value="{{animal.id}}" *ngFor="let animal of animals$">{{animal.nome}}</option>
+    <!-- <select name="filter" id="filter" class="shadow">
+      <option #carteirinha (change)="carteirinha.value" id="filterOpt" value="{{animal.id}}" *ngFor="let animal of animals$">{{animal.nome}}</option>
+    </select> -->
+    <button id="openFormFilter" class="btn shadow" (click)="getCards()"><b>Mostrar Todas</b></button>
+    <select [(ngModel)]="selectedCard" (change)="selecionado()" class="shadow" id="filter">
+      <option id="filterOpt" value="{{animal.nome}}" *ngFor="let animal of animalDropDown$">{{animal.nome}}</option>
     </select>
-    <select name="filterby" id="filterby" class="shadow">
-      <option value="1" selected>Alfabético</option>
+    <select [(ngModel)]="filtered" (change)="filters()" id="filterby" class="shadow">
+      <option selected>Numérico</option>
+      <option value="1">Mais antigo</option>
       <option value="2">Mais Recente</option>
+      <option value="3">Alfabético</option>
     </select>
+    <b>|</b>
     <button id="openForm" class="btn shadow" (click)="openAddCardModal()"><b>Adicionar Carteira</b></button>
     <button id="openForm" class="btn shadow" (click)="openRemoveCard()"><b>Remover Carteira</b></button>
+    <b>|</b>
     <button id="openForm" class="btn shadow" (click)="openAddModal()"><b>Adicionar Vacina</b></button>
     <button id="openForm" class="btn shadow" (click)="openRemoveModal()"><b>Remover Vacina</b></button>
   </div>
@@ -23,7 +31,7 @@
     <div *ngFor="let card of cards$" class="cards">
       <div class="card shadow" *ngIf="animal.id == card.animalIdAnimal">
         <section class="animalinfo">
-          <h1 id="title">{{card.animalIdAnimal}} - {{animal.nome}}</h1>
+          <h1 id="title">{{animal.nome}}</h1>
           <div class="line-1"></div>
           <div class="table-responsive">
             <table class="table table-striped table-bordered">
@@ -42,7 +50,10 @@
                     <th scope="row">{{vaccine.idVacina}}</th>
                     <td>{{vaccine.medicamento}}</td>
                     <td>{{vaccine.dataVacina | date:'d/M/y'}}</td>
-                    <td>{{vaccine.proximaVacina | date:'d/M/y'}}</td>
+                    <td *ngIf="vaccine.proximaVacina != null; else semRetorno">{{vaccine.proximaVacina | date:'d/M/y'}}</td>
+                    <ng-template #semRetorno>
+                      <td><b>Sem retorno</b></td>
+                    </ng-template>
                   </ng-container>
 
                   <!--<td>{{animal.vaccine}}</td>
@@ -72,29 +83,36 @@
               <div class="block">
                 <label id="lbl" for="name"><b>Selecione a Carteira</b></label>
                 <select id="carteiraId" ngModel name="carteiraId">
-                  <option *ngFor="let card of cards$" value="{{card.id}}" selected>
-                    <!-- {{card.petName}} -->
-                  </option>
+                  <ng-container *ngFor="let animal of animals$">
+                    <ng-container *ngFor="let card of cards$">
+                      <option *ngIf="animal.id == card.animalIdAnimal" value="{{card.id}}" selected> {{animal.nome}}
+                      </option>
+                    </ng-container>
+                  </ng-container>
                 </select>
               </div>
               <div class="block">
                 <label id="lbl" for="name"><b>Selecione a vacina</b></label>
                 <select id="medicamento" ngModel name="medicamento">
                   <option selected>Selecione uma vacina</option>
-                  <option value="Raiva">Raiva</option>
-                  <option value="Pulga">Pulga</option>
-                  <option value="V8">V8</option>
-                  <option value="V10">V10</option>
+                  <option value="V10">V10 Canina</option>foi
+                  <option value="V8">V8 Canina</option>foi
+                  <option value="Antirrábica">Antirrábica</option>foi
+                  <option value="Gripe Canina">Gripe Canina</option>foi
+                  <option value="Giárdia">Giárdia</option>
+                  <option value="Leishmaniose">Leishmaniose</option>
+
+                  <option value="V5">V5 Felina</option>
                 </select>
               </div>
               <div class="block">
                 <label id="lbl" for="email"><b>Data de aplicação</b></label>
                 <input type="date" ngModel name="dataVacina" class="form-control shadow-sm mb-4" id="dataVacina">
               </div>
-              <div class="block">
+              <!-- <div class="block">
                 <label id="lbl" for="email"><b>Data de retorno</b></label>
                 <input type="date" ngModel name="proximaVacina" class="form-control shadow-sm mb-4" id="proximaVacina">
-              </div>
+              </div> -->
             </div>
           </div>
         </form>
@@ -149,10 +167,12 @@
       <div class="modal-body">
         <form #card="ngForm" (ngSubmit)="addCard(card.value)">
           <label for="name"><b>Nome do animal</b></label>
-          <input type="text" ngModel name="petName" placeholder="Nome do animal" id="dataVacina">
-          <!--  <select ngModel name="petName" id="medicamento">
-              <option *ngFor="let animal of animals$" value="{{animal.id}}">{{animal.nome}}</option>
-            </select> -->
+          <select #selectedValue name="animals" id="carteiraId" ngModel name="animalIdAnimal">
+              <ng-container *ngFor="let animal of animals$">
+                <option value="{{animal.id}}" [disabled]="animal.id < animals$.length-1">
+                  {{animal.nome}}</option>
+              </ng-container>
+          </select>
         </form>
       </div>
       <div class="modal-footer">
@@ -171,10 +191,12 @@
       </div>
       <div class="modal-body">
         <select #cards name="cards" id="vaccineList" (change)="onSelected2(cards.value)">
-           <ng-container *ngFor="let animal of animals$">
-          <option *ngFor="let card of cards$" value="{{card.id}}">{{card.id}} - {{animal.nome}}</option>
-
-           </ng-container>
+          <ng-container *ngFor="let animal of animals$">
+            <ng-container *ngFor="let card of cards$">
+              <option *ngIf="animal.id == card.animalIdAnimal" value="{{card.id}}">{{animal.nome}}
+              </option>
+            </ng-container>
+          </ng-container>
         </select>
       </div>
       <div class="modal-footer">
