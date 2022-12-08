@@ -1,6 +1,7 @@
 .card{
+  display: block;
+  margin: 0 auto;
   margin-top: 80px;
-  margin-right: 40px;
   width: 310px;
   border-width: 2px;
   border-color: #FFFFFF;
@@ -12,17 +13,26 @@
 
 }
 
+#alert{
+  width: 200px;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  margin-top: 40px;
+
+}
+
 .center{
 display: flex;
 justify-content:center;
 }
 
 #img{
-border-radius: 300px;
+border-radius: 100%;
 margin-top: 10px;
 background-color:#ffcdc6;
-height: 50%;
-width: 90%;
+width: 250px;
+height: inherit;
 
 }
 
@@ -91,3 +101,26 @@ h3{
     margin-right: 0px;
 }
 
+.botoes{
+  margin-top: 20px;
+  display: block;
+}
+#botao{
+  background-color: #8B40EB;
+  border-radius: 30px;
+  margin: 0 5px;
+  color: white;
+}
+
+#form{
+  border-radius: 10px;
+  border-color: #8B40EB;
+  font-style: italic;
+  font-size: larger;
+  height: 40px;
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}

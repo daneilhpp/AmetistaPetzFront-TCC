@@ -1,18 +1,109 @@
-<h3>MEUS PETZ</h3>
-<div class="center">
-    <div class="row">
-        <figure class="card" *ngFor="let animal of animals$">
-            <img id="img" src="" class="card-img-top" alt=".">
-            <div class="card-body d-flex flex-column">
-                <figcaption class="card-title">{{animal.id}} - {{animal.nome}}</figcaption>
-                <p class="card-text">
-                </p>
-                <a class="align-self-bottom btn shadow"><b>RGA</b></a>
-                <a  id="bntroxo" class="btn btn-primary" routerLink="/carteirinha">Carteirinha</a>
-            </div>
-        </figure>
+<div id="alert" class="alert alert-primary" role="alert">
+  <p>leonardo_silva</p>
+</div>
 
-        <!--
+<h3>MEUS PETZ</h3>
+<div class="botoes" align="center">
+  <button class="btn" id="botao" (click)="openAddModal()"><b>Adicionar Animal</b></button>
+  <button class="btn" id="botao" (click)="openDeleteModal()"><b>Remover Animal</b></button>
+</div>
+<div class="center">
+  <div class="row">
+    <ng-container *ngFor="let animal of animals$">
+      <ng-container *ngFor="let rga of rgas$">
+        <ng-container *ngIf="animal.id == rga.idAnimal">
+          <figure class="card">
+            <img id="img" src="{{rga.foto}}" class="card-img-top" alt=".">
+            <div class="card-body d-flex flex-column">
+              <figcaption class="card-title">{{animal.nome}}<br>{{rga.rga}}</figcaption>
+              <p class="card-text">
+              </p>
+              <a class="align-self-bottom btn shadow" routerLink="/rga"><b>RGA</b></a>
+              <a id="bntroxo" class="btn btn-primary" routerLink="/carteirinha">Carteirinha</a>
+            </div>
+          </figure>
+        </ng-container>
+
+      </ng-container>
+    </ng-container>
+
+    <div class="modal" tabindex="-1" id="addAnimal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Insira as informações do animal</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form #animal="ngForm" (ngSubmit)="addAnimal(animal.value)">
+              <div class="block">
+                <label for="name"><b>Nome do animal</b></label>
+                <input type="text" placeholder="Nome" ngModel name="nome" id="form">
+              </div>
+              <div class="block">
+                <label for="name"><b>Espécie do animal</b></label>
+                <select ngModel name="idEspecie" id="form">
+                  <option *ngFor="let espec of especs$" value="{{espec.idEspecie}}">{{espec.especieAnimal}}</option>
+                </select>
+              </div>
+              <div class="block">
+                <label for="name"><b>Raça do animal</b></label>
+                <select ngModel name="idRaca" id="form">
+                  <option *ngFor="let raca of racas$" value="{{raca.idEspecie}}">{{raca.dsRaca}}</option>
+                </select>
+              </div>
+              <div class="block">
+                <label for="name"><b>Sexo do animal</b></label>
+                <select ngModel name="idSexo" id="form">
+                  <option *ngFor="let sexo of sexos$" value="{{sexo.idSexo}}">{{sexo.dsSexo}}</option>
+                </select>
+              </div>
+              <div class="block">
+                <label for="name"><b>Data de nascimento do animal</b></label>
+                <input type="date" ngModel name="dtNascimento" id="form">
+              </div>
+              <div class="block">
+                <label for="name"><b>Pelagem do animal</b></label>
+                <input type="text" placeholder="Cor do pelo" ngModel name="pelagem" id="form">
+              </div>
+              <div class="block">
+                <label for="name"><b>Peso do animal</b></label>
+                <input type="number" placeholder="Ex: 11,11" ngModel name="peso" id="form">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" id="botao"
+              (click)="addAnimal(animal.value)">Adicionar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" tabindex="-1" id="deleteAnimal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Selecione o animal que quer remover</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <select #animals name="animals" id="vaccineList" (change)="onSelected2(animals.value)" id="form">
+              <ng-container *ngFor="let animal of animals$">
+                <option value="{{animal.id}}">{{animal.nome}}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="botao"
+              (click)="deleteAnimal(+selectedItem2)">Deletar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--
             o que eu fiz foi, chamei o atributo que a gente criou do tipo animal,
             que ta sendo passado no metodo que ta puxando aquele array,
             fiz um for tambem pra ele passar por cada um dos objetos do array, e pra cada um ele
@@ -43,7 +134,7 @@
         -->
 
 
-        <!-- <figure class="card">
+    <!-- <figure class="card">
             <img id="img" src="assets/pipoca.jpg" class="card-img-top" alt=".">
             <div class="card-body d-flex flex-column">
                 <figcaption class="card-title">PIPOCA</figcaption>
@@ -89,7 +180,5 @@
             </div>
         </figure>-->
 
-    </div>
+  </div>
 </div>
-
-

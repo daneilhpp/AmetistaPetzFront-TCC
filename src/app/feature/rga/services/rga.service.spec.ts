@@ -2,6 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { RgaService } from './rga.service';
+import { RGA } from 'src/app/core/interfaces/Rga';
+import { HttpResponse } from '@angular/common/http';
 
 describe('RgaService', () => {
   let service: RgaService;
@@ -35,6 +37,30 @@ describe('RgaService', () => {
       done();
     });
 
+  });
+
+  it('Should post an rga', (done) => {
+    const stubRga: RGA = { 
+        idRGA: 1,  
+        idAnimal: 2,
+        chip: 3,
+        rga: 4,
+        assinatura: 'teste1',
+        pata: 'teste2',
+        foto: 'teste3',
+        dataAdicao: new Date()
+      };
+
+    service.addRga(stubRga).subscribe(data => {
+      expect(data).toEqual(stubRga), fail
+    });
+
+    const req = httpTestingController.expectOne('http://localhost:5000/RGA/Add');
+    expect(req.request.method).toEqual('POST');
+    expect(req.request.body).toEqual(stubRga);
+
+    const expectedResponse = new HttpResponse({status: 201, statusText: 'Created', body: stubRga});
+    req.event(expectedResponse);
   });
 
   it('Should return an rga by id from array', (done) => {

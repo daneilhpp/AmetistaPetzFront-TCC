@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { CarteirinhaService, VaccineAnimalType } from './carteirinha.service';
+import { Card } from 'src/app/core/interfaces/Carteirinha';
 
 describe('CarteirinhaService', () => {
   let service: CarteirinhaService;
@@ -22,26 +23,18 @@ describe('CarteirinhaService', () => {
     expect(service).toBeTruthy();
   });
 
-// https://www.testim.io/blog/testing-angular-services/
-  it('Should return an vaccine array', (done) => {
-    //stub
-    //arrange
-    const stubVaccine = [
-      { animalName: 'name', id: 1, vaccine: 'teste1', vaccineDate: new Date(1666033027665), nextVaccineDate: new Date(1666033027665) },
-      { animalName: 'name', id: 2, vaccine: 'teste2', vaccineDate: new Date(1666033027665), nextVaccineDate: new Date(1666033027665) },
-      { animalName: 'name', id: 3, vaccine: 'teste3', vaccineDate: new Date(1666033027665), nextVaccineDate: new Date(1666033027665) },
+  it('#getCards should return cards', (done)=> {
+    const Cards: Card[] =[
+      {id: 1, animalIdAnimal: 1, dataAdicao: new Date()},
+      {id: 2, animalIdAnimal: 2, dataAdicao: new Date()},
+      {id: 3, animalIdAnimal: 3, dataAdicao: new Date()}
     ];
 
-    //act
-    service.getMock().subscribe(data => {
-      //assert
-      expect(data).toEqual(stubVaccine);
+    service.getVaccineCardList().subscribe(data => {
+      expect(data).toEqual(Cards);
       done();
-    });
-
+    })
   });
-
-  
 });
 
 

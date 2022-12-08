@@ -1,10 +1,29 @@
-<p></p><br><br>
-<nav>
-    <div class="container-right">
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Digite o RGA" aria-label="Search">
-        <button class="btn" type="submit" (click)="OnSearch">Pesquisar</button>
-      </form>
+<div id="alert" class="alert alert-primary" role="alert">
+  <p>beatriz_nascimento</p>  </div>
+
+
+<h3>MEUS PETZ</h3>
+<div class="botoes" align="center">
+    <button class="btn" id="botao" ><b>Adicionar Animal</b></button>
+    <button class="btn" id="botao" ><b>Remover Animal</b></button>
+  </div>
+<div class="center">
+    <div class="row">
+        <figure class="card" *ngFor="let animal of animals$">
+            <img id="img" src="{{animal.foto}}" class="card-img-top" alt=".">
+            <div class="card-body d-flex flex-column">
+                <figcaption class="card-title">{{animal.name}}<br>{{animal.rga}}</figcaption>
+                <p class="card-text">
+                </p>
+                <a class="align-self-bottom btn shadow" routerLink="/rga"><b>RGA</b></a>
+                <a  id="bntroxo" class="btn btn-primary" routerLink="/carteirinha">Carteirinha</a>
+            </div>
+        </figure>
+
+
     </div>
-  </nav>
+</div>
+
+
+
 

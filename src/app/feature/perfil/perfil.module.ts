@@ -4,6 +4,7 @@ import { PerfilComponent } from './pages/tutor/perfil.component';
 import { PerfilRoutingModule } from './perfil-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { VetComponent } from './pages/vet/vet.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -15,7 +16,8 @@ import { VetComponent } from './pages/vet/vet.component';
   imports: [
     CommonModule,
     PerfilRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class PerfilModule { }

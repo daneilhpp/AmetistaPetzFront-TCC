@@ -13,7 +13,7 @@
                             <label id="lblemail" for="email"><b>Seu username</b></label>
                             <input formControlName="username" name="username" id="email" type="text" class="form-control shadow"
                                 placeholder="ex: zezin">
-                            <app-error-mesage-form *ngIf="loginForm.get('username')?.errors?.['required']" errorMessage="CAMPO OBRIGATORIO MUDA ISSO AQUI DEPOIS"></app-error-mesage-form>
+                            <app-error-mesage-form *ngIf="loginForm.get('username')?.errors?.['required']" errorMessage=""></app-error-mesage-form>
                         </div>
 
                         <div class="block">
@@ -21,8 +21,15 @@
                             <input formControlName="passwordString" name="passwordString" id="senha" type="password" class="form-control shadow"
                                 placeholder="Senha">
                         </div>
-                        <button id="entrar" class="btn btn-primary shadow"
+                        <button id="entrar" class="btn btn-primary"
                             routerLink="/perfil" [disabled]="loginForm.get('username')?.errors?.['required']"><b>Entrar</b></button>
+
+
+                           <button id="entrar2" class="btn" routerLink="/perfil/vet"><b></b></button>
+                            
+
+
+
                         <!-- <ng-container *ngIf="autenticado; else elseBlock">
                         </ng-container> -->
                         <!-- <ng-template #elseBlock>

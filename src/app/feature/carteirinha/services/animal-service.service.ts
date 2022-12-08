@@ -17,6 +17,12 @@ export class AnimalServiceService {
   public getAnimals(): Observable<Animal[]> {
     return this.http.get<Animal[]>("http://localhost:5000/Animais/Listar", {headers: this.getHeaders()});
   }
+  public addAnimal(animal: Animal): Observable<Animal>{
+    return this.http.post<Animal>("http://localhost:5000/Animais/Add", animal, {headers: this.getHeaders()});
+  }
+  public deleteAnimal(id: number): Observable<void>{
+    return this.http.delete<void>(`http://localhost:5000/Animais/Delete/${id}`, {headers: this.getHeaders()})
+  }
 
   public getSexos(): Observable<Sexos[]> {
     return this.http.get<Sexos[]>("http://localhost:5000/Animais/Sexos", {headers: this.getHeaders()});
